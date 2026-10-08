@@ -1,0 +1,157 @@
+\chapter{Matrices}
+\label{cap:matrices}
+
+\section{Operaciones con matrices}
+\label{sec:operaciones}
+
+\subsection*{Notación y tipos de matrices}
+
+Una matriz de orden $m\times n$ es una disposición de escalares $A=(a_{ij})$,
+con $m$ filas y $n$ columnas. Los escalares pertenecen a $\K=\R$ o $\C$;
+$\M_{m\times n}(\K)$ denota el conjunto de estas matrices. Dos matrices
+son iguales si tienen el mismo orden y coinciden todas sus entradas.
+Una fila tiene orden $1\times n$; una columna, $m\times1$.
+Una submatriz se obtiene conservando determinadas filas y columnas.
+
+Si $m=n$, la matriz es \emph{cuadrada}, de orden $n$, y escribimos
+$\M_n(\K)$. Su diagonal principal contiene $a_{11},\ldots,a_{nn}$;
+las entradas con $i<j$ quedan por encima y las de $i>j$, por debajo.
+
+La \textbf{traspuesta} $A^t$ intercambia filas y columnas:
+$(A^t)_{ij}=a_{ji}$ y su orden es $n\times m$. La conjugada $\overline A$
+conjuga cada entrada; la \textbf{traspuesta conjugada} es
+$A^*=\overline A^{\,t}$. Para matrices reales, $A^*=A^t$.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.29\linewidth}p{0.65\linewidth}@{}}
+\toprule
+Tipo & Condición \\
+\midrule
+Nula & Todas las entradas son cero; existe para cualquier orden. \\
+Diagonal & Cuadrada, con $a_{ij}=0$ si $i\ne j$;
+se denota $\diag(a_{11},\ldots,a_{nn})$. \\
+Identidad $I_n$ & Diagonal, con todas sus entradas diagonales iguales a $1$. \\
+Triangular superior & Cuadrada, con $a_{ij}=0$ si $i>j$. \\
+Triangular inferior & Cuadrada, con $a_{ij}=0$ si $i<j$. \\
+Simétrica & $A^t=A$. \\
+Antisimétrica & $A^t=-A$; en particular, $a_{ii}=0$. \\
+Hermitiana & $A^*=A$; sus entradas diagonales son reales. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Las tres últimas condiciones requieren matrices cuadradas. Una matriz
+diagonal es triangular superior e inferior a la vez.
+
+\subsection*{Suma y producto por un escalar}
+
+Para matrices del mismo orden y $\lambda\in\K$,
+\[
+ (A+B)_{ij}=a_{ij}+b_{ij},\qquad (\lambda A)_{ij}=\lambda a_{ij}.
+\]
+La suma es asociativa y conmutativa; la matriz nula es su elemento neutro
+y $-A$ es el opuesto de $A$. La multiplicación por escalares satisface
+\[
+ \begin{gathered}
+ \lambda(A+B)=\lambda A+\lambda B,\quad
+ (\lambda+\mu)A=\lambda A+\mu A,\\
+ \lambda(\mu A)=(\lambda\mu)A,\qquad 1A=A.
+ \end{gathered}
+\]
+Estas leyes se comprueban aplicando las igualdades de escalares a cada entrada.
+
+\subsection*{Producto de matrices}
+
+Si $A$ tiene orden $m\times n$ y $B$, $n\times p$, el producto $AB$ tiene
+orden $m\times p$ y
+\[
+ (AB)_{ij}=\sum_{k=1}^{n}a_{ik}b_{kj}.
+\]
+Cada entrada se obtiene multiplicando la fila $i$ de $A$ por la columna $j$
+de $B$ y sumando los productos. Deben coincidir el número de columnas
+del primer factor y el de filas del segundo.
+
+Cuando los tamaños permiten las operaciones,
+\begin{align*}
+ (AB)C&=A(BC), & I_mA&=AI_n=A,\\
+ A(B+C)&=AB+AC, & (A+B)C&=AC+BC,\\
+ \lambda(AB)&=(\lambda A)B=A(\lambda B).
+\end{align*}
+Si $A$ tiene columnas $A_1,\ldots,A_n$, la columna $j$ de $AB$ es
+$\sum_k b_{kj}A_k$. La fila $i$ de $AB$ es la combinación de las filas
+de $B$ con coeficientes $a_{i1},\ldots,a_{in}$.
+
+\textbf{Precauciones.} El producto no es conmutativo: $BA$ puede no existir,
+tener otro orden o ser distinto de $AB$. Tampoco se puede cancelar un
+factor no nulo ni deducir de $AB=0$ que alguno de los factores sea cero.
+
+\begin{ejemplo}
+Con $A=\begin{pmatrix}1&0\\0&0\end{pmatrix}$ y
+$B=\begin{pmatrix}0&1\\0&0\end{pmatrix}$ se tiene $AB=B$ y $BA=0$.
+Ambos factores son no nulos. Además, $BA=B0$ aunque $A\ne0$:
+esta igualdad muestra por qué no se puede cancelar $B$.
+\end{ejemplo}
+
+\subsection*{Bloques y potencias}
+
+Una partición en bloques agrupa entradas sin alterar la matriz. Se suman
+bloques con particiones iguales. Para multiplicar, los bloques deben tener
+tamaños compatibles y la partición de las columnas de $A$ debe coincidir
+con la de las filas de $B$; entonces
+\[
+ (AB)_{ij}=\sum_k A_{ik}B_{kj},
+\]
+donde cada término es un producto de bloques. El producto de dos matrices
+diagonales por bloques con la misma partición es diagonal por bloques
+y se calcula multiplicando los bloques correspondientes.
+
+Para $A\in\M_n(\K)$, $A^0=I_n$ y $A^k$ es el producto de $k$ copias de
+$A$ si $k\ge1$. Se cumple $A^rA^s=A^{r+s}$ para $r,s\ge0$.
+Las potencias de una matriz diagonal por bloques se calculan bloque a bloque.
+
+Una matriz cuadrada es \textbf{idempotente} si $A^2=A$,
+\textbf{involutiva} si $A^2=I_n$ y \textbf{nilpotente} si $A^k=0$
+para algún entero $k\ge1$.
+
+Para matrices cuadradas del mismo orden,
+\[
+ (A+B)^2=A^2+AB+BA+B^2.
+\]
+Si además $AB=BA$, se pueden reunir los productos en el desarrollo
+y aplicar la fórmula binomial:
+\[
+ (A+B)^k=\sum_{j=0}^{k}\binom{k}{j}A^{k-j}B^j,\qquad k\ge0.
+\]
+Si $B^s=0$, los términos con $j\ge s$ desaparecen. La hipótesis de
+conmutatividad no se debe omitir.
+
+\subsection*{Trasposición y traza}
+
+Para matrices compatibles y $\lambda\in\K$,
+\[
+ (A^t)^t=A,\quad (A+B)^t=A^t+B^t,\quad
+ (\lambda A)^t=\lambda A^t,\quad (AB)^t=B^tA^t.
+\]
+La trasposición de un producto invierte el orden de los factores; la regla
+se extiende a cualquier número finito de ellos.
+
+Si $A$ es cuadrada, $A+A^t$ es simétrica y $A-A^t$ es antisimétrica.
+Por tanto,
+\[
+ A=\frac{A+A^t}{2}+\frac{A-A^t}{2}
+\]
+separa su parte simétrica de su parte antisimétrica. Además, $AA^t$ es
+simétrica para cualquier matriz $A$, porque $(AA^t)^t=AA^t$.
+
+La \textbf{traza} de una matriz cuadrada es $\tr(A)=\sum_i a_{ii}$.
+Es lineal y no cambia al trasponer:
+\[
+ \tr(A+B)=\tr(A)+\tr(B),\quad
+ \tr(\lambda A)=\lambda\tr(A),\quad \tr(A^t)=\tr(A).
+\]
+También $\tr(AB)=\tr(BA)$ si $A$ es $m\times n$ y $B$, $n\times m$:
+ambas trazas suman los mismos términos $a_{ij}b_{ji}$. No es necesario
+que los dos factores sean cuadrados.
+
+\input{temas/tema-01-gauss}

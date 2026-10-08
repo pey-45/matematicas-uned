@@ -1,0 +1,236 @@
+\chapter{Nociones de lógica}
+\label{cap:logica}
+
+\section{Proposiciones y conectivas}
+
+La \textbf{sintaxis} estudia cómo se forman las expresiones; la
+\textbf{semántica}, su significado y valor de verdad. Una
+\textbf{proposición} es un enunciado al que se puede asignar un valor
+de verdad: verdadero ($1$) o falso ($0$). Puede ser simple o estar
+compuesta por otras proposiciones.
+
+Un \textbf{predicado} contiene variables y se convierte en proposición
+al fijar sus valores en un dominio. Para $x$ entero, «$x$ es múltiplo de $5$»
+depende de $x$; para $x=15$ es verdadero y para $x=12$, falso.
+Una relación puede depender de varias variables.
+
+Las \textbf{conectivas} construyen proposiciones compuestas. Su valor
+depende únicamente de los valores de sus argumentos:
+\begin{itemize}
+ \item $\neg p$: negación, que invierte el valor de $p$.
+ \item $p\vee q$: disyunción inclusiva, verdadera si al menos una es verdadera.
+ \item $p\wedge q$: conjunción, verdadera si ambas son verdaderas.
+ \item $p\to q$: condicional, falso únicamente cuando $p$ es verdadero y
+       $q$ es falso. $p$ es el antecedente y $q$, el consecuente.
+ \item $p\leftrightarrow q$: bicondicional, verdadero si ambos valores coinciden.
+\end{itemize}
+No se exige una relación causal para evaluar un condicional. Si su
+antecedente es falso, el condicional es verdadero.
+
+\begin{center}
+\begin{tabular}{@{}ccccccc@{}}
+\toprule
+$p$ & $q$ & $\neg p$ & $p\vee q$ & $p\wedge q$ & $p\to q$ & $p\leftrightarrow q$\\
+\midrule
+1&1&0&1&1&1&1\\
+1&0&0&1&0&0&0\\
+0&1&1&1&0&1&0\\
+0&0&1&0&0&1&1\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Una tabla de verdad de $n$ variables tiene $2^n$ filas. Hay
+$2^{2^n}$ funciones posibles de esos valores: cuatro conectivas unarias
+y dieciséis binarias. En el caso unario son $0$, $1$, $p$ y $\neg p$.
+La disyunción exclusiva es verdadera cuando los dos valores son distintos.
+
+Los paréntesis indican qué argumentos recibe cada conectiva.
+No deben omitirse si ello permite interpretaciones diferentes.
+
+Para $p\to q$ se distinguen la \textbf{recíproca} $q\to p$,
+la \textbf{contraria} $\neg p\to\neg q$ y la
+\textbf{contrarrecíproca} $\neg q\to\neg p$.
+Solo esta última es siempre equivalente al condicional original.
+La recíproca y la contraria son equivalentes entre sí.
+
+\section{Equivalencias y simplificación}
+\label{sec:equivalencias}
+
+Una \textbf{tautología} es verdadera en todas las asignaciones;
+una \textbf{contradicción}, falsa en todas. Se representan por $1$ y $0$,
+respectivamente. Las demás fórmulas cambian de valor según la asignación.
+
+Dos fórmulas $P$ y $Q$ son \textbf{equivalentes}, $P\eqv Q$, si coinciden
+en todas las asignaciones, es decir, si $P\leftrightarrow Q$ es una tautología.
+Coincidir en una sola fila de la tabla no basta.
+La notación $P\imp Q$ expresa una implicación válida en todas las
+asignaciones: $P\to Q$ es una tautología. Los signos $\to$ y
+$\leftrightarrow$ forman fórmulas; $\imp$ y $\eqv$ afirman su validez.
+
+Se puede sustituir una subfórmula por otra equivalente sin cambiar el
+valor de la expresión completa. Las siguientes leyes permiten simplificar:
+\begin{align*}
+ \neg\neg p&\eqv p, &
+ p\vee p&\eqv p, & p\wedge p&\eqv p,\\
+ p\vee0&\eqv p, &
+ p\wedge1&\eqv p, & p\vee1&\eqv1,\\
+ p\wedge0&\eqv0, &
+ p\vee\neg p&\eqv1, & p\wedge\neg p&\eqv0.
+\end{align*}
+La disyunción y la conjunción son conmutativas y asociativas.
+El bicondicional también lo es; el condicional no permite intercambiar
+ni reagrupar sus argumentos en general.
+
+Las leyes distributivas conectan conjunción y disyunción:
+\begin{align*}
+ p\wedge(q\vee r)&\eqv(p\wedge q)\vee(p\wedge r),\\
+ p\vee(q\wedge r)&\eqv(p\vee q)\wedge(p\vee r).
+\end{align*}
+Las \textbf{leyes de De Morgan} indican cómo negar cada una:
+\[
+ \neg(p\wedge q)\eqv\neg p\vee\neg q,\qquad
+ \neg(p\vee q)\eqv\neg p\wedge\neg q.
+\]
+El condicional y el bicondicional se pueden expresar con otras conectivas:
+\begin{align*}
+ p\to q&\eqv\neg p\vee q\eqv\neg(p\wedge\neg q),\\
+ p\leftrightarrow q&\eqv(p\to q)\wedge(q\to p)
+                 \eqv(p\wedge q)\vee(\neg p\wedge\neg q).
+\end{align*}
+Además,
+\[
+ p\to q\eqv\neg q\to\neg p,\qquad
+ p\leftrightarrow q\eqv\neg p\leftrightarrow\neg q.
+\]
+Estas equivalencias explican el uso de la contrarrecíproca.
+Para una contradicción $q\wedge\neg q$,
+\[
+ \neg p\to(q\wedge\neg q)\eqv p,
+\]
+que es la base lógica de la reducción al absurdo.
+
+\section{Inferencias y comprobación de argumentos}
+\label{sec:inferencias}
+
+Un argumento es \textbf{válido} si no existe una asignación que haga
+verdaderas todas las premisas y falsa la conclusión. Con premisas
+$P_1,\ldots,P_k$ y conclusión $Q$, se comprueba la tautología
+\[
+ (P_1\wedge\cdots\wedge P_k)\to Q.
+\]
+La validez conserva la verdad de las premisas; no afirma por sí sola
+que estas sean verdaderas.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.31\linewidth}p{0.38\linewidth}p{0.20\linewidth}@{}}
+\toprule
+Regla & Premisas & Conclusión\\
+\midrule
+Simplificación & $p\wedge q$ & $p$ (o $q$)\\
+Ampliación & $p$ & $p\vee q$\\
+Modus ponens & $p$, $p\to q$ & $q$\\
+Modus tollens & $\neg q$, $p\to q$ & $\neg p$\\
+Silogismo disyuntivo & $\neg p$, $p\vee q$ & $q$\\
+Silogismo disyuntivo dual & $p$, $\neg p\vee\neg q$ & $\neg q$\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Para verificar una equivalencia o una inferencia se puede:
+\begin{itemize}
+ \item Construir la tabla completa de verdad y comparar las columnas
+       o comprobar que el condicional correspondiente siempre vale $1$.
+ \item Transformar las fórmulas mediante las leyes de
+       \S\ref{sec:equivalencias}, o encadenar inferencias válidas.
+ \item Intentar una \textbf{refutación}: suponer verdaderas las premisas
+       y falsa la conclusión. Si esos valores fuerzan una contradicción,
+       el argumento es válido; si son compatibles, constituyen un contraejemplo.
+\end{itemize}
+
+\section{Forma normal conjuntiva}
+\label{sec:fnc}
+
+Un \textbf{literal} es una variable proposicional o su negación.
+Una \textbf{cláusula} es una disyunción de literales.
+Una fórmula está en \textbf{forma normal conjuntiva} (FNC) cuando es una
+conjunción de cláusulas. Para que sea verdadera deben ser verdaderas
+todas las cláusulas; para que una cláusula lo sea basta un literal verdadero.
+
+Para obtener una FNC equivalente:
+\begin{enumerate}
+ \item Elimina los bicondicionales y después los condicionales usando
+       las equivalencias de \S\ref{sec:equivalencias}.
+ \item Aplica De Morgan y doble negación hasta que cada negación
+       afecte solo a una variable.
+ \item Distribuye $\vee$ sobre $\wedge$ para obtener una conjunción
+       de disyunciones de literales.
+ \item Simplifica mediante las leyes lógicas cuando sea posible.
+\end{enumerate}
+
+\begin{ejemplo}
+La fórmula $\neg(p\to q)\vee r$ se transforma así:
+\[
+ \neg(p\to q)\vee r
+ \eqv(p\wedge\neg q)\vee r
+ \eqv(p\vee r)\wedge(\neg q\vee r).
+\]
+La última expresión tiene dos cláusulas y está en FNC.
+\end{ejemplo}
+
+La FNC no es única: dos formas diferentes pueden representar la misma
+función de verdad. Obtener la misma FNC sí garantiza equivalencia.
+
+\section{Axiomas y demostraciones}
+
+\subsection*{Sistema PM}
+
+Un sistema axiomático fija símbolos, axiomas y reglas de deducción.
+En PM las conectivas primitivas son $\neg$ y $\vee$; las demás se definen
+a partir de ellas:
+\[
+ p\wedge q:=\neg(\neg p\vee\neg q),\qquad p\to q:=\neg p\vee q,
+\]
+\[
+ p\leftrightarrow q:=(p\to q)\wedge(q\to p).
+\]
+Sus cuatro esquemas de axiomas son:
+\begin{align*}
+ &(p\vee p)\to p,\\
+ &p\to(p\vee q),\\
+ &(p\vee q)\to(q\vee p),\\
+ &(p\to q)\to\bigl[(r\vee p)\to(r\vee q)\bigr].
+\end{align*}
+La \textbf{sustitución} reemplaza una variable por una fórmula en todas
+sus apariciones. La \textbf{separación} aplica modus ponens: de $P$
+y $P\to Q$ se deduce $Q$. Una demostración formal es una sucesión
+de fórmulas obtenidas de los axiomas mediante estas reglas.
+
+\subsection*{Resultados y condiciones}
+
+Un \textbf{axioma} se acepta como punto de partida; un
+\textbf{teorema} es un resultado demostrado. Se llama
+\textbf{lema} a un resultado auxiliar, \textbf{corolario} a una consecuencia
+directa y \textbf{proposición} a un resultado que no suele destacarse como
+teorema. Estas denominaciones organizan la exposición.
+Una \textbf{conjetura} es una afirmación propuesta cuya demostración
+aún no se conoce.
+
+En una implicación $P\imp Q$, $P$ es condición \textbf{suficiente} para
+$Q$ y $Q$ es condición \textbf{necesaria} para $P$.
+Si $P\eqv Q$, cada una es necesaria y suficiente para la otra:
+la equivalencia da una caracterización.
+
+\subsection*{Métodos de demostración}
+
+\begin{itemize}
+ \item \textbf{Directa:} parte de las hipótesis y encadena consecuencias
+       justificadas hasta la conclusión.
+ \item \textbf{Por contrarrecíproca:} para demostrar $P\imp Q$,
+       demuestra $\neg Q\imp\neg P$.
+ \item \textbf{Por reducción al absurdo:} para demostrar $Q$ bajo unas
+       hipótesis, añade $\neg Q$ y deduce una contradicción.
+\end{itemize}
+En todos los casos hay que distinguir lo que se supone de lo que se
+pretende demostrar y justificar cada paso con definiciones o resultados válidos.

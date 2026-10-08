@@ -1,0 +1,146 @@
+\section{Método de Gauss}
+\label{sec:gauss}
+
+\subsection*{Combinaciones e independencia de filas}
+
+Una combinación lineal de las filas $F_1,\ldots,F_m$ tiene la forma
+$\sum_{i=1}^{m}\lambda_iF_i$, con $\lambda_i\in\K$.
+Las filas son \textbf{linealmente independientes} cuando
+\[
+ \sum_{i=1}^{m}\lambda_iF_i=0
+ \quad\Longrightarrow\quad \lambda_1=\cdots=\lambda_m=0.
+\]
+Son \textbf{dependientes} si existe una relación con algún coeficiente
+no nulo; equivale a que alguna fila sea combinación de las demás.
+Un conjunto que contiene una fila nula es dependiente.
+
+Para seleccionar filas independientes, se descartan las nulas y se conserva
+una fila nueva solo si no es combinación de las ya elegidas. Así se obtiene
+un conjunto independiente que permite expresar todas las filas originales.
+Si todas son nulas, el conjunto elegido es vacío.
+
+\subsection*{Operaciones elementales y equivalencia}
+\label{sec:elementales}
+
+\begin{samepage}
+Las operaciones elementales por filas son:
+\begin{enumerate}
+ \item Intercambiar dos filas distintas: $F_i\leftrightarrow F_j$.
+ \item Sumar a una fila un múltiplo de otra:
+       $F_i\leftarrow F_i+\lambda F_j$, con $i\ne j$.
+ \item Multiplicar una fila por un escalar no nulo:
+       $F_i\leftarrow\lambda F_i$, con $\lambda\ne0$.
+\end{enumerate}
+\end{samepage}
+Todas son reversibles: se repite el intercambio, se suma el múltiplo
+opuesto o se multiplica por $1/\lambda$, respectivamente.
+
+Dos matrices del mismo orden son \textbf{equivalentes por filas}, $A\ef B$,
+si una se obtiene de la otra mediante una sucesión de estas operaciones.
+La reversibilidad y la concatenación de sucesiones hacen que esta relación
+sea reflexiva, simétrica y transitiva. Las filas de cada matriz se pueden
+expresar como combinaciones de las filas de la otra.
+
+Una \textbf{matriz elemental} se obtiene aplicando una operación elemental
+a una identidad. Si $A$ tiene $m$ filas y $E$ se obtiene al efectuar
+esa operación en $I_m$, el producto $EA$ la efectúa en $A$.
+En consecuencia,
+\[
+ A\ef B\quad\Longleftrightarrow\quad B=E_k\cdots E_1A
+\]
+para alguna sucesión de matrices elementales; una sucesión vacía deja $A$
+igual. El factor situado más a la derecha actúa primero.
+
+\subsection*{Forma escalonada y forma reducida}
+\label{sec:escalonada}
+
+El \textbf{pivote} de una fila no nula es su primera entrada no nula,
+leída de izquierda a derecha. Una matriz está \textbf{escalonada por filas} si:
+\begin{itemize}
+ \item Las filas nulas quedan después de todas las no nulas.
+ \item El pivote de cada fila no nula está a la derecha del pivote de la anterior.
+\end{itemize}
+Por ello, debajo de cada pivote solo hay ceros. La forma es
+\textbf{escalonada reducida} si, además, cada pivote vale $1$ y es la única
+entrada no nula de su columna. Las columnas sin pivote pueden contener
+entradas no nulas.
+
+La matriz nula cumple ambas condiciones. Una matriz cuadrada reducida
+sin filas nulas es la identidad: debe tener un pivote en cada columna.
+
+\subsection*{Eliminación de Gauss}
+
+El objetivo es obtener una matriz escalonada equivalente por filas.
+Se trabaja sobre las filas que aún no tienen pivote:
+\begin{enumerate}
+ \item Busca la primera columna con una entrada no nula en esas filas.
+       Si no existe, la parte restante es nula y el proceso termina.
+ \item Intercambia filas para colocar una entrada no nula en la primera
+       fila disponible. Esa entrada será el nuevo pivote $a\ne0$.
+ \item Para cada entrada $b$ debajo de él, aplica
+       $F_i\leftarrow F_i-(b/a)F_r$, donde $F_r$ es la fila del pivote.
+ \item Continúa con las filas inferiores y las columnas a la derecha del pivote.
+\end{enumerate}
+Los ceros ya obtenidos se conservan porque las filas usadas en cada etapa
+tienen ceros a la izquierda del nuevo pivote. El proceso termina tras un
+número finito de pivotes. La forma escalonada puede variar según las operaciones.
+
+\subsection*{Gauss--Jordan y unicidad}
+
+Para reducir una matriz escalonada, recorre los pivotes desde el último
+al primero. Divide cada fila por su pivote y utiliza esa fila para anular
+las entradas que quedan por encima. Se obtiene una matriz escalonada reducida.
+
+\begin{ejemplo}
+La cadena siguiente muestra la eliminación y la reducción:
+\[
+ \begin{pmatrix}1&2&1\\2&4&3\\0&0&2\end{pmatrix}
+ \longrightarrow
+ \begin{pmatrix}1&2&1\\0&0&1\\0&0&0\end{pmatrix}
+ \longrightarrow
+ \begin{pmatrix}1&2&0\\0&0&1\\0&0&0\end{pmatrix}.
+\]
+En la primera flecha se aplican, en este orden,
+$F_2\leftarrow F_2-2F_1$ y $F_3\leftarrow F_3-2F_2$;
+en la segunda, $F_1\leftarrow F_1-F_2$. Los pivotes están en las columnas
+primera y tercera; la segunda no necesita ser nula.
+\end{ejemplo}
+
+Toda matriz $A$ tiene una \textbf{única forma escalonada reducida por filas},
+denotada $H_f(A)$, y
+\[
+ A\ef B\quad\Longleftrightarrow\quad H_f(A)=H_f(B).
+\]
+La unicidad se basa en que dos matrices reducidas equivalentes deben
+tener las mismas posiciones de pivote y las mismas filas. No depende
+de la elección de operaciones durante el cálculo.
+
+\textbf{Control del cálculo.} Puede elegirse un pivote sencillo para reducir
+las fracciones. Cada operación utiliza las filas que existen en ese momento;
+si se escriben varias juntas, su orden debe ser inequívoco. Si una entrada
+depende de un parámetro, hay que separar el caso en que vale cero antes
+de dividir por ella o utilizarla como pivote.
+
+\subsection*{Operaciones por columnas y equivalencia general}
+
+Las operaciones elementales por columnas se obtienen sustituyendo
+$F_i$ por $C_i$ en las operaciones por filas. Una operación en
+$I_n$ produce una matriz elemental $E$ que actúa sobre las columnas
+de una matriz $A$ de orden $m\times n$ mediante $AE$.
+
+La equivalencia por columnas y la reducción correspondiente se obtienen
+trasponiendo:
+\[
+ A\ec B\quad\Longleftrightarrow\quad A^t\ef B^t,
+ \qquad H_c(A)=\bigl(H_f(A^t)\bigr)^t.
+\]
+Así, la forma escalonada reducida por columnas también existe y es única.
+
+La \textbf{equivalencia} $A\sim B$ permite combinar operaciones elementales
+por filas y por columnas. Equivale a poder escribir
+\[
+ B=PAQ,
+\]
+con $P$ y $Q$ productos de matrices elementales de órdenes $m$ y $n$,
+respectivamente. También es una relación de equivalencia. La equivalencia
+por filas o por columnas implica esta equivalencia general.
