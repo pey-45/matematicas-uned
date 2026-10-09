@@ -1,0 +1,381 @@
+\chapter{Conjuntos}
+\label{cap:conjuntos}
+
+\section{Conjuntos, inclusión y predicados}
+\label{sec:conjuntos-predicados}
+
+Un conjunto está determinado por sus \textbf{elementos}: debe quedar
+claro si cada objeto pertenece a él. Se escribe $x\in A$ para indicar
+pertenencia y $x\notin A$ para negarla. Conjunto y pertenencia se toman
+como nociones primitivas. Un conjunto puede ser elemento de otro;
+en la teoría considerada, no es elemento de sí mismo.
+
+Se puede describir un conjunto \textbf{por extensión}, enumerando sus
+elementos entre llaves, o \textbf{por comprensión}, mediante una propiedad:
+\[
+ A=\{x\in U\mid P_x\}.
+\]
+Aquí $U$ es el \textbf{universo} y $P_x$ un predicado, que se convierte
+en proposición al fijar $x\in U$. El conjunto $A$ es la
+\textbf{extensión del predicado}, y $P$ una \textbf{propiedad característica}
+de $A$ en $U$. Dos predicados son equivalentes en un mismo universo si
+seleccionan los mismos elementos. Las conectivas del
+capítulo~\ref{cap:logica} permiten formar nuevos predicados.
+
+El orden y las repeticiones en una enumeración no cambian el conjunto.
+El \textbf{conjunto unitario} $\{a\}$ tiene un único elemento; hay que
+distinguir $a$ de $\{a\}$. El \textbf{conjunto vacío} $\varnothing$ no
+contiene elementos y está incluido en cualquier conjunto.
+En cambio, $\{\varnothing\}$ tiene un elemento.
+
+La \textbf{inclusión} $A\subseteq B$ significa que todo elemento de $A$
+pertenece a $B$; admite $A=B$. La inclusión estricta $A\subsetneq B$
+añade $A\ne B$. La igualdad se comprueba por doble inclusión:
+\[
+ A=B\eqv\bigl(A\subseteq B\ \text{y}\ B\subseteq A\bigr).
+\]
+Para demostrar $A\subseteq B$, toma un elemento arbitrario de $A$ y
+justifica que pertenece a $B$. Los diagramas de Venn representan los
+conjuntos por regiones y ayudan a visualizar pertenencia e inclusión.
+
+El \textbf{conjunto de las partes} o conjunto potencia reúne todos los
+subconjuntos de $A$:
+\[
+ \mathcal P(A)=\{B\mid B\subseteq A\}.
+\]
+Siempre $\varnothing\in\mathcal P(A)$ y $A\in\mathcal P(A)$;
+en particular, $\mathcal P(\varnothing)=\{\varnothing\}$.
+Si $A$ tiene $n$ elementos, $\mathcal P(A)$ tiene $2^n$: para cada
+elemento hay dos posibilidades, incluirlo o no en el subconjunto.
+Así, $B\in\mathcal P(A)$ equivale a $B\subseteq A$, pero
+pertenencia e inclusión son relaciones distintas.
+
+\newpage
+\section{Números naturales, inducción y recurrencia}
+\label{sec:induccion}
+
+Se usa la convención $\N=\{0,1,2,\ldots\}$ y
+$\N^*=\{1,2,3,\ldots\}$. La presentación informal de los
+\textbf{axiomas de Peano} establece:
+\begin{enumerate}
+ \item $0$ es natural.
+ \item Cada natural $n$ tiene un único sucesor $n'$, también natural.
+ \item $0$ no es sucesor de ningún natural.
+ \item Si dos sucesores son iguales, sus predecesores son iguales.
+ \item Un subconjunto de $\N$ que contiene $0$ y el sucesor de cada uno
+       de sus elementos contiene todos los naturales.
+\end{enumerate}
+Los sucesores se denotan habitualmente por $n+1$. El proceso de contar
+no termina: $\N$ es infinito. Un conjunto es finito, en sentido intuitivo,
+si al contar sus distintos elementos se termina.
+
+El último axioma fundamenta la \textbf{demostración por inducción}.
+Para probar $P_n$ para todo $n\in\N$:
+\begin{enumerate}
+ \item \textbf{Caso inicial:} demuestra $P_0$.
+ \item \textbf{Paso inductivo:} para un $n$ arbitrario, supone $P_n$
+       y demuestra $P_{n+1}$.
+\end{enumerate}
+El conjunto de naturales que satisfacen $P$ contiene $0$ y está cerrado
+por sucesores; por eso coincide con $\N$. La hipótesis inductiva se
+utiliza para demostrar el paso, sin suponer de antemano la conclusión.
+
+Si se quiere demostrar $P_n$ solo para $n\ge a$, con $a\in\N$, el caso
+inicial es $P_a$ y el paso se prueba para todo $n\ge a$.
+En la \textbf{inducción completa} se demuestra $P_0$ y, para cada $n$,
+se deduce $P_{n+1}$ suponiendo ciertas todas las proposiciones
+$P_0,\ldots,P_n$. Esta variante permite usar varios casos anteriores.
+
+Una \textbf{definición recurrente} determina un término mediante otros
+anteriores. Necesita una regla y suficientes valores iniciales para
+determinar los términos sucesivos. Por ejemplo, el factorial queda
+definido por
+\[
+ 0!=1,\qquad (n+1)!=(n+1)n!\quad(n\in\N).
+\]
+Para una progresión, fijado $x_1$, las reglas y sus expresiones son
+\[
+ \begin{array}{lll}
+ \text{Aritmética:}&x_n=x_{n-1}+d,&x_n=x_1+(n-1)d,\\[2pt]
+ \text{Geométrica:}&x_n=r x_{n-1},&x_n=x_1r^{\,n-1}.
+ \end{array}
+\]
+Las reglas se aplican para $n\ge2$; el valor de $x_1$ se da por separado.
+
+\newpage
+\section{Cuantificadores}
+\label{sec:cuantificadores}
+
+Para un predicado $P_x$ sobre $U$, los cuantificadores forman proposiciones:
+\begin{itemize}
+ \item $(\forall x\in U)\,P_x$: \textbf{universal}, todos los elementos
+       de $U$ satisfacen $P$. Equivale a $\{x\in U\mid P_x\}=U$.
+ \item $(\exists x\in U)\,P_x$: \textbf{existencial}, al menos un
+       elemento de $U$ satisface $P$. Equivale a
+       $\{x\in U\mid P_x\}\ne\varnothing$.
+\end{itemize}
+El nombre de la variable cuantificada puede cambiarse conservando su
+universo, cambiando todas sus apariciones y sin confundirla con otra
+variable. El universo se omite únicamente cuando está claro.
+Para $U=\{u_1,\ldots,u_m\}$, no vacío, el universal equivale a
+$P_{u_1}\wedge\cdots\wedge P_{u_m}$ y el existencial a
+$P_{u_1}\vee\cdots\vee P_{u_m}$.
+
+\subsection*{Negación y comprobación}
+
+Negar cambia el cuantificador y niega el predicado:
+\begin{align*}
+ \neg\bigl[(\forall x\in U)P_x\bigr]
+   &\eqv(\exists x\in U)\neg P_x,\\
+ \neg\bigl[(\exists x\in U)P_x\bigr]
+   &\eqv(\forall x\in U)\neg P_x.
+\end{align*}
+Una proposición universal se refuta con un \textbf{contraejemplo}:
+un elemento del universo que no cumpla el predicado. Una existencial
+se demuestra dando un elemento que lo cumpla; para refutarla hay que
+justificar que ninguno lo cumple.
+
+\subsection*{Varias variables y orden de los cuantificadores}
+
+Un predicado $R_{xy}$ sobre $A\times B$ se convierte en proposición
+cuando se cuantifican ambas variables. En
+$(\forall x\in A)(\exists y\in B)R_{xy}$, el elemento $y$ puede
+depender de $x$. En $(\exists y\in B)(\forall x\in A)R_{xy}$, un mismo
+$y$ debe servir para todos los $x$. Estas afirmaciones no son
+equivalentes en general.
+
+\begin{ejemplo}
+En $\N$, $(\forall x)(\exists y)\,y=x+1$ es verdadero: se elige el
+sucesor de cada $x$. En cambio, $(\exists y)(\forall x)\,y=x+1$ es
+falso: los casos $x=0$ y $x=1$ exigirían a la vez $y=1$ e $y=2$.
+\end{ejemplo}
+
+Para negar varios cuantificadores, se recorren desde fuera hacia dentro,
+cambiando cada $\forall$ por $\exists$ y cada $\exists$ por $\forall$,
+sin alterar su orden, y se niega el predicado final. Por ejemplo,
+\[
+ \neg\bigl[(\exists x\in A)(\forall y\in B)R_{xy}\bigr]
+ \eqv(\forall x\in A)(\exists y\in B)\neg R_{xy}.
+\]
+
+\section{Operaciones y álgebra de conjuntos}
+\label{sec:algebra-conjuntos}
+
+Para $A,B\subseteq U$, el \textbf{complementario} se toma siempre
+respecto del mismo universo $U$. Las operaciones básicas se definen por:
+\begin{align*}
+ A\cup B&=\{x\in U\mid x\in A\vee x\in B\},\\
+ A\cap B&=\{x\in U\mid x\in A\wedge x\in B\},\\
+ \overline A&=\{x\in U\mid x\notin A\}=U\setminus A,\\
+ A\setminus B&=\{x\in U\mid x\in A\wedge x\notin B\}
+                =A\cap\overline B.
+\end{align*}
+La \textbf{unión} reúne los elementos que están en al menos uno de los
+conjuntos; la \textbf{intersección}, los comunes. Los conjuntos son
+\textbf{disjuntos} cuando $A\cap B=\varnothing$.
+La \textbf{diferencia} conserva los elementos de $A$ que no están en $B$;
+en general, $A\setminus B\ne B\setminus A$.
+Cambiar el universo puede cambiar el complementario.
+
+La \textbf{diferencia simétrica} reúne los elementos que pertenecen
+exactamente a uno de los dos conjuntos:
+\[
+ A\mathbin{\triangle}B
+  =(A\setminus B)\cup(B\setminus A)
+  =(A\cup B)\setminus(A\cap B).
+\]
+Corresponde a la disyunción exclusiva de los predicados de pertenencia.
+
+\subsection*{Leyes fundamentales}
+
+Para $A,B,C\subseteq U$, se tienen las siguientes identidades:
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.25\linewidth}p{0.69\linewidth}@{}}
+\toprule
+Ley & Identidades\\
+\midrule
+Idempotencia & $A\cup A=A$, \quad $A\cap A=A$.\\[3pt]
+Conmutatividad & $A\cup B=B\cup A$, \quad $A\cap B=B\cap A$.\\[3pt]
+Asociatividad & $(A\cup B)\cup C=A\cup(B\cup C)$,\newline
+               $(A\cap B)\cap C=A\cap(B\cap C)$.\\[3pt]
+Distributividad & $A\cup(B\cap C)=(A\cup B)\cap(A\cup C)$,\newline
+                 $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$.\\[3pt]
+Vacío y universo & $A\cup\varnothing=A$, \quad $A\cap\varnothing=\varnothing$,\newline
+                  $A\cup U=U$, \quad $A\cap U=A$.\\[3pt]
+Complementario & $A\cup\overline A=U$, \quad $A\cap\overline A=\varnothing$,\newline
+                $\overline{\overline A}=A$, \quad
+                $\overline U=\varnothing$, \quad $\overline\varnothing=U$.\\[3pt]
+De Morgan & $\overline{A\cup B}=\overline A\cap\overline B$,\newline
+            $\overline{A\cap B}=\overline A\cup\overline B$.\\
+\bottomrule
+\end{tabular}
+\end{center}
+Estas leyes reflejan las equivalencias lógicas de
+\S\ref{sec:equivalencias}: pertenecer a una unión corresponde a $\vee$;
+a una intersección, a $\wedge$; y a un complementario, a $\neg$.
+Se pueden justificar comparando los predicados de pertenencia o
+demostrando las dos inclusiones.
+
+La inclusión también se reconoce mediante operaciones:
+\[
+ A\subseteq B\eqv A\cup B=B\eqv A\cap B=A.
+\]
+Siempre se cumplen las dos cadenas de inclusiones
+\[
+ A\cap B\subseteq A\subseteq A\cup B,\qquad
+ A\cap B\subseteq B\subseteq A\cup B.
+\]
+
+\subsection*{Familias de conjuntos}
+
+Una \textbf{familia de conjuntos} $(F_i)_{i\in I}$ asocia a cada índice
+$i$ un conjunto $F_i$; aquí se supone $I\ne\varnothing$.
+Si todos los $F_i$ están incluidos en $U$, se definen
+\begin{align*}
+ \bigcup_{i\in I}F_i
+   &=\{x\in U\mid(\exists i\in I)\ x\in F_i\},\\
+ \bigcap_{i\in I}F_i
+   &=\{x\in U\mid(\forall i\in I)\ x\in F_i\}.
+\end{align*}
+Para pertenecer a la unión basta estar en un miembro de la familia;
+para pertenecer a la intersección hay que estar en todos.
+La asociatividad permite escribir las uniones e intersecciones finitas
+sin paréntesis.
+
+\newpage
+\section{Producto cartesiano}
+\label{sec:producto-cartesiano}
+
+Un \textbf{par ordenado} $(x,y)$ distingue primera y segunda componente.
+Su igualdad se comprueba componente a componente:
+\[
+ (x,y)=(u,v)\eqv(x=u\ \text{y}\ y=v).
+\]
+No es lo mismo que $\{x,y\}$: intercambiar las componentes puede cambiar
+el par, y se admite $x=y$.
+El \textbf{producto cartesiano} es
+\[
+ A\times B=\{(x,y)\mid x\in A,\ y\in B\}.
+\]
+En general, $A\times B\ne B\times A$. Además,
+\[
+ A\times B=\varnothing\eqv
+   (A=\varnothing\ \text{o}\ B=\varnothing).
+\]
+Si $A'\subseteq A$ y $B'\subseteq B$, entonces
+$A'\times B'\subseteq A\times B$.
+
+El producto distribuye sobre unión e intersección en cada factor:
+\begin{align*}
+ A\times(B\cup C)&=(A\times B)\cup(A\times C),\\
+ A\times(B\cap C)&=(A\times B)\cap(A\times C),\\
+ (A\cup B)\times C&=(A\times C)\cup(B\times C),\\
+ (A\cap B)\times C&=(A\times C)\cap(B\times C).
+\end{align*}
+Para comprobarlas se descompone la pertenencia de un par en las
+condiciones sobre cada componente.
+
+El producto de $n$ conjuntos, para $n\ge1$, reúne las
+\textbf{$n$-uplas ordenadas}:
+\[
+ A_1\times\cdots\times A_n
+ =\{(x_1,\ldots,x_n)\mid x_i\in A_i\text{ para }i=1,\ldots,n\}.
+\]
+Las $n$-uplas son iguales si coinciden todas sus componentes.
+Si los factores son el mismo conjunto $A$, se escribe $A^n$.
+El plano y el espacio euclídeos se representan mediante $\R^2$ y $\R^3$.
+
+\section{Relaciones entre conjuntos}
+\label{sec:relaciones-conjuntos}
+
+Una \textbf{relación} o \textbf{correspondencia} de $A$ a $B$ es un
+subconjunto $\mathcal R\subseteq A\times B$. $A$ es el conjunto inicial
+y $B$, el final; si $A=B$, se habla de una relación en $A$.
+La notación $x\mathcal R y$ significa $(x,y)\in\mathcal R$.
+El conjunto de todas las relaciones de $A$ a $B$ es $\mathcal P(A\times B)$.
+
+Un predicado $R_{xy}$ sobre $A\times B$ determina su \textbf{grafo},
+\[
+ \mathcal R=\{(x,y)\in A\times B\mid R_{xy}\}.
+\]
+Recíprocamente, pertenecer a un subconjunto de $A\times B$ define un
+predicado de dos argumentos. Una relación se puede describir por
+extensión o comprensión, y representar mediante puntos o flechas.
+
+La \textbf{relación inversa} intercambia las componentes:
+\[
+ \mathcal R^{-1}
+   =\{(y,x)\in B\times A\mid(x,y)\in\mathcal R\}.
+\]
+\begin{samepage}
+Para cada elemento se consideran los siguientes conjuntos:
+\begin{align*}
+ \mathcal R(x)&=\{y\in B\mid(x,y)\in\mathcal R\}
+          &&\text{(imagen de $x\in A$)},\\*
+ \mathcal R^{-1}(y)&=\{x\in A\mid(x,y)\in\mathcal R\}
+          &&\text{(original de $y\in B$)}.
+\end{align*}
+\end{samepage}
+\begin{samepage}
+La \textbf{imagen de la relación} y su \textbf{conjunto original} son
+\begin{align*}
+ \mathcal R(A)&=\{y\in B\mid(\exists x\in A)\ (x,y)\in\mathcal R\},\\*
+ \mathcal R^{-1}(B)&=\{x\in A\mid(\exists y\in B)\ (x,y)\in\mathcal R\}.
+\end{align*}
+\end{samepage}
+No tienen por qué coincidir con $B$ y $A$, respectivamente: puede haber
+elementos sin pareja. La imagen o el original de un elemento es un
+\emph{conjunto}, que puede ser vacío o contener varios elementos.
+
+\begin{ejemplo}
+Para $A=\{a,b,c\}$, $B=\{1,2,3\}$ y
+$\mathcal R=\{(a,1),(a,2),(b,2)\}$,
+\[
+ \mathcal R(a)=\{1,2\},\quad \mathcal R(c)=\varnothing,\quad
+ \mathcal R^{-1}(2)=\{a,b\}.
+\]
+Además, $\mathcal R(A)=\{1,2\}$ y $\mathcal R^{-1}(B)=\{a,b\}$.
+\end{ejemplo}
+
+\subsection*{Composición}
+
+Si $\mathcal R\subseteq A\times B$ y $\mathcal S\subseteq B\times C$,
+su \textbf{composición} es la relación de $A$ a $C$ definida por
+\[
+ \mathcal S\circ\mathcal R
+ =\{(x,z)\in A\times C\mid
+       (\exists y\in B)\bigl(x\mathcal R y\wedge y\mathcal S z\bigr)\}.
+\]
+Para calcularla, se buscan pasos de $x$ a un elemento intermedio $y$
+mediante $\mathcal R$ y de ese mismo $y$ a $z$ mediante $\mathcal S$.
+Basta un intermediario; si varios producen el mismo par, se incluye
+una sola vez. En $\mathcal S\circ\mathcal R$ actúa primero
+$\mathcal R$.
+
+Los predicados de varias variables se combinan con las mismas
+conectivas y cuantificadores. Su interpretación y negación siguen las
+reglas de \S\ref{sec:cuantificadores}, respetando el universo de cada variable.
+
+\section{Límites de la descripción intuitiva}
+
+Una propiedad no permite formar sin restricciones un conjunto de
+\emph{todos} los objetos que la cumplen. La comprensión usada en
+\S\ref{sec:conjuntos-predicados} selecciona elementos dentro de un
+conjunto $U$ ya dado. La colección de todos los conjuntos no constituye
+un conjunto.
+
+La \textbf{paradoja de Russell} muestra la dificultad: si la colección
+$M$ de todos los conjuntos que no se pertenecen a sí mismos fuera un
+conjunto, se tendría
+\[
+ M\in M\eqv M\notin M,
+\]
+lo que es contradictorio.
+
+Una teoría axiomática, como Zermelo--Fraenkel (ZF), precisa qué
+construcciones de conjuntos se admiten. La igualdad se rige por sus
+elementos (extensionalidad), y la especificación permite seleccionar
+mediante una propiedad los elementos de un conjunto existente.
+Los axiomas sustituyen la formación irrestricta de colecciones y
+sirven de base para justificar los resultados.
