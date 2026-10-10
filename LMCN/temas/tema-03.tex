@@ -1,0 +1,416 @@
+\chapter{Relaciones y aplicaciones entre conjuntos}
+\label{cap:relaciones-aplicaciones}
+
+\section{Propiedades de una relación en un conjunto}
+\label{sec:propiedades-relaciones}
+
+Una relación en $U$ tiene su grafo contenido en $U\times U$.
+Las operaciones con relaciones del capítulo~\ref{cap:conjuntos}
+permiten expresar sus propiedades. Si
+$\Delta_U=\{(x,x)\mid x\in U\}$ es la diagonal, se tiene:
+\begin{description}
+ \item[Reflexiva:] $x\mathcal R x$ para todo $x\in U$;
+       equivale a $\Delta_U\subseteq\mathcal R$.
+ \item[Simétrica:] $x\mathcal R y\imp y\mathcal R x$;
+       equivale a $\mathcal R^{-1}=\mathcal R$.
+ \item[Antisimétrica:] si $x\mathcal R y$ e $y\mathcal R x$, entonces $x=y$;
+       equivale a $\mathcal R\cap\mathcal R^{-1}\subseteq\Delta_U$.
+ \item[Transitiva:] si $x\mathcal R y$ e $y\mathcal R z$, entonces
+       $x\mathcal R z$; equivale a
+       $\mathcal R\circ\mathcal R\subseteq\mathcal R$.
+\end{description}
+Las variables recorren $U$. Para comprobar estas propiedades se toman
+elementos arbitrarios y se aplica la definición de la relación;
+un contraejemplo basta para descartar una propiedad.
+La antisimetría no es la negación de la simetría: una relación puede
+tener ambas, como la igualdad.
+
+\section{Equivalencia, clases y conjunto cociente}
+\label{sec:equivalencia}
+
+Una \textbf{relación de equivalencia} es reflexiva, simétrica y transitiva.
+Permite considerar iguales, a efectos de una clasificación, elementos
+que comparten una propiedad. La \textbf{clase de equivalencia} de $x$ es
+\[
+ [x]=\{y\in U\mid x\mathcal E y\}.
+\]
+Todo elemento pertenece a su clase. Cualquiera de los elementos de una
+clase puede usarse como \textbf{representante}, pues
+\[
+ x\mathcal E y\eqv[x]=[y].
+\]
+Dos clases son iguales o disjuntas: si comparten un elemento, la simetría
+y la transitividad permiten relacionar sus representantes y obtener
+la misma clase. Además, la unión de todas las clases es $U$.
+
+\begin{samepage}
+El \textbf{conjunto cociente} reúne las clases distintas:
+\[
+ U/\mathcal E=\{[x]\mid x\in U\}.
+\]
+Sus elementos son clases, que a su vez son subconjuntos de $U$;
+no deben confundirse $x$, $[x]$ y $U/\mathcal E$.
+\end{samepage}
+
+Una \textbf{partición} de un conjunto no vacío $U$ es una familia
+de subconjuntos no vacíos, disjuntos dos a dos, cuya unión es $U$.
+Las clases de una equivalencia forman una partición. Recíprocamente,
+una partición define una equivalencia: dos elementos están relacionados
+si pertenecen al mismo bloque. Ambas construcciones se corresponden;
+clasificar mediante una propiedad equivale a dividir el conjunto en bloques.
+
+\subsection*{Construcciones y representantes}
+
+Los cocientes permiten representar un mismo objeto mediante datos distintos:
+\begin{itemize}
+ \item \textbf{Enteros.} En $\N\times\N$ se define
+       $(a,b)\mathcal E(c,d)\eqv a+d=b+c$.
+       La clase de $(a,b)$ representa la diferencia $a-b$;
+       el cociente proporciona una construcción de $\Z$.
+ \item \textbf{Racionales.} En $\Z\times\Z^*$, con
+       $\Z^*=\Z\setminus\{0\}$, se define
+       $(a,b)\mathcal E(c,d)\eqv ad=bc$.
+       El cociente proporciona $\Q$, y la clase de $(a,b)$ se escribe
+       habitualmente $a/b$. El denominador debe ser distinto de cero.
+ \item \textbf{Congruencia.} Para $p\in\N^*$,
+       $a\equiv b\pmod p$ significa $a-b=kp$ para algún $k\in\Z$.
+       Hay $p$ clases en $\Z/p$, representadas por $0,1,\ldots,p-1$;
+       cada entero queda en la clase de su resto al dividir por $p$.
+ \item \textbf{Ángulos.} En $\R$, la relación
+       $a\mathcal E b\eqv a-b=2k\pi$ para algún $k\in\Z$
+       identifica medidas que difieren en vueltas completas.
+       Cada clase tiene un único representante en $[0,2\pi)$.
+\end{itemize}
+Una elección de representantes facilita describir el cociente, pero
+no cambia sus clases. Para definir una operación o aplicación sobre
+clases hay que comprobar que el resultado no depende del representante.
+
+\section{Orden, extremos y cotas}
+\label{sec:orden}
+
+Una \textbf{relación de orden} es reflexiva, antisimétrica y transitiva.
+Se escribe $x\preceq y$ y se habla del conjunto ordenado $(U,\preceq)$.
+El orden es \textbf{total} si cada par es comparable:
+$x\preceq y$ o $y\preceq x$. Si hay pares no comparables, el orden
+no es total (\textbf{parcial}).
+La relación estricta asociada es
+\[
+ x\prec y\eqv(x\preceq y\ \text{y}\ x\ne y).
+\]
+El orden usual de $\N$, $\Z$, $\Q$ y $\R$ es total;
+la inclusión ordena $\mathcal P(U)$, pero en general no es total.
+
+En $\R^2$ hay que distinguir dos órdenes:
+\begin{align*}
+ (a,b)\preceq_L(c,d)
+   &\eqv a<c\ \text{o}\ (a=c\ \text{y}\ b\le d),\\
+ (a,b)\preceq_P(c,d)
+   &\eqv a\le c\ \text{y}\ b\le d.
+\end{align*}
+El \textbf{lexicográfico} compara primero la primera coordenada y,
+si coincide, la segunda; es total. El \textbf{orden por componentes}
+no es total: $(0,1)$ y $(1,0)$ no son comparables.
+En $\N^*$, la divisibilidad $a\mid b$ también define un orden
+que no es total.
+
+\begin{samepage}
+\subsection*{Intervalos y segmentos}
+
+Para $a\preceq b$ se definen, siempre dentro de $U$,
+\begin{align*}
+ (a,b)&=\{x\in U\mid a\prec x\prec b\},&
+ [a,b]&=\{x\in U\mid a\preceq x\preceq b\},\\*
+ [a,b)&=\{x\in U\mid a\preceq x\prec b\},&
+ (a,b]&=\{x\in U\mid a\prec x\preceq b\}.
+\end{align*}
+\end{samepage}
+Los \textbf{segmentos iniciales} de extremo $a$ son
+$\{x\in U\mid x\prec a\}$ y $\{x\in U\mid x\preceq a\}$;
+los \textbf{finales}, $\{x\in U\mid a\prec x\}$ y
+$\{x\in U\mid a\preceq x\}$. En cada pareja, el primero es abierto
+y el segundo cerrado. Los intervalos dependen del conjunto y del orden,
+no solo de sus extremos; en un conjunto discreto pueden ser vacíos
+aunque $a\prec b$.
+
+\subsection*{Cotas, máximo, mínimo, supremo e ínfimo}
+\label{sec:cotas}
+
+Para $A\subseteq U$, una \textbf{cota superior} es un elemento $u\in U$
+tal que $x\preceq u$ para todo $x\in A$; una \textbf{cota inferior}
+es un $d\in U$ tal que $d\preceq x$ para todo $x\in A$.
+El conjunto está acotado superior o inferiormente si existe la cota
+correspondiente, y \textbf{acotado} si existen ambas.
+
+El \textbf{máximo} de $A$ es una cota superior que pertenece a $A$;
+el \textbf{mínimo}, una cota inferior que pertenece a $A$.
+En cambio, el \textbf{supremo} es la menor de todas las cotas superiores
+en $U$, y el \textbf{ínfimo}, la mayor de todas las cotas inferiores.
+Pueden existir sin pertenecer a $A$. Si existen, cada uno de estos
+cuatro elementos es único: la comparación en ambos sentidos y la
+antisimetría fuerzan la igualdad.
+\begin{align*}
+ \max A\text{ existe}&\imp\sup A=\max A,\\
+ \sup A\in A&\imp\max A=\sup A.
+\end{align*}
+Las afirmaciones análogas valen para mínimo e ínfimo.
+Tener cotas no garantiza tener supremo o ínfimo; su existencia depende
+del conjunto ambiente y del orden.
+
+Un conjunto está \textbf{bien ordenado} si cada subconjunto no vacío
+tiene mínimo; $\N$ con su orden usual es un ejemplo.
+Un conjunto ordenado tiene la \textbf{propiedad del supremo} si todo
+subconjunto no vacío acotado superiormente tiene supremo.
+Con el orden usual, $\R$ tiene esta propiedad y $\Q$ no.
+
+\subsection*{Elementos maximales y minimales}
+
+Un elemento $M\in A$ es \textbf{maximal} si no hay un elemento distinto
+de $M$ en $A$ que sea mayor que él; un $m\in A$ es \textbf{minimal}
+si no hay otro menor que él. Formalmente, para todo $x\in A$,
+\[
+ M\preceq x\imp x=M,\qquad x\preceq m\imp x=m.
+\]
+Un máximo compara por encima de todos los elementos; un maximal
+puede ser incomparable con algunos. Puede haber varios maximales
+o minimales. Si existe máximo, es el único maximal; si existe mínimo,
+es el único minimal. En un orden total, maximal y máximo coinciden,
+y también minimal y mínimo.
+
+\begin{ejemplo}
+En $(\N^*,\mid)$, el conjunto $A=\{3,5\}$ tiene ínfimo $1$ y
+supremo $15$: son, respectivamente, el mayor divisor común y el menor
+múltiplo común en ese orden. No tiene mínimo ni máximo, pues $3$ y $5$
+no se dividen entre sí; ambos son minimales y maximales.
+\end{ejemplo}
+
+\newpage
+\section{Aplicaciones: dominio, imagen y tipos}
+\label{sec:aplicaciones}
+
+Una \textbf{aplicación} o función $f\colon A\to B$ asigna a cada $x\in A$
+un único elemento $f(x)\in B$. Es una relación con existencia y unicidad
+de imagen para cada elemento del conjunto inicial. Su grafo es
+\[
+ \{(x,f(x))\mid x\in A\}\subseteq A\times B.
+\]
+$A$ es el \textbf{dominio} o conjunto inicial y $B$ el conjunto final.
+La \textbf{imagen} es $f(A)=\{f(x)\mid x\in A\}\subseteq B$:
+el conjunto final puede contener elementos que la aplicación no alcanza.
+Para $y\in B$, el conjunto de sus originales, o fibra, es
+\[
+ f^{-1}(y)=\{x\in A\mid f(x)=y\}.
+\]
+Aquí $f^{-1}(y)$ denota un conjunto, que puede ser vacío o tener varios
+elementos; esta notación no supone que exista una aplicación inversa.
+
+El conjunto de todas las aplicaciones $A\to B$ se denota
+$\mathcal F(A,B)$ o $B^A$. Dos aplicaciones son iguales si tienen
+los mismos conjuntos inicial y final y coinciden en cada elemento
+del dominio. Una fórmula sola no determina todos estos datos;
+en expresiones reales sin dominio indicado se suele tomar el mayor
+subconjunto de $\R$ donde la expresión tiene sentido.
+
+Hay exactamente una aplicación $\varnothing\to B$, de grafo vacío.
+No hay aplicaciones de un conjunto no vacío a $\varnothing$.
+
+\begin{description}
+ \item[Constante:] todos los elementos del dominio tienen la misma imagen.
+ \item[Identidad:] $I_A\colon A\to A$, dada por $I_A(x)=x$.
+ \item[Restricción:] si $A'\subseteq A$, la aplicación
+       $f|_{A'}\colon A'\to B$ conserva los valores de $f$ en $A'$.
+       A la inversa, $f$ es una extensión de esa restricción.
+ \item[Sucesión:] aplicación de $\N$ (o $\N^*$) en un conjunto $A$;
+       sus valores se escriben $a_n$.
+ \item[Función característica:] para $C\subseteq U$,
+       $\chi_C\colon U\to\R$ vale $1$ en $C$ y $0$ fuera de $C$.
+\end{description}
+
+\subsection*{Inyectividad, sobreyectividad y biyectividad}
+
+Una aplicación es:
+\begin{itemize}
+ \item \textbf{inyectiva} si $f(x)=f(x')\imp x=x'$:
+       cada elemento final tiene a lo sumo un original;
+ \item \textbf{sobreyectiva} si $f(A)=B$:
+       cada elemento final tiene al menos un original;
+ \item \textbf{biyectiva} si es inyectiva y sobreyectiva:
+       cada elemento final tiene exactamente un original.
+\end{itemize}
+Para probar inyectividad se parte de dos imágenes iguales y se deduce
+que los originales coinciden. Para probar sobreyectividad se toma un
+$y\in B$ arbitrario y se obtiene un $x\in A$ con $f(x)=y$.
+La sobreyectividad depende del conjunto final: si $f$ es inyectiva,
+la aplicación $A\to f(A)$ con la misma regla es biyectiva.
+
+\newpage
+\section{Composición y aplicaciones inversas}
+\label{sec:composicion-inversa}
+
+Para $f\colon A\to B$ y $g\colon B\to C$, la composición es
+\[
+ g\circ f\colon A\to C,\qquad (g\circ f)(x)=g(f(x)).
+\]
+Primero actúa $f$ y después $g$. Es asociativa cuando los conjuntos
+permiten componer: $h\circ(g\circ f)=(h\circ g)\circ f$.
+En general no es conmutativa; la composición en sentido inverso
+puede incluso no estar definida. Las identidades cumplen
+$f\circ I_A=I_B\circ f=f$.
+Para una aplicación $f\colon A\to A$ y $n\in\N^*$, $f^n$ significa
+componerla $n$ veces consigo misma, no elevar sus valores a la potencia $n$.
+
+La composición de dos inyecciones es inyectiva; la de dos
+sobreyectivas, sobreyectiva; la de dos biyecciones, biyectiva.
+Se comprueba aplicando sucesivamente la propiedad a cada factor.
+
+\subsection*{Inversa de una biyección}
+
+$f\colon A\to B$ es biyectiva si y solo si existe $g\colon B\to A$ tal que
+\[
+ g\circ f=I_A,\qquad f\circ g=I_B.
+\]
+Esta aplicación es única, se llama \textbf{inversa} y se escribe $f^{-1}$.
+Asigna a cada $y\in B$ su único original; también es biyectiva y
+$(f^{-1})^{-1}=f$. Para calcularla se resuelve $y=f(x)$ para $x$,
+comprobando existencia y unicidad para todo $y$ del conjunto final.
+Si $f$ y $g$ son biyectivas y se pueden componer,
+\[
+ (g\circ f)^{-1}=f^{-1}\circ g^{-1}.
+\]
+El orden se invierte porque hay que deshacer primero la última aplicación.
+
+\subsection*{Inversas por un solo lado}
+
+Una \textbf{inversa por la derecha} de $f$ es una aplicación
+$h\colon B\to A$ con $f\circ h=I_B$.
+Su existencia implica que $f$ es sobreyectiva.
+Recíprocamente, para una sobreyección se puede construir $h$ eligiendo
+un original $c_y\in f^{-1}(y)$ para cada $y\in B$ y poniendo $h(y)=c_y$.
+La elección simultánea en una familia arbitraria usa el axioma de elección
+de la sección~\ref{sec:eleccion-cardinales}. Además, $h$ es inyectiva.
+
+Una \textbf{inversa por la izquierda} es una aplicación
+$g\colon B\to A$ con $g\circ f=I_A$.
+Su existencia implica que $f$ es inyectiva.
+Si $A\ne\varnothing$, la recíproca también vale: se fija $x_0\in A$,
+se asigna a cada $y\in f(A)$ su único original y a los restantes $y$
+se les asigna $x_0$. Así se obtiene $g$, que es sobreyectiva.
+La condición $A\ne\varnothing$ es necesaria para esta construcción:
+si $A=\varnothing\ne B$, $f$ es inyectiva, pero no hay aplicación $B\to A$.
+Cuando ambos conjuntos son vacíos, la única aplicación es su propia inversa.
+
+\newpage
+\section{Factorización canónica de una aplicación}
+\label{sec:factorizacion}
+
+Toda aplicación $f\colon A\to B$ define una equivalencia en su dominio:
+\[
+ x\mathcal E_f x'\eqv f(x)=f(x').
+\]
+Cada clase reúne los elementos con una misma imagen.
+La \textbf{factorización canónica} separa tres pasos:
+\[
+ A\ \xrightarrow{\ p\ }\ A/\mathcal E_f
+   \ \xrightarrow{\ b\ }\ f(A)
+   \ \xrightarrow{\ i\ }\ B.
+\]
+\begin{enumerate}
+ \item La \textbf{proyección} $p(x)=[x]$ es sobreyectiva:
+       reemplaza cada elemento por su clase.
+ \item $b([x])=f(x)$ es biyectiva. Está bien definida porque
+       todos los representantes de una clase tienen la misma imagen;
+       clases distintas dan imágenes distintas y toda imagen procede
+       de una clase.
+ \item La \textbf{inclusión} $i(y)=y$ es inyectiva:
+       considera la imagen como subconjunto del conjunto final.
+\end{enumerate}
+Se obtiene $f=i\circ b\circ p$. El cociente elimina las repeticiones
+de imagen y la inclusión permite que el conjunto final sea mayor
+que la imagen efectiva.
+
+\section{Equipotencia, cardinales y conjuntos finitos}
+\label{sec:cardinalidad}
+
+Dos conjuntos son \textbf{equipotentes}, $A\equiv B$, si existe una
+biyección entre ellos. Esta comparación de tamaños es reflexiva,
+simétrica y transitiva, por las propiedades de la identidad,
+la inversa y la composición. El \textbf{cardinal} $\operatorname{card}A$
+expresa ese tamaño: $\operatorname{card}A=\operatorname{card}B$
+si y solo si $A\equiv B$.
+Una biyección también permite identificar los elementos de dos conjuntos
+mediante una correspondencia; una inyección identifica el dominio con su imagen.
+
+$\operatorname{card}\varnothing=0$. Para $n\ge1$, un conjunto tiene
+cardinal $n$ si es equipotente a $\{1,\ldots,n\}$.
+Un conjunto es \textbf{finito} si su cardinal es algún $n\in\N$,
+incluido $0$, e \textbf{infinito} si no lo es.
+Un conjunto \textbf{numerable} es uno equipotente a $\N$;
+su cardinal es $\aleph_0$. El cardinal de $\R$ se llama
+\textbf{cardinal del continuo} y se denota $\mathfrak c$.
+
+Sean $A$ y $B$ finitos, de cardinales $n$ y $m$.
+Si $m\ge1$, hay $m^n$ aplicaciones $A\to B$:
+cada elemento del dominio dispone de $m$ posibles imágenes.
+Para que sean inyectivas las imágenes deben ser distintas; su número es
+\[
+ \begin{cases}
+ \displaystyle\frac{m!}{(m-n)!},&n\le m,\\[4pt]
+ 0,&n>m.
+ \end{cases}
+\]
+Las biyecciones solo existen si $n=m$; en ese caso hay $n!$.
+Se usa $0!=1$, de modo que la biyección del vacío consigo mismo
+también queda incluida. Los casos con conjunto final vacío son los
+indicados en la sección~\ref{sec:aplicaciones}.
+
+Si $n>m$ no puede haber inyecciones; si $n<m$ no puede haber
+sobreyectivas. En particular, entre conjuntos finitos del mismo cardinal,
+una aplicación es inyectiva si y solo si es sobreyectiva.
+Estas conclusiones no se trasladan automáticamente a conjuntos infinitos.
+
+\newpage
+\section{Elección, lema de Zorn y comparación de cardinales}
+\label{sec:eleccion-cardinales}
+
+Para una familia $(F_i)_{i\in I}$ de conjuntos no vacíos, con $I\ne\varnothing$,
+una \textbf{función de elección} selecciona un elemento de cada uno:
+\[
+ c\colon I\longrightarrow\bigcup_{i\in I}F_i,
+ \qquad c(i)\in F_i\quad\text{para todo }i\in I.
+\]
+El \textbf{axioma de elección} afirma que toda familia de conjuntos
+no vacíos admite tal elección. El producto cartesiano general
+$\prod_{i\in I}F_i$ reúne las elecciones $(x_i)_{i\in I}$ con $x_i\in F_i$;
+el axioma asegura que ese producto no es vacío cuando todos sus factores
+son no vacíos. La teoría ZFC añade este axioma a ZF.
+
+Dos formulaciones equivalentes de la elección son:
+\begin{itemize}
+ \item \textbf{Principio de buena ordenación:} todo conjunto puede dotarse
+       de un buen orden. No afirma que cualquier orden previo sea bueno.
+ \item \textbf{Lema de Zorn:} si un conjunto ordenado no vacío tiene
+       una cota superior en él para cada cadena (subconjunto totalmente
+       ordenado), entonces posee un elemento maximal.
+       La conclusión es maximal, no necesariamente máximo.
+\end{itemize}
+\subsection*{Orden entre cardinales}
+
+Se define
+\[
+ \operatorname{card}A\le\operatorname{card}B
+ \eqv\text{existe una inyección }A\longrightarrow B.
+\]
+La definición no depende de los conjuntos elegidos para representar los
+cardinales: las biyecciones entre representantes permiten transportar
+la inyección. La identidad da reflexividad y la composición, transitividad.
+El \textbf{teorema de Cantor--Bernstein--Schröder} afirma que, si existen
+inyecciones en ambos sentidos, los conjuntos son equipotentes;
+esto da la antisimetría del orden entre cardinales.
+La comparabilidad de cualesquiera dos cardinales, y por tanto que
+este orden sea total, es otra formulación equivalente del axioma de elección.
+
+Se tiene $\aleph_0<\mathfrak c$: $\R$ no es numerable.
+La \textbf{hipótesis del continuo} afirma que no hay cardinales
+estrictamente intermedios. En ZFC, si $\aleph_1$ es el cardinal
+inmediatamente siguiente a $\aleph_0$, esta hipótesis equivale a
+$\mathfrak c=\aleph_1$. Es independiente de ZFC, suponiendo que
+esta teoría es consistente.

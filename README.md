@@ -13,8 +13,10 @@ Las instrucciones para las sesiones están en [AGENTS.md](AGENTS.md).
 
 ## Asignaturas
 
-- **LMCN**: Lenguaje matemático, conjuntos y números. Tema 1: Nociones de lógica;
-  tema 2: Conjuntos, páginas 33–69 del libro.
+- **LMCN**: Lenguaje matemático, conjuntos y números. Los siete temas completos:
+  lógica; conjuntos; relaciones y aplicaciones; operaciones y estructuras
+  algebraicas; naturales y enteros; racionales y reales; complejos.
+  Los tramos del libro y las decisiones de edición constan en `LMCN/REVISION.md`.
 - **AL1**: Álgebra Lineal I. Tema 1: Matrices, secciones 1.1 y 1.2
   (Operaciones con matrices y Método de Gauss), páginas 1–33 del libro.
 
@@ -29,6 +31,11 @@ LMCN/
   temas/
     tema-01.tex
     tema-02.tex
+    tema-03.tex
+    tema-04.tex
+    tema-05.tex
+    tema-06.tex
+    tema-07.tex
   REVISION.md
 AL1/
   main.tex

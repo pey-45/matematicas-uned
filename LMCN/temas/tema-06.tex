@@ -1,0 +1,215 @@
+\chapter{Los números racionales y reales}
+\label{cap:racionales-reales}
+
+\section{Fracciones y cuerpo de los racionales}
+\label{sec:racionales}
+En $\Z\times\Z^*$, con $\Z^*=\Z\setminus\{0\}$, se identifica
+\[
+ (a,b)\sim(c,d)\eqv ad=bc.
+\]
+El racional $a/b$ es una clase, no un representante particular.
+Su \textbf{fracción irreducible} se obtiene dividiendo numerador y
+denominador por $\gcd(|a|,|b|)$ y dejando el denominador positivo.
+Esta representación es única; el cero se representa por $0/1$.
+
+Las operaciones, independientes de los representantes elegidos, son
+\[
+ \frac ab+\frac cd=\frac{ad+bc}{bd},\qquad
+ \frac ab\frac cd=\frac{ac}{bd},\qquad
+ -\frac ab=\frac{-a}{b},\qquad
+ \left(\frac ab\right)^{-1}=\frac ba\quad(a\ne0).
+\]
+Con $0=0/1$ y $1=1/1$, $\Q$ es un cuerpo.
+La aplicación $a\mapsto a/1$ identifica $\Z$ con un subanillo de $\Q$.
+El paso a los racionales permite dividir por cualquier número no nulo.
+
+Un racional $a/b$ es no negativo si $ab\ge0$; el orden se define por
+$\alpha\le\beta\eqv\beta-\alpha\ge0$. Con denominadores positivos,
+\[
+ \frac ab\le\frac cd\eqv ad\le bc\qquad(b,d>0).
+\]
+Se obtiene un cuerpo ordenado que extiende el orden de $\Z$ y satisface
+las reglas de la sección~\ref{sec:estructuras-ordenadas}.
+Es \textbf{arquimediano}: para $\alpha>0$ y $\beta\in\Q$ hay
+$n\in\N$ con $n\alpha>\beta$.
+Su orden es \textbf{denso}: entre $\alpha<\beta$ está
+$(\alpha+\beta)/2$, y reiterando este procedimiento aparecen infinitos
+racionales intermedios.
+
+\section{Decimales y desarrollo de una fracción}
+\label{sec:decimales-racionales}
+Los números con expresión decimal \textbf{finita} forman el subanillo
+\[
+ D=\left\{\frac a{10^n}:a\in\Z, n\in\N\right\}\subset\Q.
+\]
+Un racional en forma irreducible, con denominador positivo $b$, pertenece
+a $D$ si y solo si $b=2^p5^q$ para ciertos $p,q\in\N$.
+No todos los racionales son decimales finitos.
+
+Para aproximar $\alpha=a/b\ge0$, con $b>0$, a $n$ cifras, se divide
+$10^na$ por $b$. Si $c$ es el cociente entero,
+\[
+ \frac c{10^n}\le\alpha<\frac{c+1}{10^n}.
+\]
+Para continuar la división decimal, a partir de un resto $r$ se divide
+$10r$ por $b$: el nuevo cociente es una cifra entre $0$ y $9$ y se
+prosigue con el nuevo resto. Si aparece resto cero, el desarrollo termina;
+si no, algún resto se repite, porque solo hay $b-1$ restos positivos
+posibles. Desde entonces se repiten las mismas cifras.
+
+Así, un racional tiene desarrollo decimal finito o \textbf{periódico}.
+Un período puede comenzar inmediatamente tras la coma o después de una
+parte inicial no periódica. Para números negativos se aplica el
+procedimiento al valor absoluto y se antepone el signo.
+
+\section{Completitud de los reales}
+\label{sec:completitud}
+La densidad de $\Q$ no evita los huecos: no hay racional cuyo cuadrado
+sea $2$. El conjunto
+$A=\{x\in\Q:x\ge0, x^2<2\}$ es no vacío y está acotado superiormente,
+pero no tiene supremo en $\Q$.
+
+El cuerpo $\R$ es una extensión ordenada de $\Q$ que satisface el
+\textbf{axioma del supremo}:
+\begin{quote}
+Todo subconjunto no vacío de $\R$ acotado superiormente tiene supremo en $\R$.
+\end{quote}
+Esta propiedad se denomina \textbf{completitud}. El supremo es la menor
+cota superior y no tiene por qué pertenecer al conjunto
+(sección~\ref{sec:cotas}). Los \textbf{irracionales} son los elementos
+de $\R\setminus\Q$.
+
+Todo subconjunto no vacío acotado inferiormente tiene ínfimo, pues
+\[
+ \inf A=-\sup(-A),\qquad -A=\{-a:a\in A\}.
+\]
+Para conjuntos no vacíos sin cota superior se escribe $\sup A=+\infty$;
+si no tienen cota inferior, $\inf A=-\infty$. Estos símbolos no son
+números reales ni se operan como tales.
+
+Para cada $d\ge0$ existe una única raíz cuadrada \emph{no negativa}
+$\sqrt d$; si $d>0$ es positiva. La idea es tomar el supremo de
+$\{x\ge0:x^2\le d\}$ y descartar que su cuadrado sea menor o mayor que
+$d$ mediante una pequeña variación de $x$.
+Otro real definido por un supremo es
+\[
+ e=\sup\left\{\left(1+\frac1n\right)^n:n\in\N^*\right\},
+\]
+ya que esos valores están entre $2$ y $3$.
+
+\section{Parte entera, aproximaciones y densidad}
+\label{sec:aproximaciones-reales}
+La \textbf{parte entera} $E(x)$ es el único $k\in\Z$ con
+$k\le x<k+1$. Se redondea hacia abajo: $E(-1{,}4)=-2$.
+Para $n\in\N$,
+\[
+ \frac{E(10^nx)}{10^n}\le x<\frac{E(10^nx)+1}{10^n}.
+\]
+La aproximación por defecto difiere de $x$ en menos de $10^{-n}$;
+el intervalo de ambas aproximaciones tiene longitud $10^{-n}$.
+
+El orden de $\R$ es arquimediano:
+\[
+ x>0, y\in\R\imp\exists n\in\N: nx>y.
+\]
+La completitud lo garantiza: si los múltiplos de $x>0$ estuvieran
+acotados, su supremo permitiría encontrar otro múltiplo todavía mayor.
+
+Entre dos reales distintos hay un racional y un irracional; ambos
+conjuntos son \textbf{densos en $\R$}. En particular, para cada $x\in\R$
+pueden elegirse racionales e irracionales a distancia menor que $1/n$
+para cada $n\ge1$: todo real se aproxima arbitrariamente por ambos tipos
+de números.
+
+\section{Intervalos y expresiones decimales de reales}
+\label{sec:intervalos-reales}
+Los intervalos finitos se escriben $[a,b]$, $(a,b)$, $[a,b)$ y $(a,b]$,
+según se incluyan o no los extremos. Los no acotados son
+$(-\infty,b)$, $(-\infty,b]$, $(a,+\infty)$ y $[a,+\infty)$;
+$\R=(-\infty,+\infty)$. Los extremos infinitos siempre llevan paréntesis.
+Un subconjunto es un intervalo si, junto con dos de sus puntos,
+contiene todos los puntos intermedios. Los casos degenerados incluyen
+los conjuntos unitarios y el vacío.
+
+\textbf{Intervalos encajados.} Si $I_n=[a_n,b_n]$ son intervalos cerrados,
+acotados y no vacíos, y $I_{n+1}\subseteq I_n$, entonces
+\[
+ \bigcap_{n\ge1} I_n\ne\varnothing.
+\]
+En efecto, los extremos izquierdos tienen un supremo $a$ que no supera
+ningún extremo derecho, por lo que $a\in I_n$ para todo $n$.
+Si, además, $b_n-a_n\to0$, la intersección contiene un único punto:
+dos puntos distintos no cabrían en intervalos de longitud arbitrariamente
+pequeña.
+
+Los truncamientos de una expresión decimal ilimitada determinan
+intervalos cerrados encajados de longitud $10^{-n}$, y por tanto un único
+real. La representación decimal puede ser doble cuando hay una cola
+de ceros o de nueves: $0{,}999\ldots=1$.
+Un real es racional si y solo si tiene una expresión decimal finita
+o eventualmente periódica; una expresión no periódica representa un
+irracional.
+
+Para obtener la \textbf{fracción generatriz} de un desarrollo periódico,
+se multiplica por potencias de $10$ que alineen dos colas periódicas
+iguales, se restan las expresiones y se despeja el número. Después se
+reduce la fracción. Por ejemplo, para $x=0{,}2\overline7$,
+\[
+ 100x-10x=25,\qquad x=\frac{25}{90}=\frac5{18}.
+\]
+Los multiplicadores deben tener en cuenta tanto la parte no periódica
+como la longitud del período.
+
+\textbf{No numerabilidad.} El intervalo $[0,1]$ no es numerable.
+Si se enumerase como $x_1,x_2,\ldots$, se podrían elegir sucesivamente
+intervalos cerrados encajados, cada uno dentro del anterior y evitando
+el punto $x_n$. Su intersección contendría un real ausente de la lista.
+En consecuencia, ningún intervalo no degenerado es numerable;
+tampoco lo son $\R$ ni el conjunto de los irracionales.
+
+\section{Modelos de los reales}
+\label{sec:cortaduras}
+Todo cuerpo ordenado contiene un subcuerpo isomorfo a $\Q$: se envía
+un entero $n$ a la suma correspondiente de unidades, usando opuestos
+si $n<0$, y una fracción $a/b$ a $f(a)f(b)^{-1}$.
+Los cuerpos ordenados que satisfacen el axioma del supremo son isomorfos
+como cuerpos ordenados. Así, la descripción axiomática de $\R$
+determina su estructura salvo isomorfismo.
+
+Dos modelos constructivos parten de $\Q$. Uno identifica sucesiones de
+Cauchy de racionales cuando su diferencia tiende a cero. El otro utiliza
+\textbf{cortaduras de Dedekind}. En la convención de cortaduras derechas,
+una cortadura es $B\subset\Q$ tal que:
+\begin{itemize}
+\item $B$ y $\Q\setminus B$ son no vacíos;
+\item $b\in B$, $c\in\Q$, $b\le c\imp c\in B$;
+\item $B$ no tiene mínimo.
+\end{itemize}
+La cortadura correspondiente a un racional $r$ es
+$i(r)=\{q\in\Q:q>r\}$. La del número $\sqrt2$ se representa por
+$\{q\in\Q:q>0, q^2>2\}$.
+
+El orden de las cortaduras invierte la inclusión y la suma se construye
+sumando elementos de ambas:
+\[
+ B\le B'\eqv B'\subseteq B,\qquad
+ B+B'=\{b+b':b\in B, b'\in B'\}.
+\]
+Si $A=\Q\setminus B$, el opuesto es
+$-B=\{-a:a\in A,\ a\text{ no es máximo de }A\}$; esta exclusión
+evita que la cortadura resultante tenga mínimo.
+Para cortaduras no negativas, el producto es
+$BB'=\{bb':b\in B,b'\in B'\}$; para los restantes signos se usan
+opuestos. Si $B>0$, su inversa es
+\[
+ B^{-1}=\{a^{-1}:a\in A, a>0,
+                       a\text{ no es máximo de }A\}.
+\]
+Estas operaciones y el orden hacen del conjunto de cortaduras un cuerpo
+ordenado completo, y $i$ conserva las operaciones y el orden de $\Q$.
+La cortadura $B$ expresa qué racionales quedan estrictamente a la derecha
+del real representado.
+
+Dos longitudes positivas son \textbf{conmensurables} si ambas son
+múltiplos enteros de una misma longitud; equivalentemente, su cociente
+es racional. Un cociente irracional expresa inconmensurabilidad.

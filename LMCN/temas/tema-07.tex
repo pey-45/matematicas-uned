@@ -1,0 +1,204 @@
+\chapter{Los números complejos}
+\label{cap:complejos}
+
+\section{Construcción y forma binómica}
+\label{sec:complejos-binomica}
+El cuerpo $\C$ permite resolver $z^2=d$ también para reales negativos.
+Se construye sobre $\R^2$ con las operaciones
+\begin{align*}
+ (a,b)+(c,d)&=(a+c,b+d),\\
+ (a,b)(c,d)&=(ac-bd,ad+bc).
+\end{align*}
+El cero es $(0,0)$, la unidad $(1,0)$ y el opuesto de $(a,b)$ es
+$(-a,-b)$. Si $(a,b)\ne(0,0)$, su inverso es
+\[
+ (a,b)^{-1}=\left(\frac a{a^2+b^2},\frac{-b}{a^2+b^2}\right).
+\]
+Estas operaciones hacen de $\C$ un cuerpo. La aplicación
+$a\mapsto(a,0)$ incluye $\R$ como subcuerpo. Definiendo $i=(0,1)$,
+se tiene $i^2=-1$, y cada complejo se escribe de forma única como
+\[
+ z=a+bi\qquad(a,b\in\R).
+\]
+Esta es la \textbf{forma binómica}. La parte real es $\operatorname{Re}z=a$
+y la parte imaginaria es $\operatorname{Im}z=b$, que es un número real,
+no el término $bi$. El complejo es real si $b=0$ y es imaginario puro
+si $a=0$. La igualdad de complejos exige igualdad de ambas partes.
+
+Para sumar se suman las partes correspondientes; para multiplicar se
+distribuye y se sustituye $i^2$ por $-1$.
+Las potencias de $i$ se repiten cada cuatro exponentes:
+\[
+ i^0=1,\quad i^1=i,\quad i^2=-1,\quad i^3=-i,\quad i^{n+4}=i^n.
+\]
+Para un exponente entero basta conocer su resto módulo $4$.
+
+\section{Conjugación, módulo y plano complejo}
+\label{sec:conjugacion-modulo}
+El \textbf{conjugado} de $z=a+bi$ es $\bar z=a-bi$. Se cumple
+\[
+ \overline{\bar z}=z,\qquad
+ \overline{z+w}=\bar z+\bar w,\qquad
+ \overline{zw}=\bar z\bar w,
+ \qquad z\bar z=a^2+b^2.
+\]
+También $z+\bar z=2\operatorname{Re}z$ y
+$z-\bar z=2i\operatorname{Im}z$. Por tanto,
+$z\in\R\eqv\bar z=z$ y $z$ es imaginario puro si y solo si
+$\bar z=-z$. La conjugación conserva potencias y, para denominadores
+no nulos, inversos y cocientes.
+
+El \textbf{módulo} es $|z|=\sqrt{z\bar z}=\sqrt{a^2+b^2}$.
+Al representar $z$ por el punto $(a,b)$ del plano, llamado su punto
+de afijo $z$, el módulo es la distancia al origen. Se tiene
+\begin{align*}
+ |z|&\ge0,& |z|=0&\eqv z=0,\\
+ |zw|&=|z||w|,&|\bar z|&=|z|,\\
+ |z+w|&\le|z|+|w|,&\bigl||z|-|w|\bigr|&\le|z-w|.
+\end{align*}
+La suma corresponde a la suma de vectores; el conjugado refleja el punto
+respecto al eje real y el opuesto respecto al origen.
+
+El conjugado facilita la división: si $w\ne0$,
+\[
+ \frac1w=\frac{\bar w}{|w|^2},\qquad
+ \frac zw=\frac{z\bar w}{|w|^2}.
+\]
+Así se transforma el denominador en un real positivo antes de separar
+las partes real e imaginaria.
+
+\section{Argumento y formas trigonométrica, polar y exponencial}
+\label{sec:complejos-polar}
+Para $z\ne0$, su \textbf{argumento} es el ángulo orientado desde el eje
+real positivo al vector de afijo $z$. Se determina módulo $2\pi$:
+si $\alpha$ es un argumento, todos son $\alpha+2k\pi$, $k\in\Z$.
+El cero no tiene argumento.
+
+Si $r=|z|>0$ y $\alpha$ es un argumento,
+\[
+ z=r(\cos\alpha+i\sin\alpha),\qquad
+ a=r\cos\alpha,\quad b=r\sin\alpha.
+\]
+La primera expresión es la \textbf{forma trigonométrica}; la notación
+$r_\alpha$ es la \textbf{forma polar}. Para recuperar el argumento desde
+$a,b$ hay que respetar el cuadrante: el cociente $b/a$, cuando está
+definido, no determina por sí solo el ángulo módulo $2\pi$.
+
+Se usa la notación $e^{i\alpha}=\cos\alpha+i\sin\alpha$, con la cual
+$z=re^{i\alpha}$ es la \textbf{forma exponencial}. Para $r,s>0$,
+\begin{align*}
+ re^{i\alpha}=se^{i\beta}&\eqv r=s\ \text{y}\ \alpha\equiv\beta\pmod{2\pi},\\
+ \overline{re^{i\alpha}}&=re^{-i\alpha},\qquad
+ -re^{i\alpha}=re^{i(\alpha+\pi)},\\
+ (re^{i\alpha})(se^{i\beta})&=rs\,e^{i(\alpha+\beta)},\\
+ \frac{re^{i\alpha}}{se^{i\beta}}&=\frac rs e^{i(\alpha-\beta)},\\
+ (re^{i\alpha})^n&=r^ne^{in\alpha}\qquad(n\in\Z).
+\end{align*}
+El producto multiplica módulos y suma argumentos; el cociente divide
+módulos y resta argumentos. Multiplicar por un complejo no nulo realiza
+una rotación y una homotecia de razón positiva respecto al origen.
+Estas formas son útiles para productos, cocientes y potencias; para
+sumar suele convenir volver a la forma binómica.
+
+La \textbf{fórmula de De Moivre} es
+\[
+ (\cos\alpha+i\sin\alpha)^n=\cos(n\alpha)+i\sin(n\alpha)
+ \qquad(n\in\Z).
+\]
+Al compararla con el binomio de Newton se relacionan las funciones
+trigonométricas de múltiplos de un ángulo. Las \textbf{fórmulas de Euler}
+son
+\[
+ \cos\alpha=\frac{e^{i\alpha}+e^{-i\alpha}}2,\qquad
+ \sin\alpha=\frac{e^{i\alpha}-e^{-i\alpha}}{2i}.
+\]
+
+\section{Raíces y ecuaciones de segundo grado}
+\label{sec:raices-complejas}
+Sea $w=\rho e^{i\beta}\ne0$ y $n\in\N^*$. Las soluciones de $z^n=w$ son
+\[
+ z_k=\sqrt[n]{\rho}\,
+ e^{i(\beta+2k\pi)/n},\qquad k=0,1,\ldots,n-1.
+\]
+Hay exactamente $n$ raíces distintas: todas tienen módulo
+$\sqrt[n]\rho$ y sus argumentos están separados por $2\pi/n$.
+Para $n\ge3$ son los vértices de un polígono regular centrado en el
+origen. Cambiar el argumento elegido para $w$ solo permuta las raíces.
+Si $w=0$, la única raíz es $0$.
+
+Las \textbf{raíces $n$-ésimas de la unidad} son
+$e^{2k\pi i/n}$, $0\le k<n$.
+La expresión ``una raíz'' de un complejo debe distinguirse del conjunto
+de todas sus raíces. La regla real $\sqrt{xy}=\sqrt x\sqrt y$, para
+$x,y\ge0$, no se extiende sin más a raíces elegidas de complejos.
+
+Para hallar raíces cuadradas en forma binómica de $w=u+vi$, se busca
+$z=x+yi$ y se usa
+\[
+ x^2-y^2=u,\quad 2xy=v,\quad x^2+y^2=|w|.
+\]
+De aquí $x^2=(|w|+u)/2$ e $y^2=(|w|-u)/2$; los signos deben satisfacer
+$2xy=v$. Si $w\ne0$, las dos raíces son opuestas.
+
+Para $az^2+bz+c=0$ con $a,b,c\in\C$ y $a\ne0$:
+\begin{enumerate}
+\item Calcular $\Delta=b^2-4ac$.
+\item Obtener una raíz cuadrada $\varepsilon$ de $\Delta$, por forma polar
+o por el sistema binómico anterior. Si $\Delta\ge0$ es real, puede
+tomarse $\sqrt\Delta$; si es real negativo, $i\sqrt{-\Delta}$.
+\item Las soluciones son
+$\displaystyle z=\frac{-b+\varepsilon}{2a}$ y
+$\displaystyle z=\frac{-b-\varepsilon}{2a}$.
+\end{enumerate}
+Son distintas si $\Delta\ne0$; si $\Delta=0$, coinciden en una raíz doble.
+
+\section{Aplicaciones geométricas}
+\label{sec:geometria-compleja}
+Sean $z_A,z_B,z_C$ los afijos de puntos del plano.
+El vector $\overrightarrow{AB}$ tiene afijo $z_B-z_A$; la distancia
+entre $A,B$ es $|z_B-z_A|$ y el punto medio tiene afijo
+$(z_A+z_B)/2$.
+
+Si $B\ne A$ y $C\ne A$, el ángulo orientado de
+$\overrightarrow{AB}$ a $\overrightarrow{AC}$ es
+\[
+ \arg\left(\frac{z_C-z_A}{z_B-z_A}\right)\pmod{2\pi}.
+\]
+Los tres puntos están alineados si y solo si ese cociente es real;
+las rectas $AB,AC$ son perpendiculares si y solo si es imaginario puro.
+Las condiciones de no coincidencia aseguran que ambos vectores sean
+no nulos y que el cociente tenga argumento.
+
+Las transformaciones se expresan directamente sobre afijos:
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Transformación & Afijo transformado $z'$\\
+\midrule
+Traslación de vector de afijo $w$ & $z+w$\\
+Rotación de centro $w$ y ángulo $\alpha$ & $w+e^{i\alpha}(z-w)$\\
+Homotecia de centro $w$, razón $k\in\R^*$ & $w+k(z-w)$\\
+Simetría respecto al eje real & $\bar z$\\
+Simetría en recta por $0$ de dirección $\alpha$ & $e^{2i\alpha}\bar z$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Para actuar respecto a un centro $w$, se traslada primero al origen,
+se aplica la transformación y se deshace la traslación.
+La simetría en una recta por el origen se obtiene girando esa recta al
+eje real, conjugando y deshaciendo el giro.
+
+\section{Orden y teorema fundamental del álgebra}
+No existe un orden total en $\C$ compatible con sus operaciones de
+cuerpo. En un cuerpo ordenado todos los cuadrados son no negativos,
+pero $i^2=-1$ lo impediría, porque $1>0$.
+El módulo permite comparar distancias, sin proporcionar ese orden algebraico.
+
+El \textbf{teorema fundamental del álgebra} afirma que todo polinomio
+de coeficientes complejos y grado al menos uno tiene una raíz compleja.
+Como consecuencia, si su grado es $n\ge1$,
+\[
+ p(z)=a(z-z_1)\cdots(z-z_n),\qquad a\ne0.
+\]
+Las raíces $z_1,\ldots,z_n$ pueden repetirse: hay $n$ raíces contando
+multiplicidades, aunque no necesariamente $n$ valores distintos.

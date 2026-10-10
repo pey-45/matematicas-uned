@@ -1,0 +1,230 @@
+\chapter{Los números naturales y enteros}
+\label{cap:naturales-enteros}
+
+\section{Aritmética y orden en los naturales}
+\label{sec:aritmetica-naturales}
+Se adopta $\N=\{0,1,2,\ldots\}$ y $\N^*=\N\setminus\{0\}$.
+Los axiomas de Peano y la inducción se recogen en la
+sección~\ref{sec:induccion}. El sucesor es $s(n)=n+1$; cada natural no
+nulo tiene un único predecesor y ningún natural coincide con su sucesor.
+
+La suma y el producto se definen por recurrencia en el segundo argumento:
+\begin{align*}
+ m+0&=m,&m+s(n)&=s(m+n),\\
+ m\cdot0&=0,&m\cdot s(n)&=mn+m.
+\end{align*}
+La inducción permite trasladar estas definiciones a todos los naturales
+y demostrar las reglas aritméticas:
+\begin{itemize}
+\item Suma y producto son asociativos y conmutativos; tienen neutros
+$0$ y $1$. El producto distribuye respecto a la suma y $m0=0$.
+\item $m+p=n+p\imp m=n$. Si $p\ne0$, $mp=np\imp m=n$.
+\item $m+n=0\eqv m=n=0$; $mn=0\eqv m=0$ o $n=0$.
+\end{itemize}
+Para $a\ne0$, $a^0=1$ y $a^{n+1}=a^na$; para $n>0$, $0^n=0$.
+No se fija aquí un valor aritmético general para $0^0$.
+Si $a,b\in\N^*$ y $m,n\in\N$,
+\[
+ a^ma^n=a^{m+n},\qquad (a^m)^n=a^{mn},\qquad (ab)^n=a^nb^n.
+\]
+
+El orden se obtiene de la suma:
+\[
+ m\le n\eqv \exists p\in\N: m+p=n,
+ \qquad m<n\eqv m+1\le n.
+\]
+Es total, tiene mínimo $0$ y no tiene máximo. Sumar un natural o
+multiplicar por un natural conserva las desigualdades; multiplicar por
+un natural positivo conserva también las estrictas.
+Es un orden \textbf{discreto}: no hay naturales entre $n$ y $n+1$.
+Además, $\N$ está \textbf{bien ordenado}: todo subconjunto no vacío tiene
+mínimo. Un subconjunto no vacío acotado superiormente tiene máximo.
+
+\section{Conjuntos finitos y recuentos}
+\label{sec:recuentos}
+Un conjunto es \textbf{finito} si es vacío o es equipotente a
+$\{1,\ldots,n\}$ para algún $n\ge1$. Ese $n$ es único y es su cardinal;
+el vacío tiene cardinal $0$. Una inyección entre conjuntos finitos
+obliga a que el cardinal del origen no supere al del destino.
+En particular, $\N$ es infinito.
+
+Todo subconjunto de un conjunto finito es finito; si es propio, su
+cardinal es estrictamente menor. Para subconjuntos de $\N$, ser finito
+equivale a estar acotado superiormente. La imagen de un conjunto finito
+$A$ por $f$ tiene cardinal a lo sumo $|A|$, con igualdad si y solo si
+$f$ es inyectiva. Entre conjuntos finitos del mismo cardinal,
+inyectividad, sobreyectividad y biyectividad son equivalentes
+(sección~\ref{sec:cardinalidad}).
+
+Para conjuntos finitos $A,B$,
+\[
+ |A\cup B|+|A\cap B|=|A|+|B|,\qquad |A\times B|=|A||B|.
+\]
+Si son disjuntos, el cardinal de la unión es la suma. Los recuentos
+fundamentales, con $|A|=n$ y $|B|=m$, son:
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Objeto & Número\\
+\midrule
+Aplicaciones $A\to B$, si $m>0$ & $m^n$\\
+Inyecciones $A\to B$, si $0\le n\le m$ & $\dfrac{m!}{(m-n)!}$\\[6pt]
+Biyecciones $A\to B$, si $m=n$ & $n!$\\
+Subconjuntos de $A$ & $2^n$\\
+Subconjuntos de $n$ elementos de $B$ & $\displaystyle\binom mn=\dfrac{m!}{n!(m-n)!}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Las inyecciones cuentan \textbf{variaciones} sin repetición; las
+biyecciones de un conjunto consigo mismo, \textbf{permutaciones};
+los subconjuntos de tamaño fijado, \textbf{combinaciones}.
+Se toma $0!=1$. Si $n>m$ no hay inyecciones ni subconjuntos de $n$
+elementos de $B$. Si $B=\varnothing$, hay una aplicación desde el vacío
+y ninguna desde un conjunto no vacío. Para $0\le n\le m$,
+$\binom mn=\binom m{m-n}$; la identidad de Pascal es
+\[
+ \binom{m+1}{n}=\binom m{n-1}+\binom mn\qquad(1\le n\le m).
+\]
+Se explica separando los subconjuntos según contengan o no un elemento
+fijado. El número $\binom mn$ no cuenta ordenaciones: el orden de los
+elementos del subconjunto es irrelevante.
+
+\section{Infinitud y numerabilidad}
+\label{sec:numerabilidad}
+Un conjunto infinito puede ser equipotente a una parte propia:
+$n\mapsto n+1$ identifica $\N$ con $\N^*$.
+Un conjunto \textbf{numerable} es equipotente a $\N$; en esta terminología
+los conjuntos finitos no son numerables.
+
+\textbf{Teorema de Cantor.} Para cualquier conjunto $A$,
+\[
+ \operatorname{card}A<\operatorname{card}\mathcal P(A).
+\]
+La aplicación $a\mapsto\{a\}$ es inyectiva. Ninguna $h:A\to\mathcal P(A)$
+es sobreyectiva: el conjunto $D=\{a\in A:a\notin h(a)\}$ no puede ser
+$h(d)$ para ningún $d$, pues $d\in D\eqv d\notin D$.
+Así se obtienen cardinales infinitos cada vez mayores tomando conjuntos
+de partes sucesivamente.
+
+Todo subconjunto infinito de $\N$ es numerable: se enumera tomando su
+mínimo y después el mínimo de lo que queda. No queda ningún elemento
+fuera de la lista, porque por debajo de cada natural solo hay un número
+finito de naturales. Transportando este resultado por una biyección,
+todo subconjunto de un conjunto numerable es finito o numerable.
+
+La enumeración de $\N^2$ por diagonales $n+m=0,1,2,\ldots$ muestra que
+$\N^2$ es numerable. Se deducen las siguientes reglas:
+\begin{itemize}
+\item El producto de uno o más conjuntos numerables, en número \emph{finito},
+es numerable.
+\item La unión de una familia numerable de conjuntos numerables es numerable:
+se enumeran sus elementos mediante pares de índices y se suprimen repeticiones.
+La elección simultánea de enumeraciones se hace bajo el axioma de elección.
+\item Una unión numerable de conjuntos finitos o numerables es finita o
+numerable; si contiene un subconjunto infinito, es numerable.
+\end{itemize}
+No se extiende la primera regla a productos de infinitos factores.
+Los conjuntos $\Z$ y $\Q$ son numerables: los enteros se listan alternando
+signos, y los racionales se representan por pares de enteros con
+denominador positivo. También es numerable el conjunto de subconjuntos
+finitos de $\N$, separándolos según su número de elementos.
+
+\section{Construcción y orden de los enteros}
+\label{sec:enteros}
+La construcción por clases de equivalencia de la
+sección~\ref{sec:equivalencia} utiliza
+\[
+ (a,b)\sim(c,d)\eqv a+d=b+c\qquad(a,b,c,d\in\N).
+\]
+La clase $[a,b]$ representa la diferencia $a-b$; las operaciones son
+\[
+ [a,b]+[c,d]=[a+c,b+d],\qquad
+ [a,b][c,d]=[ac+bd,ad+bc].
+\]
+No dependen de los representantes. El cero es $[0,0]$, la unidad es
+$[1,0]$ y el opuesto de $[a,b]$ es $[b,a]$. Se obtiene un anillo
+conmutativo unitario sin divisores de cero.
+La identificación $n\mapsto[n,0]$ incluye $\N$ en $\Z$ y conserva sus
+operaciones.
+
+Cada clase tiene un representante de la forma $[m,0]$ o $[0,n]$.
+Los no negativos son las clases $[m,0]$ y el orden se define por
+\[
+ \alpha\le\beta\eqv\beta-\alpha\ge0.
+\]
+Así $\Z$ es un anillo totalmente ordenado y la inclusión de $\N$
+conserva el orden. Todo subconjunto no vacío de $\Z$ acotado inferiormente
+tiene mínimo; si está acotado superiormente, tiene máximo.
+$\Z$ no está bien ordenado y no tiene mínimo ni máximo.
+Es \textbf{arquimediano}: dados $\alpha>0$ y $\beta\in\Z$, existe
+$n\in\N$ con $n\alpha>\beta$.
+
+\section{División entera y subgrupos de los enteros}
+\label{sec:division-entera}
+Para $a,b\in\Z$ con $b\ne0$, existen únicos $q,r\in\Z$ tales que
+\[
+ a=qb+r,\qquad 0\le r<|b|.
+\]
+$q$ es el cociente y $r$ el resto de la \textbf{división entera}.
+La cota del resto da la unicidad: la diferencia de dos restos no puede
+ser un múltiplo no nulo de $b$.
+Con dividendo negativo no basta truncar el cociente hacia cero:
+$-17=(-4)\cdot5+3$ tiene resto admisible, mientras que $-2$ no lo sería.
+
+Todo subgrupo de $(\Z,+)$ es $n\Z=\{nk:k\in\Z\}$ para un único
+$n\in\N$. Si el subgrupo no es $\{0\}$, se toma su menor elemento
+positivo $n$. Al dividir cualquier elemento por $n$, el resto pertenece
+al subgrupo; su minimalidad obliga a que sea cero.
+Todos estos subgrupos son ideales de $\Z$, por lo que \textbf{todo ideal
+de $\Z$ es principal}. El caso $n=0$ corresponde a $\{0\}$.
+
+\section{Divisibilidad, máximo común divisor y mínimo común múltiplo}
+\label{sec:divisibilidad}
+Para $a,b\in\Z$,
+\[
+ b\mid a\eqv\exists q\in\Z: a=qb
+ \eqv a\in b\Z\eqv a\Z\subseteq b\Z.
+\]
+Todo entero divide a $0$; $0$ solo divide a $0$. Los enteros $1$ y $-1$
+dividen a todos los enteros. La divisibilidad es un orden en $\N^*$,
+pero no en $\Z$: $a$ y $-a$ se dividen mutuamente.
+
+Para $a,b>0$, se definen los enteros positivos $d,m$ por
+\[
+ a\Z+b\Z=d\Z,\qquad a\Z\cap b\Z=m\Z,
+ \quad a\Z+b\Z=\{au+bv:u,v\in\Z\}.
+\]
+Son, respectivamente, el \textbf{máximo común divisor} y el
+\textbf{mínimo común múltiplo}:
+\begin{itemize}
+\item $d=\gcd(a,b)$ divide a $a,b$, y todo divisor común divide a $d$.
+Es además la menor combinación lineal positiva $au+bv$.
+\item $m=\operatorname{mcm}(a,b)$ es múltiplo de $a,b$ y divide a todo
+múltiplo común. Es el menor múltiplo común positivo.
+\end{itemize}
+La \textbf{identidad de Bézout} afirma que existen $u,v\in\Z$ tales que
+\[
+ d=au+bv.
+\]
+Para enteros no nulos se usa $\gcd(a,b)=\gcd(|a|,|b|)$.
+Se llaman \textbf{primos entre sí} si este número es $1$;
+equivalentemente, $au+bv=1$ para ciertos enteros $u,v$.
+
+\textbf{Algoritmo de Euclides.} Para calcular el máximo común divisor
+de $a\ge b>0$, dividir y reemplazar el par $(a,b)$ por $(b,r)$ mientras
+$r\ne0$. La igualdad $a=qb+r$ implica
+$a\Z+b\Z=b\Z+r\Z$, así que el máximo común divisor se conserva.
+Los restos positivos decrecen y el último resto no nulo es $d$;
+si la primera división es exacta, $d=b$. Sustituir hacia atrás las
+igualdades de las divisiones expresa $d$ como $au+bv$.
+
+\textbf{Teorema de Gauss.} Si $a,b\ne0$, $\gcd(a,b)=1$ y $a\mid bc$,
+entonces $a\mid c$. En efecto, multiplicar $au+bv=1$ por $c$ expresa
+$c$ como suma de dos múltiplos de $a$.
+
+\section{Naturales y cardinales finitos}
+Los naturales pueden interpretarse como los cardinales de los conjuntos
+finitos. La suma cuenta uniones disjuntas y el producto cuenta pares
+ordenados. Añadir un elemento nuevo realiza el sucesor $n\mapsto n+1$;
+esta interpretación enlaza la aritmética con los recuentos de la
+sección~\ref{sec:recuentos}.

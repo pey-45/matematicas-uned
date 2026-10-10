@@ -1,0 +1,233 @@
+\chapter{Operaciones y estructuras algebraicas}
+\label{cap:estructuras}
+
+\section{Operaciones internas}
+Una \textbf{operación interna} en un conjunto $E$ es una aplicación
+$E\times E\to E$, $(a,b)\mapsto a*b$: cada par tiene un único resultado
+que pertenece a $E$. La suma es interna en $\N$, pero la resta no lo es.
+La composición es interna en el conjunto de aplicaciones $E\to E$.
+
+Las propiedades básicas son:
+\begin{itemize}
+\item \textbf{Asociatividad}: $(a*b)*c=a*(b*c)$ para todos $a,b,c\in E$.
+Permite omitir paréntesis en productos de varios términos.
+\item \textbf{Conmutatividad}: $a*b=b*a$ para todos $a,b\in E$.
+Junto con la asociatividad permite reordenar los términos.
+\item \textbf{Elemento neutro}: $e*a=a*e=a$ para todo $a\in E$.
+Si existe, es único: dos neutros $e,e'$ satisfacen $e=e*e'=e'$.
+\item \textbf{Simétrico de $a$}: un elemento $a'$ con $a*a'=a'*a=e$.
+Si la operación es asociativa y tiene neutro, el simétrico, cuando existe,
+es único y el simétrico de $a'$ es $a$.
+\end{itemize}
+En notación aditiva se escriben $0,-a$ y $na$; en notación multiplicativa,
+$1,a^{-1}$ y $a^n$. Para operaciones asociativas, $na$ y $a^n$ expresan
+repeticiones de la operación; $\sum$ y $\prod$ abrevían sumas y productos.
+
+\section{Grupos y subgrupos}
+\label{sec:grupos}
+Un \textbf{grupo} $(G,*)$ tiene una operación interna asociativa, neutro
+y simétrico para cada elemento. Es \textbf{abeliano} o conmutativo si,
+además, $a*b=b*a$. Son abelianos $(\Z,+)$, $(\Q,+)$ y
+$(\Q\setminus\{0\},\cdot)$. Las matrices invertibles de orden $n$
+forman un grupo por el producto; para $n\ge2$ no es conmutativo.
+
+En cualquier grupo:
+\[
+ a*b=a*c\imp b=c,\qquad b*a=c*a\imp b=c,
+ \qquad (a*b)^{-1}=b^{-1}*a^{-1}.
+\]
+La cancelación se obtiene multiplicando por el inverso por el lado
+correspondiente. Respetando el orden de los factores, las soluciones únicas son
+\[
+ a*x=b\eqv x=a^{-1}*b,\qquad
+ x*a=b\eqv x=b*a^{-1}.
+\]
+Un \textbf{subgrupo} es un subconjunto $H\subseteq G$ que, con la operación
+restringida, es un grupo. Un criterio que reúne todas las condiciones es
+\[
+ H\ne\varnothing,\qquad
+ a,b\in H\imp a*b^{-1}\in H.
+\]
+En efecto, tomando $a=b$ se obtiene el neutro; después los inversos y,
+con ellos, la estabilidad por productos. El neutro y los inversos son
+los mismos que en $G$. Siempre son subgrupos $\{e\}$ y $G$.
+
+\textbf{Clases asociadas a un subgrupo.} Si $G$ es abeliano y $H$ es un
+subgrupo, la relación $a\sim b\eqv a*b^{-1}\in H$ es de equivalencia.
+La clase de $a$ es $aH=\{a*h:h\in H\}$. La aplicación $h\mapsto a*h$
+es una biyección de $H$ sobre $aH$, por lo que todas las clases tienen
+el mismo cardinal. Si $G$ es finito y hay $k$ clases,
+\[
+ |G|=k|H|;
+\]
+en particular, $|H|$ divide a $|G|$.
+
+\section{Anillos, subanillos e ideales}
+\label{sec:anillos}
+Un \textbf{anillo} $(A,+,\cdot)$ tiene dos operaciones internas:
+$(A,+)$ es un grupo abeliano, el producto es asociativo y satisface
+ambas leyes distributivas:
+\[
+ a(b+c)=ab+ac,\qquad (a+b)c=ac+bc.
+\]
+Es \textbf{conmutativo} si $ab=ba$. Es \textbf{unitario} si el producto
+tiene un neutro $1\ne0$. La suma siempre tiene neutro $0$ y opuestos;
+el producto no tiene por qué tener unidad ni inversos.
+Los anillos $\Z,\Q,\R$ son conmutativos y unitarios; las matrices
+cuadradas forman un anillo unitario, no conmutativo para orden $n\ge2$.
+
+Las reglas de signos se deducen de la distributividad:
+\[
+ a0=0a=0,\quad (-a)b=a(-b)=-(ab),\quad (-a)(-b)=ab.
+\]
+Si el anillo es conmutativo,
+\[
+ (a+b)^2=a^2+2ab+b^2,\qquad (a+b)(a-b)=a^2-b^2.
+\]
+En un anillo conmutativo y unitario, el \textbf{binomio de Newton} es
+\[
+ (a+b)^n=\sum_{j=0}^{n}\binom nj a^{n-j}b^j\qquad(n\in\N),
+ \quad a^0=b^0=1.
+\]
+Para un anillo conmutativo sin unidad y $n\ge2$, se escribe la misma
+expansión con los extremos $a^n,b^n$ separados y la suma de $j=1$ a $n-1$,
+de modo que solo intervengan potencias positivas.
+
+Un elemento no nulo es \textbf{divisor de cero} si forma un producto
+nulo con otro elemento no nulo, por alguno de los lados. Un anillo
+\textbf{íntegro}, en el sentido de ausencia de divisores de cero, satisface
+\[
+ ab=0\imp a=0\ \text{o}\ b=0.
+\]
+En él se pueden cancelar factores no nulos. En un anillo unitario,
+un elemento invertible no es divisor de cero. Por ejemplo, $\Z$ es
+íntegro, pero un anillo de matrices de orden $n\ge2$ tiene divisores de cero.
+
+Un \textbf{subanillo} $H\subseteq A$ se caracteriza por
+\[
+ H\ne\varnothing,\qquad a,b\in H\imp a-b\in H\ \text{y}\ ab\in H.
+\]
+No se exige que contenga la unidad de $A$. Por ejemplo, $2\Z$ es un
+subanillo de $\Z$ y no tiene unidad para el producto.
+
+En un anillo conmutativo, un \textbf{ideal} $I$ es un subconjunto no vacío
+cerrado por diferencias y que absorbe productos por elementos del anillo:
+\[
+ a,b\in I\imp a-b\in I,\qquad a\in I, c\in A\imp ac\in I.
+\]
+Todo ideal es subanillo, pero el recíproco no es automático. Son ideales
+$\{0\}$ y $A$. En un anillo conmutativo unitario, el ideal principal
+generado por $a$ es $(a)=aA=\{ac:c\in A\}$; contiene a $a$ y está
+incluido en cualquier ideal que lo contenga.
+
+\section{Cuerpos}
+\label{sec:cuerpos}
+Un \textbf{cuerpo} es un anillo conmutativo unitario en el que cada
+elemento no nulo tiene inverso multiplicativo. Equivalentemente,
+$(K,+)$ y $(K\setminus\{0\},\cdot)$ son grupos abelianos, con $0\ne1$,
+y se cumple la distributividad. $\Q$ y $\R$ son cuerpos; $\Z$ no lo es,
+pues, por ejemplo, $2$ no tiene inverso entero.
+En las clases módulo $p$ se opera mediante $[a]+[b]=[a+b]$ y
+$[a][b]=[ab]$. Módulo $3$ se obtiene un cuerpo, con $[2]^{-1}=[2]$;
+módulo $4$ no, pues $[2]\ne[0]$ y $[2][2]=[0]$.
+
+Todo cuerpo carece de divisores de cero. Para $a\ne0$,
+\[
+ ab=ac\imp b=c,\qquad ax+b=0\eqv x=-a^{-1}b=-\frac ba.
+\]
+Un \textbf{subcuerpo} es un subconjunto que es cuerpo con las operaciones
+restringidas. Basta que $H$ tenga al menos dos elementos, sea cerrado
+por diferencias y que $ab^{-1}\in H$ siempre que $a,b\in H$ y $b\ne0$.
+
+\section{Compatibilidad con el orden}
+\label{sec:estructuras-ordenadas}
+Un grupo abeliano aditivo está \textbf{ordenado} si su orden cumple
+\[
+ a\le b\imp a+c\le b+c.
+\]
+El cono $G_+=\{x:0\le x\}$ incluye al cero y permite recuperar el orden:
+$a\le b\eqv b-a\in G_+$. Sumar desigualdades conserva el sentido y
+tomar opuestos lo invierte.
+
+Un \textbf{anillo conmutativo ordenado} tiene un orden compatible con la
+suma y satisface $a,b\ge0\imp ab\ge0$. Si el orden es total,
+\begin{itemize}
+\item multiplicar por $c\ge0$ conserva una desigualdad; por $c\le0$ la invierte;
+\item $a^2\ge0$; si hay unidad, $0<1$;
+\item el valor absoluto es $|a|=a$ si $a\ge0$ y $|a|=-a$ si $a<0$.
+Se cumple $|a|\ge0$, $|a|=0\eqv a=0$, $|ab|=|a||b|$ y
+$|a+b|\le|a|+|b|$.
+\end{itemize}
+Un \textbf{cuerpo ordenado} lleva un orden total compatible con ambas
+operaciones. En él, $a>0\imp a^{-1}>0$ y
+\[
+ 0<a\le b\imp \frac1b\le\frac1a;
+ \qquad a\le b<0\imp \frac1b\le\frac1a.
+\]
+No se puede invertir una desigualdad con extremos de signos distintos
+usando estas reglas.
+
+\section{Homomorfismos e isomorfismos}
+\label{sec:homomorfismos}
+Un \textbf{homomorfismo} conserva las operaciones de la estructura.
+Para una operación, $f(a*b)=f(a)*'f(b)$; para anillos debe conservar
+tanto la suma como el producto. Un homomorfismo biyectivo es un
+\textbf{isomorfismo}: identifica estructuras con las mismas propiedades
+algebraicas. Su inversa también conserva las operaciones.
+La composición de homomorfismos es un homomorfismo.
+Se llama \textbf{endomorfismo} si origen y destino son la misma estructura,
+y \textbf{automorfismo} si, además, es un isomorfismo.
+
+Para un homomorfismo de grupos $f:G\to G'$,
+\[
+ f(e)=e',\quad f(a^{-1})=f(a)^{-1},\quad
+ \ker f=\{a\in G:f(a)=e'\},\quad \operatorname{Im}f=f(G).
+\]
+El núcleo y la imagen son subgrupos de $G$ y $G'$, respectivamente.
+Más generalmente, las imágenes y preimágenes de subgrupos son subgrupos.
+Además,
+\[
+ f\text{ inyectivo}\eqv\ker f=\{e\},\qquad
+ f\text{ sobreyectivo}\eqv\operatorname{Im}f=G'.
+\]
+La primera equivalencia se explica porque
+$f(a)=f(b)\eqv ab^{-1}\in\ker f$.
+
+El \textbf{subgrupo generado por $a$} es
+$\langle a\rangle=\{a^n:n\in\Z\}$; en notación aditiva,
+$\langle a\rangle=\{na:n\in\Z\}$. Es la imagen del homomorfismo
+$\Z\to G$, $n\mapsto a^n$ o $n\mapsto na$, y es el menor subgrupo que
+contiene a $a$. Los exponentes negativos usan inversos y $a^0=e$.
+
+Un homomorfismo de anillos conserva $+$ y $\cdot$; no se exige aquí
+que conserve la unidad como condición adicional. Su imagen es subanillo
+y, si el anillo de origen es conmutativo, su núcleo es un ideal.
+Los homomorfismos entre cuerpos se entienden con esta misma convención.
+
+Una aplicación entre conjuntos ordenados \textbf{conserva el orden} si
+$a\le b\imp f(a)\le f(b)$. Para identificar órdenes mediante un
+\textbf{isomorfismo de orden} se requiere una biyección con
+\[
+ a\le b\eqv f(a)\le f(b);
+\]
+es decir, ella y su inversa deben conservar el orden. En órdenes totales
+basta una biyección que lo conserve.
+
+Las inclusiones $\N\subset\Z\subset\Q\subset\R\subset\C$ expresan
+identificaciones que conservan las operaciones; hasta $\R$ conservan
+también los órdenes habituales.
+
+\section{Suma y producto de cardinales}
+Para cardinales $\alpha=\operatorname{card}A$ y $\beta=\operatorname{card}B$,
+se definen $\alpha+\beta$ mediante la unión de representantes disjuntos
+y $\alpha\beta=\operatorname{card}(A\times B)$.
+El resultado no depende de los representantes elegidos.
+Ambas operaciones son asociativas y conmutativas; sus neutros son $0$
+y $1$, respectivamente. El producto distribuye respecto a la suma y
+$0\alpha=0$. Además,
+\[
+ \alpha\le\beta\eqv \text{existe un cardinal }\gamma
+ \text{ tal que }\alpha+\gamma=\beta.
+\]
+Estas operaciones no proporcionan en general una resta de cardinales
+ni convierten los cardinales infinitos en un anillo.
