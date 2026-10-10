@@ -1,0 +1,160 @@
+\chapter{Congruencias y aplicaciones}
+\label{md:congruencias}
+
+\section{Aritmética modular}
+\label{md:aritmetica-modular}
+
+Para un módulo $m>0$,
+\[
+ a\equiv b\pmod m\ \eqv\ m\mid(a-b)
+ \ \eqv\ \MOD(a,m)=\MOD(b,m).
+\]
+Es una relación de equivalencia. Sus $m$ clases se representan de
+forma única por $0,1,\ldots,m-1$, los residuos mínimos no negativos.
+Un \textbf{sistema completo de residuos} contiene exactamente un
+representante de cada clase.
+
+Las congruencias con el mismo módulo se pueden sumar, restar y multiplicar;
+también se conservan al elevar a potencias enteras no negativas.
+La cancelación de un factor exige una condición:
+\[
+ ha\equiv hb\pmod m,\quad\mcd(h,m)=1
+ \quad\imp\quad a\equiv b\pmod m.
+\]
+Si $d>0$ divide a $m$, una congruencia módulo $m$ implica la misma
+congruencia módulo $d$. Para varios módulos positivos,
+congruencia en todos ellos equivale a congruencia módulo su mínimo
+común múltiplo.
+
+\section{Congruencias lineales e inversos}
+\label{md:congruencia-lineal}
+
+La congruencia $ax\equiv b\pmod m$ equivale a la ecuación
+diofántica $ax-my=b$. Si $d=\mcd(a,m)$, tiene solución
+si y solo si $d\mid b$. En ese caso tiene exactamente $d$ clases
+de soluciones módulo $m$:
+\[
+ x\equiv x_0+k\frac md\pmod m,\qquad k=0,\ldots,d-1.
+\]
+Para obtener $x_0$ se divide por $d$ y se resuelve
+$(a/d)x\equiv b/d\pmod{m/d}$.
+
+Un \textbf{inverso de $a$ módulo $m$} es un entero $u$ con
+$au\equiv1\pmod m$. Existe si y solo si $\mcd(a,m)=1$,
+y es único como clase. Una identidad $au+mv=1$ lo calcula.
+Así, cuando $a$ es coprimo con $m$, la solución es $x\equiv ub\pmod m$.
+
+\begin{ejemplo}
+$6x\equiv4\pmod{10}$ se reduce a $3x\equiv2\pmod5$.
+El inverso de $3$ es $2$, luego $x\equiv4\pmod5$.
+Las dos clases módulo $10$ son $4$ y $9$.
+\end{ejemplo}
+
+\section{Teorema chino de los restos}
+\label{md:chino}
+
+Sean $m_1,\ldots,m_r>1$ coprimos \emph{dos a dos} y
+$M=m_1\cdots m_r$. Para cualesquiera residuos $r_i$, el sistema
+\[
+ x\equiv r_i\pmod{m_i}\qquad(i=1,\ldots,r)
+\]
+tiene una única clase de soluciones módulo $M$.
+Para construirla, sea $t_i=M/m_i$ y elíjase $u_i$ tal que
+$t_iu_i\equiv1\pmod{m_i}$; entonces
+\[
+ \boxed{x\equiv\sum_{i=1}^r r_it_iu_i\pmod M.}
+\]
+Cada sumando tiene el residuo requerido en su módulo y es cero en
+los restantes. La unicidad usa que una diferencia divisible por todos
+los $m_i$ es divisible por su producto.
+
+Si una ecuación tiene la forma $a_ix\equiv b_i\pmod{m_i}$ y
+$\mcd(a_i,m_i)=1$, primero se multiplica por su inverso para normalizarla.
+El módulo $1$ no impone ninguna restricción y se puede eliminar.
+
+La \textbf{aritmética por residuos} representa una clase módulo $M$
+mediante sus residuos en los $m_i$. Sumas y productos se realizan
+componente a componente y se reconstruyen por el teorema.
+El resultado es una clase módulo $M$; para recuperar un entero concreto
+hace falta fijar su intervalo, por ejemplo $0\le x<M$.
+
+\section{Función de Euler, Fermat y Wilson}
+\label{md:euler-aritmetico}
+
+La \textbf{función de Euler} $\varphi(m)$ cuenta los enteros
+$1\le r\le m$ coprimos con $m$; por convenio $\varphi(1)=1$.
+Para un primo $p$ y $\alpha\ge1$,
+\[
+ \varphi(p)=p-1,\qquad
+ \varphi(p^\alpha)=p^\alpha-p^{\alpha-1}.
+\]
+Si $u,v>0$ son coprimos, $\varphi(uv)=\varphi(u)\varphi(v)$.
+En general, para $m>1$,
+\[
+ \varphi(m)=m\prod_{\substack{p\mid m\\p\text{ primo}}}\left(1-\frac1p\right).
+\]
+
+El \textbf{teorema de Euler} establece
+\[
+ \mcd(a,m)=1\quad\imp\quad a^{\varphi(m)}\equiv1\pmod m.
+\]
+Multiplicar por $a$ permuta las clases coprimas; al comparar sus
+productos se cancela un producto también coprimo con $m$.
+El \textbf{pequeño teorema de Fermat} es el caso primo:
+$p\nmid a$ implica $a^{p-1}\equiv1\pmod p$.
+
+El \textbf{teorema de Wilson} caracteriza los primos:
+\[
+ n\ge2:\qquad n\text{ primo}\ \eqv\ (n-1)!\equiv-1\pmod n.
+\]
+Para un primo, cada residuo no nulo se empareja con su inverso;
+solo $1$ y $-1$ pueden coincidir con él.
+Las condiciones de Fermat y Euler son esenciales: no se cancelan
+factores ni se reducen exponentes por estas fórmulas sin coprimalidad.
+
+\section{Generación de residuos y controles}
+
+Un \textbf{generador lineal congruencial} tiene la forma
+\[
+ x_{n+1}=\MOD(ax_n+c,m),\qquad m\ge2,
+\]
+con parámetros enteros y una semilla $0\le x_0<m$.
+Como hay $m$ estados y cada uno determina el siguiente, la sucesión
+acaba entrando en un ciclo de longitud a lo sumo $m$;
+puede existir un tramo inicial anterior al ciclo.
+Tiene período completo $m$ si y solo si
+\begin{itemize}
+ \item $\mcd(c,m)=1$;
+ \item $a\equiv1\pmod p$ para todo primo $p\mid m$;
+ \item si $4\mid m$, también $a\equiv1\pmod4$.
+\end{itemize}
+
+Los controles modulares añaden un dato que obliga a cumplir una
+congruencia. Un \textbf{bit de paridad} fija la suma de bits módulo $2$:
+detecta un número impar de cambios de bits, pero un número par puede
+pasar inadvertido. Un control que se cumple no garantiza ausencia de errores.
+
+\section{Cifrado afín y esquema RSA}
+
+Al representar símbolos por residuos módulo $m\ge2$, el
+\textbf{cifrado afín} aplica $x\mapsto ax+b\pmod m$.
+Para que sea reversible se requiere $\mcd(a,m)=1$; si $u$ es su inverso,
+el descifrado es $y\mapsto u(y-b)\pmod m$.
+El cifrado de César corresponde a $a=1$.
+
+En el \textbf{esquema RSA} se eligen primos distintos $p,q$,
+$N=pq$ y $\varphi(N)=(p-1)(q-1)$.
+Se toman enteros positivos $e,d$ con
+\[
+ \mcd(e,\varphi(N))=1,\qquad ed\equiv1\pmod{\varphi(N)}.
+\]
+La clave pública es $(N,e)$ y el exponente privado es $d$.
+Un mensaje representado por $0\le m<N$ se cifra como
+$c\equiv m^e\pmod N$ y se descifra calculando $c^d\pmod N$.
+Para mensajes coprimos con $N$, Euler justifica la recuperación:
+si $ed=1+k\varphi(N)$,
+\[
+ c^d\equiv m^{ed}
+       =m\bigl(m^{\varphi(N)}\bigr)^k\equiv m\pmod N.
+\]
+La justificación por Euler requiere precisamente esa coprimalidad.

@@ -1,0 +1,79 @@
+\chapter{Binomio y coeficientes multinómicos}
+\label{md:binomio}
+
+\section{Números combinatorios y triángulo de Pascal}
+
+Para $0\le k\le n$,
+\[
+ \binom nk=\binom n{n-k},\qquad
+ \binom n0=\binom nn=1.
+\]
+La simetría corresponde a elegir un subconjunto o su complementario.
+La \textbf{identidad de Pascal}, para $1\le k\le n-1$, es
+\[
+ \binom nk=\binom{n-1}{k}+\binom{n-1}{k-1}.
+\]
+Se separan los subconjuntos de tamaño $k$ según contengan o no un
+elemento fijado. Esta identidad permite construir el
+\textbf{triángulo de Pascal}: los extremos de cada fila son $1$ y
+cada entrada interior es la suma de las dos situadas encima.
+La fila $n$ contiene $\binom n0,\ldots,\binom nn$.
+
+\section{Teorema del binomio}
+
+Para $n\in\N_0$ y $x,y\in\R$, y también para elementos de un cuerpo,
+\[
+ \boxed{(x+y)^n=\sum_{k=0}^n\binom nk x^{n-k}y^k.}
+\]
+El coeficiente cuenta en qué $k$ de los $n$ factores se elige $y$.
+Otra demostración usa inducción y la identidad de Pascal.
+Los exponentes de $x$ e $y$ suman $n$; el signo de una constante
+sustituida en $y$ se conserva dentro de su potencia.
+
+En particular, $(1+x)^n=\sum_{k=0}^n\binom nk x^k$.
+Evaluar y, cuando procede, derivar esta identidad proporciona
+\[
+ \begin{aligned}
+ \sum_{k=0}^n\binom nk&=2^n &&(n\ge0),\\
+ \sum_{k=0}^n(-1)^k\binom nk&=0 &&(n\ge1),\\
+ \sum_{k=1}^n k\binom nk&=n2^{n-1} &&(n\ge1).
+ \end{aligned}
+\]
+La suma alternada dice que, para $n\ge1$, hay tantos subconjuntos
+de cardinal par como impar.
+Otra identidad útil, para $0\le k\le m$, es
+\[
+ \sum_{j=k}^m\binom jk=\binom{m+1}{k+1}.
+\]
+Se obtiene aplicando sucesivamente Pascal, o por inducción sobre $m$.
+
+\begin{ejemplo}
+El coeficiente de $x^2$ en $(x-2)^5$ es
+$\binom52(-2)^3=-80$. El exponente de la constante es $5-2$,
+lo que determina también el signo.
+\end{ejemplo}
+
+\section{Multinómicos y ordenaciones con elementos iguales}
+\label{md:multinomial}
+
+Si $n_1,\ldots,n_s\in\N_0$ y $n_1+\cdots+n_s=n$, se define
+\[
+ \binom{n}{n_1,\ldots,n_s}=\frac{n!}{n_1!\cdots n_s!}.
+\]
+Este \textbf{coeficiente multinómico} cuenta las ordenaciones lineales
+de $n$ objetos de $s$ tipos, con $n_i$ objetos del tipo $i$,
+indistinguibles dentro de cada tipo. Las posiciones siguen siendo distintas.
+Se justifica eligiendo primero las $n_1$ posiciones del primer tipo,
+luego las $n_2$ del segundo entre las restantes, y así sucesivamente.
+
+La \textbf{fórmula multinómica}, o de Leibniz, generaliza el binomio:
+para $n\ge0$ y elementos $x_1,\ldots,x_s$ de un cuerpo,
+\[
+ \boxed{(x_1+\cdots+x_s)^n=
+ \sum_{\substack{n_1,\ldots,n_s\ge0\\n_1+\cdots+n_s=n}}
+ \binom{n}{n_1,\ldots,n_s}x_1^{n_1}\cdots x_s^{n_s}.}
+\]
+Cada término distribuye las $n$ elecciones entre los $s$ sumandos;
+el coeficiente cuenta las ordenaciones que originan el mismo monomio.
+Para calcular un coeficiente se comprueba primero que los exponentes
+son no negativos y suman $n$; un sumando ausente tiene exponente cero.

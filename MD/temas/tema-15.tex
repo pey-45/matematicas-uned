@@ -1,0 +1,116 @@
+\chapter{Recursividad y relaciones recurrentes}
+\label{md:recurrencias}
+
+\section{Definición recursiva y condiciones iniciales}
+
+Una definición recursiva parte de elementos explícitos y construye
+los restantes a partir de otros ya obtenidos.
+Para una sucesión, una \textbf{relación de recurrencia} expresa un
+término mediante términos anteriores; los \textbf{valores iniciales}
+determinan cuál de las sucesiones que satisfacen la relación se elige.
+La relación aislada generalmente no determina una única sucesión.
+
+El factorial, por ejemplo, se fija mediante $0!=1$ y $n!=n(n-1)!$.
+Los árboles con raíz también admiten construcción recursiva:
+se parte de un único vértice y se une una nueva raíz a las raíces de
+árboles disjuntos ya construidos.
+La inducción del capítulo~\ref{md:induccion} permite comprobar
+propiedades de los objetos definidos así.
+
+\section{Cómo modelar un recuento recursivo}
+\label{md:modelar-recurrencia}
+
+Se divide el conjunto de objetos según una decisión que deje subobjetos
+más pequeños. Los casos deben ser excluyentes y exhaustivos;
+se aplican suma y producto para relacionar sus cantidades.
+Después se calculan los valores iniciales para los tamaños
+en los que la descomposición todavía no se aplica.
+
+Para las desordenaciones de la sección~\ref{md:desordenaciones},
+\[
+ d(1)=0,\quad d(2)=1,\qquad
+ d(n)=(n-1)\bigl(d(n-1)+d(n-2)\bigr)\quad(n\ge3).
+\]
+La idea es elegir $a=\sigma(1)$, con $n-1$ opciones.
+Si $\sigma(a)=1$, se desordena el resto de $n-2$ elementos.
+En caso contrario, se elimina $1$ de la permutación, enlazando
+su predecesor directamente con $a$; se obtiene una desordenación
+de $n-1$ elementos, y el proceso se puede invertir.
+
+\section{Recurrencias lineales con coeficientes constantes}
+\label{md:caracteristica}
+
+Una relación de la forma
+\[
+ r(n)=a_1r(n-1)+\cdots+a_tr(n-t)+h(n),\qquad n\ge t+1,
+\]
+es \textbf{lineal con coeficientes constantes} si los $a_i$ son constantes.
+Su orden es $t$ cuando $a_t\ne0$. Es \textbf{homogénea} si $h(n)=0$.
+Los productos entre términos de la sucesión y las potencias de dichos
+términos no corresponden a este modelo lineal.
+Dados $r(1),\ldots,r(t)$, la relación determina los demás valores
+sucesivamente.
+
+Para la recurrencia homogénea, la \textbf{ecuación característica} es
+\[
+ x^t-a_1x^{t-1}-\cdots-a_{t-1}x-a_t=0.
+\]
+Para $b\ne0$, la sucesión $r(n)=b^n$ satisface la recurrencia
+si y solo si $b$ es raíz de esa ecuación: se sustituye y se divide
+por $b^{n-t}$.
+
+Cuando hay $t$ raíces reales distintas y no nulas $b_1,\ldots,b_t$,
+todas las soluciones tienen la forma
+\[
+ \boxed{r(n)=c_1b_1^n+\cdots+c_tb_t^n.}
+\]
+Las combinaciones lineales conservan la relación homogénea.
+Las constantes se obtienen imponiendo los $t$ valores iniciales:
+\[
+ \sum_{j=1}^t c_jb_j^i=r(i),\qquad i=1,\ldots,t.
+\]
+Este sistema tiene solución única: su determinante es un producto
+de raíces no nulas por un determinante de Vandermonde, no nulo al
+ser distintas. Al coincidir los primeros términos, la recurrencia
+asegura por inducción que coincide toda la sucesión.
+
+El procedimiento es: identificar el orden y la homogeneidad,
+formar la ecuación, comprobar las condiciones sobre sus raíces,
+escribir la combinación y resolver las constantes con los datos iniciales.
+La fórmula anterior tiene ese alcance; no se aplica directamente
+a raíces múltiples ni a una recurrencia no homogénea.
+
+\begin{ejemplo}
+Para $r(n)=3r(n-1)-2r(n-2)$, $r(1)=2$, $r(2)=5$,
+la ecuación es $(x-1)(x-2)=0$.
+De $r(n)=c_1+c_2 2^n$ y las dos condiciones iniciales se obtiene
+$c_1=-1$, $c_2=3/2$, luego $r(n)=3\cdot2^{n-1}-1$.
+La recurrencia y los datos iniciales quedan ambos satisfechos.
+\end{ejemplo}
+
+\section{Sucesión de Fibonacci}
+\label{md:fibonacci}
+
+Con la indexación
+\[
+ \operatorname{fib}(1)=1,\qquad \operatorname{fib}(2)=2,\qquad
+ \operatorname{fib}(n)=\operatorname{fib}(n-1)+\operatorname{fib}(n-2)
+ \quad(n\ge3),
+\]
+los primeros términos son $1,2,3,5,8,\ldots$.
+Una \textbf{recurrencia de tipo Fibonacci} tiene esa misma relación,
+pero puede tener otros valores iniciales.
+
+La ecuación característica es $x^2-x-1=0$, con raíces
+\[
+ \alpha=\frac{1+\sqrt5}{2},\qquad
+ \beta=\frac{1-\sqrt5}{2}.
+\]
+Al imponer los valores iniciales se obtiene la \textbf{fórmula de Binet}:
+\[
+ \boxed{\operatorname{fib}(n)=
+  \frac{\alpha^{n+1}-\beta^{n+1}}{\sqrt5}\quad(n\ge1).}
+\]
+El exponente $n+1$ corresponde a los datos iniciales $1,2$.
+Como $|\beta|<1$, el término $\beta^{n+1}/\sqrt5$ tiende a cero,
+y $\alpha^{n+1}/\sqrt5$ aproxima la sucesión para índices grandes.

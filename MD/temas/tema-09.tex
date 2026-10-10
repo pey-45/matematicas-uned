@@ -1,0 +1,98 @@
+\chapter{Exploración, árboles y caminos mínimos}
+\label{md:exploracion}
+
+\section{Matriz de adyacencia y recuento de caminos}
+\label{md:adyacencia}
+
+Ordenados los vértices $v_1,\ldots,v_p$, la \textbf{matriz de adyacencia}
+de un grafo simple es $A=(a_{ij})$, con $a_{ij}=1$ si hay arista
+entre $v_i,v_j$ y $0$ en otro caso. Es simétrica y tiene diagonal cero.
+Para un digrafo simple, $a_{ij}=1$ si hay arco de $v_i$ a $v_j$;
+ya no tiene por qué ser simétrica.
+Renombrar y reordenar los vértices permuta simultáneamente filas
+y columnas; una misma matriz representa grafos isomorfos.
+
+Para $k\ge1$,
+\[
+ \boxed{(A^k)_{ij}=\text{número de caminos de longitud }k
+          \text{ de }v_i\text{ a }v_j.}
+\]
+Aquí camino permite repetir vértices y aristas, según la
+sección~\ref{md:caminos}. El producto matricial suma las posibilidades
+para el vértice intermedio al concatenar caminos.
+
+Si $i\ne j$, existe un camino de $v_i$ a $v_j$ si y solo si
+\[
+ (A+A^2+\cdots+A^{p-1})_{ij}>0.
+\]
+Basta buscar hasta longitud $p-1$, porque un camino puede simplificarse
+sin repetir vértices. Para un grafo no dirigido con $p\ge2$, la
+conectividad equivale a la positividad de todas esas entradas
+fuera de la diagonal. Cada vértice está conectado consigo mismo
+por el camino de longitud cero, aunque esa suma tenga una entrada
+diagonal nula.
+
+\begin{ejemplo}
+Para las aristas $\{1,2\},\{2,3\}$,
+\[
+ A=\begin{pmatrix}0&1&0\\1&0&1\\0&1&0\end{pmatrix},\qquad
+ A^2=\begin{pmatrix}1&0&1\\0&2&0\\1&0&1\end{pmatrix}.
+\]
+Hay un camino de longitud dos de $1$ a $3$, y dos de $2$ a $2$.
+Los últimos repiten el vértice inicial y no son caminos simples.
+\end{ejemplo}
+
+\section{Árboles y árboles con raíz}
+\label{md:arboles}
+
+Un \textbf{árbol} es un grafo conexo sin ciclos.
+Equivale a que haya exactamente un camino simple entre cada par
+de vértices distintos: dos caminos distintos crearían un ciclo;
+un ciclo permitiría elegir dos caminos entre algunos de sus vértices.
+
+Todo grafo conexo finito contiene un \textbf{árbol generador}, un
+subgrafo que es árbol y contiene todos sus vértices.
+Se obtiene eliminando una arista de cada ciclo mientras quede alguno:
+esa eliminación no rompe la conectividad.
+
+Un \textbf{árbol con raíz} $(T,r)$ distingue un vértice $r$.
+El camino único desde $r$ a cada vértice organiza los antecesores:
+$v\ge w$ si $v$ está en el camino de $r$ a $w$, incluyendo sus extremos.
+Es un orden parcial; dos ramas pueden contener vértices incomparables.
+Orientar las aristas alejándose de la raíz expresa esa jerarquía.
+El \textbf{nivel} de un vértice es la longitud del camino desde $r$;
+un vértice no raíz de grado uno es una hoja.
+
+\section{Algoritmo de Dijkstra}
+\label{md:dijkstra}
+
+En un digrafo finito con pesos \emph{estrictamente positivos}, el peso
+de un camino es la suma de los pesos de sus arcos. Se busca el menor
+peso desde una raíz $r$ a un destino, o a todos los vértices alcanzables.
+
+Se asignan etiquetas tentativas $L(r)=0$ y $L(v)=\infty$ para $v\ne r$.
+Inicialmente todos los vértices están pendientes. En cada paso:
+\begin{enumerate}
+ \item Elegir entre los pendientes un vértice $v$ con etiqueta mínima.
+       Si su etiqueta es infinita, los restantes no son alcanzables.
+ \item Fijar $L(v)$ como distancia definitiva. Si solo se busca un destino
+       y $v$ es ese destino, se puede terminar.
+ \item Para cada arco $v\to w$ con $w$ pendiente, actualizar
+       \[
+        L(w)\leftarrow\min\{L(w),L(v)+\text{peso}(v,w)\}.
+       \]
+       Si mejora, registrar $v$ como predecesor de $w$.
+ \item Retirar $v$ de los pendientes y repetir.
+\end{enumerate}
+Los pesos positivos aseguran que pasar después por un vértice con
+etiqueta mayor no puede mejorar la distancia ya fijada.
+Los predecesores permiten reconstruir un camino mínimo retrocediendo
+desde el destino hasta la raíz.
+
+En grafos no dirigidos se actualizan los vecinos a través de cada
+arista en el sentido del recorrido. Los empates pueden proporcionar
+distintos caminos con el mismo peso mínimo.
+Si todos los vértices son alcanzables, los predecesores forman un árbol
+de caminos mínimos desde $r$: minimiza cada distancia desde la raíz,
+lo que no equivale a minimizar la suma de pesos de todas las aristas
+de un árbol generador.

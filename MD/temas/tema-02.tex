@@ -1,0 +1,90 @@
+\chapter{Números primos y factorización}
+\label{md:primos}
+
+\section{Primos y teorema fundamental de la aritmética}
+
+Un entero $p>1$ es \textbf{primo} si sus únicos divisores positivos
+son $1,p$. Un entero mayor que $1$ que no es primo es \textbf{compuesto}.
+El número $1$ no pertenece a ninguna de estas dos clases.
+
+Si $\mcd(a,c)=1$ y $c\mid ab$, entonces $c\mid b$:
+se multiplica una identidad de Bézout para $a,c$ por $b$.
+De aquí se obtiene el \textbf{lema de Euclides}:
+\[
+ p\text{ primo},\quad p\mid ab\ \imp\ p\mid a\text{ o }p\mid b.
+\]
+Para un producto finito, un primo que divide el producto divide algún factor.
+
+El \textbf{teorema fundamental de la aritmética} afirma que todo
+entero $n$ con $|n|>1$ tiene una factorización
+\[
+ n=\varepsilon p_1^{\alpha_1}\cdots p_r^{\alpha_r},\qquad
+ \varepsilon\in\{-1,1\},\quad \alpha_i\ge1,
+\]
+con primos distintos $p_i$. Es única salvo el orden de los factores.
+La existencia se basa en descomponer sucesivamente los compuestos;
+el lema de Euclides permite comparar y cancelar los factores de dos
+descomposiciones para probar la unicidad.
+
+Hay \textbf{infinitos primos}: si fueran $p_1,\ldots,p_r$, ningún
+primo de la lista dividiría $p_1\cdots p_r+1$, aunque ese número
+debe tener un divisor primo. También hay infinitos primos de la forma
+$4k+3$: en un número $4p_1\cdots p_r-1$ algún factor primo debe ser
+$3$ módulo $4$, y ninguno puede estar en la lista dada.
+
+\section{Divisores comunes y mínimo común múltiplo}
+\label{md:mcm}
+
+Para $a,b\ne0$, el \textbf{mínimo común múltiplo} $\mcm(a,b)$ es el
+menor múltiplo común positivo; divide a cualquier múltiplo común.
+Con una misma lista de primos para $|a|,|b|$, poniendo exponente cero
+cuando un primo no aparezca,
+\[
+ \begin{aligned}
+ |a|&=\prod_i p_i^{\alpha_i},& |b|&=\prod_i p_i^{\beta_i},\\
+ \mcd(a,b)&=\prod_i p_i^{\min(\alpha_i,\beta_i)},&
+ \mcm(a,b)&=\prod_i p_i^{\max(\alpha_i,\beta_i)}.
+ \end{aligned}
+\]
+En particular, $\mcd(a,b)\mcm(a,b)=|ab|$.
+Las fórmulas con mínimos y máximos de exponentes se extienden
+a familias finitas de enteros no nulos.
+Que el máximo común divisor de una familia sea $1$ no implica
+que todos sus pares sean coprimos: $6,10,15$ no tienen divisor común
+mayor que $1$, pero ningún par es coprimo.
+
+La unicidad de la factorización también distingue potencias:
+en un cuadrado todos los exponentes primos son pares.
+Por ejemplo, si $\sqrt2=u/v$ con $u,v$ enteros coprimos y $v\ne0$,
+$u^2=2v^2$ obliga a que $2$ divida a ambos, una contradicción.
+
+\section{Cómo reconocer primos}
+
+Si $n>1$ es compuesto, tiene un divisor primo $p\le\sqrt n$.
+En efecto, de $n=ab$, con $1<a\le b$, se deduce $a\le\sqrt n$.
+La \textbf{división de prueba} comprueba divisibilidad por los primos
+hasta esa cota; si ninguno divide a $n$, este es primo.
+
+La \textbf{criba de Eratóstenes} obtiene todos los primos hasta $N$:
+se parte de $2,\ldots,N$ y, para cada primo aún no tachado
+$p\le\sqrt N$, se eliminan sus múltiplos compuestos. Se puede empezar
+en $p^2$, pues los menores ya tienen un factor primo más pequeño.
+Los números no tachados son primos.
+
+Los criterios de primalidad se distinguen de la factorización:
+decidir que un número es compuesto no proporciona necesariamente sus factores.
+Un test determinista decide con certeza; un test probabilístico
+puede clasificar como probable primo sin certificarlo.
+
+\subsection*{Familias especiales}
+
+Los \textbf{números de Mersenne} son $M_n=2^n-1$, $n\ge1$.
+Si $M_n$ es primo, $n$ debe ser primo, porque $d\mid n$ implica
+$2^d-1\mid2^n-1$. La condición no es suficiente.
+Para un primo impar $p$, todo divisor primo $q$ de $M_p$ tiene
+la forma $q=2kp+1$.
+
+Los \textbf{números de Fermat} son $F_n=2^{2^n}+1$, $n\ge0$;
+esta forma tampoco garantiza la primalidad.
+Por otra parte, hay sucesiones de compuestos consecutivos de longitud
+arbitraria: para $r\ge1$, $(r+1)!+2,\ldots,(r+1)!+(r+1)$ son $r$ compuestos.

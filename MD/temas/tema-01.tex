@@ -1,0 +1,102 @@
+\chapter{Divisibilidad y algoritmo de Euclides}
+\label{md:division}
+
+Se usa $\N=\{1,2,\ldots\}$ y $\N_0=\N\cup\{0\}$.
+El \textbf{principio de buena ordenación} afirma que todo subconjunto
+no vacío de $\N_0$ tiene un mínimo. En $\Z$ la suma y el producto son
+conmutativos y el producto distribuye sobre la suma; no hay divisores
+de cero. Por ello, $ab=ac$ con $a\ne0$ implica $b=c$.
+
+\section{Divisibilidad y división con resto}
+\label{md:divisibilidad}
+
+Para $a,b\in\Z$, con $a\ne0$, se escribe $a\mid b$ si existe $k\in\Z$
+tal que $b=ak$. Así, $a$ es divisor de $b$ y $b$ es múltiplo de $a$.
+Todo entero no nulo divide a $0$; $1$ y $-1$ dividen a cualquier entero.
+El signo de un divisor no afecta a la divisibilidad.
+Las propiedades básicas son
+\[
+ \begin{gathered}
+ a\mid b,\ b\mid c\ \imp\ a\mid c,\qquad
+ a\mid b,\ a\mid c\ \imp\ a\mid(bx+cy)\quad(x,y\in\Z),\\
+ a\mid b,\ b\mid a\ \imp\ |a|=|b|.
+ \end{gathered}
+\]
+Si $a,b>0$ y $a\mid b$, entonces $a\le b$.
+El valor absoluto satisface $|ab|=|a||b|$ y
+$|a+b|\le |a|+|b|$.
+
+La \textbf{división euclídea} de $a\in\Z$ por $b\ne0$ determina
+únicos $q,r\in\Z$ con
+\[
+ a=bq+r,\qquad 0\le r<|b|.
+\]
+Se llaman cociente y resto. La existencia se obtiene eligiendo el menor
+entero no negativo de la forma $a-bq$; dos restos posibles no pueden
+diferir en un múltiplo no nulo de $b$ dentro de ese intervalo.
+
+Para $m>0$, $\MOD(a,m)$ designa este resto. Se puede reducir antes
+o después de sumar o multiplicar:
+\[
+ \begin{aligned}
+ \MOD(a+b,m)&=\MOD(\MOD(a,m)+\MOD(b,m),m),\\
+ \MOD(ab,m)&=\MOD(\MOD(a,m)\MOD(b,m),m).
+ \end{aligned}
+\]
+\begin{ejemplo}
+$-17=5(-4)+3$. El resto es $3$, no $-2$: la división euclídea
+exige un resto no negativo.
+\end{ejemplo}
+
+\section{Máximo común divisor y Bézout}
+\label{md:bezout}
+
+Si $(a,b)\ne(0,0)$, el \textbf{máximo común divisor}
+$d=\mcd(a,b)$ es el mayor divisor común positivo. Además,
+todo divisor común divide a $d$. Se tiene
+\[
+ \mcd(a,0)=|a|\quad(a\ne0),\qquad
+ \mcd(a,b)=\mcd(|a|,|b|).
+\]
+Por convenio, $\mcd(0,0)=0$. Dos enteros son \textbf{primos entre sí}
+o coprimos si su máximo común divisor es $1$.
+
+La \textbf{identidad de Bézout} garantiza enteros $s,t$ tales que
+\[
+ \boxed{\mcd(a,b)=as+bt.}
+\]
+Su idea es tomar la menor combinación lineal positiva de $a,b$:
+la división con resto muestra que divide a ambos, y cualquier divisor
+común divide a esa combinación. En particular,
+\[
+ \mcd(a,b)=1\ \eqv\ \exists s,t\in\Z:\ as+bt=1.
+\]
+Si $d=\mcd(a,b)>0$, entonces $\mcd(a/d,b/d)=1$.
+Para $k\ne0$,
+$\mcd(ka,kb)=|k|\mcd(a,b)$.
+
+\section{Cálculo por Euclides}
+\label{md:euclides}
+
+Si $a=bq+r$ y $b\ne0$, los divisores comunes de $a,b$ coinciden
+con los de $b,r$. Por tanto,
+\[
+ \mcd(a,b)=\mcd(b,r).
+\]
+Para calcularlo se trabaja con valores absolutos y se encadenan divisiones:
+\begin{enumerate}
+ \item Dividir el mayor por el menor.
+ \item Sustituir el par por divisor y resto; repetir mientras el resto no sea cero.
+ \item El divisor de la división que da resto cero es el máximo común divisor.
+\end{enumerate}
+Los restos positivos decrecen, lo que asegura la terminación.
+Si uno de los datos es cero, el resultado es el valor absoluto del otro.
+El \textbf{algoritmo extendido} expresa ese divisor en función de los
+datos iniciales, sustituyendo hacia atrás en las divisiones anteriores,
+para obtener los coeficientes de Bézout.
+
+\begin{ejemplo}
+$84=2\cdot30+24$ y $30=24+6$, luego $\mcd(84,30)=6$.
+Al sustituir hacia atrás,
+$6=30-24=3\cdot30-84$.
+\end{ejemplo}

@@ -1,0 +1,65 @@
+\chapter{Principio de inclusión-exclusión}
+\label{md:inclusion-exclusion}
+
+\section{Uniones y condiciones prohibidas}
+
+Para conjuntos finitos $A,B$,
+\[
+ |A\cup B|=|A|+|B|-|A\cap B|.
+\]
+Se resta la intersección porque la suma inicial la cuenta dos veces.
+Para $A_1,\ldots,A_r$, el \textbf{principio de inclusión-exclusión} es
+\[
+ \boxed{\left|\bigcup_{i=1}^r A_i\right|
+ =\sum_{k=1}^r(-1)^{k-1}
+   \sum_{1\le i_1<\cdots<i_k\le r}
+   |A_{i_1}\cap\cdots\cap A_{i_k}|.}
+\]
+Se suman los conjuntos individuales, se restan las intersecciones
+de dos, se suman las de tres, y se continúa alternando signos.
+Cada grupo de índices se cuenta una sola vez.
+
+Si $A_i\subseteq S$, con $S$ finito, representa el cumplimiento
+de una condición $i$, el número de elementos que no cumplen ninguna es
+\[
+ \left|S\setminus\bigcup_{i=1}^r A_i\right|
+ =|S|+\sum_{k=1}^r(-1)^k
+   \sum_{1\le i_1<\cdots<i_k\le r}
+   |A_{i_1}\cap\cdots\cap A_{i_k}|.
+\]
+Es frecuente que las $A_i$ sean condiciones prohibidas:
+sus complementos simultáneos constituyen los resultados válidos.
+
+La idea de la prueba es seguir la contribución de un elemento que
+pertenezca a exactamente $t$ conjuntos. En la fórmula del complemento
+se cuenta $\sum_{k=0}^t(-1)^k\binom tk=(1-1)^t$ veces:
+una vez si $t=0$, y cero si $t\ge1$.
+
+Para aplicar el principio se fija el universo, se definen las
+condiciones y se cuentan sus intersecciones. No basta conocer solo
+los tamaños individuales, salvo que se sepa que no hay solapamientos.
+
+\begin{ejemplo}
+Entre $1$ y $30$, hay $15$ múltiplos de $2$, $6$ de $5$ y $3$ de ambos.
+Los divisibles por alguno de los dos son $15+6-3=18$;
+los que no son divisibles por ninguno son $30-18=12$.
+\end{ejemplo}
+
+\newpage
+\section{Desordenaciones}
+\label{md:desordenaciones}
+
+Una \textbf{desordenación} de $n$ elementos es una permutación sin
+puntos fijos: $\sigma(i)\ne i$ para todos los índices.
+Sea $d(n)$ su número.
+En el universo de las $n!$ permutaciones, la condición prohibida
+$A_i$ es dejar fijo $i$. Fijar $k$ índices deja $(n-k)!$ permutaciones,
+y hay $\binom nk$ maneras de elegir esos índices.
+Por inclusión-exclusión,
+\[
+ \boxed{d(n)=\sum_{k=0}^n(-1)^k\binom nk(n-k)!
+          =n!\sum_{k=0}^n\frac{(-1)^k}{k!}.}
+\]
+Las permutaciones con al menos un punto fijo son $n!-d(n)$.
+El recuento tiene una relación recurrente equivalente, presentada
+en la sección~\ref{md:modelar-recurrencia}.

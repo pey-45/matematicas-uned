@@ -1,0 +1,83 @@
+\chapter{Recorridos eulerianos y hamiltonianos}
+\label{md:recorridos}
+
+\section{Caminos y conectividad}
+\label{md:caminos}
+
+Un \textbf{camino} es una sucesión de vértices y aristas incidentes
+que permite pasar de cada vértice al siguiente.
+Su \textbf{longitud} es el número de aristas recorridas; se permiten
+repeticiones. En multigrafos hay que especificar qué arista se utiliza.
+
+Un camino es \textbf{simple} si no repite vértices y \textbf{cerrado}
+si sus extremos coinciden. Un \textbf{circuito} es un camino cerrado
+de longitud positiva sin repetición de aristas. Un \textbf{ciclo}
+es un circuito sin repetición de vértices salvo la coincidencia
+del primero con el último. En un grafo simple un ciclo tiene longitud
+al menos tres; dos aristas paralelas pueden formar uno de longitud dos.
+
+Un grafo es \textbf{conexo} si cualquier pareja de vértices está unida
+por un camino. Si hay un camino entre vértices distintos, se puede
+obtener uno simple eliminando los tramos cerrados producidos por
+vértices repetidos.
+La relación de estar unidos por un camino, incluyendo cada vértice
+consigo mismo, es de equivalencia. Sus clases forman las
+\textbf{componentes conexas}; no hay aristas entre componentes distintas.
+
+\section{Euler: recorrer todas las aristas}
+\label{md:euler-grafos}
+
+Un \textbf{camino euleriano} recorre cada arista exactamente una vez.
+Si es cerrado, es un \textbf{circuito euleriano}.
+Para un grafo no dirigido conexo con al menos una arista:
+\begin{itemize}
+ \item Existe un circuito euleriano si y solo si todos los grados son pares.
+ \item Existe un camino euleriano abierto si y solo si hay exactamente
+       dos vértices de grado impar; estos son sus extremos.
+\end{itemize}
+La condición de conectividad impide que queden aristas en otra componente.
+La necesidad de la paridad se debe a que, en un vértice intermedio,
+cada entrada se empareja con una salida; los extremos de un recorrido
+abierto tienen una incidencia sin pareja.
+
+Para \textbf{construir un circuito}, se parte de un vértice y se
+siguen aristas aún no usadas hasta volver al inicio.
+Si quedan aristas, la conectividad permite encontrar en el circuito
+un vértice incidente con alguna de ellas. Desde él se construye otro
+circuito usando las restantes y se inserta en el anterior.
+Se repite hasta agotar todas las aristas.
+Con dos grados impares se puede añadir una arista entre ellos,
+obtener un circuito y suprimir esa arista para abrirlo.
+
+\section{Hamilton: visitar todos los vértices}
+\label{md:hamilton}
+
+Un \textbf{camino hamiltoniano} es simple y visita todos los vértices.
+Un \textbf{ciclo hamiltoniano} pasa por todos ellos y vuelve al inicio,
+sin otras repeticiones. Un grafo con tal ciclo es hamiltoniano;
+para grafos simples se considera $|V|\ge3$.
+El objetivo se refiere a los vértices; no requiere usar todas las aristas.
+
+Si un grafo tiene ciclo hamiltoniano y $\varnothing\ne U\subseteq V$,
+al borrar los vértices de $U$ el número de componentes restantes
+no puede superar $|U|$.
+Un ciclo queda dividido en a lo sumo $|U|$ tramos; otras aristas
+pueden unirlos, pero no crear más componentes.
+Es una condición necesaria, no suficiente.
+
+El \textbf{teorema de Dirac} da una condición suficiente:
+un grafo simple con $n\ge3$ vértices y
+\[
+ \gr(v)\ge\frac n2\quad\text{para todo }v
+\]
+tiene ciclo hamiltoniano.
+
+Para \emph{caminos} hamiltonianos se dispone de otro criterio:
+si un grafo simple con $n>1$ cumple
+\[
+ \gr(u)+\gr(v)\ge n-1\quad\text{para todo par }u\ne v,
+\]
+entonces tiene un camino hamiltoniano. En particular, basta
+$\gr(v)\ge(n-1)/2$ para todos los vértices.
+Estos criterios son suficientes: incumplirlos no descarta por sí solo
+un recorrido hamiltoniano.

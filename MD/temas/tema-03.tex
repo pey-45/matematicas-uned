@@ -1,0 +1,48 @@
+\chapter{Inducción y algoritmos recursivos}
+\label{md:induccion}
+
+\section{Inducción ordinaria y fuerte}
+
+Para demostrar una propiedad $P(n)$ para todos los enteros $n\ge n_0$,
+el \textbf{principio de inducción} exige:
+\begin{enumerate}
+ \item \textbf{Caso inicial:} comprobar $P(n_0)$.
+ \item \textbf{Paso inductivo:} para un $n\ge n_0$ arbitrario, suponer
+       $P(n)$ y deducir $P(n+1)$.
+\end{enumerate}
+La hipótesis inductiva es una suposición dentro del paso, no la afirmación
+de que el resultado ya está demostrado. El caso inicial y el paso
+permiten alcanzar sucesivamente todos los índices del intervalo.
+
+La \textbf{inducción fuerte} permite suponer $P(n_0),\ldots,P(n)$
+para deducir $P(n+1)$. Es útil cuando el siguiente caso depende de varios
+anteriores, o de un índice menor que no tiene por qué ser $n$.
+Ambas formas se justifican por buena ordenación: si existiera un
+contraejemplo, el menor contradiría el caso inicial o el paso inductivo.
+
+Si un paso utiliza dos o más términos previos, se comprueban todos
+los casos iniciales necesarios. Un paso que solo llega de $n$ a $n+2$
+no cubre por sí solo las dos paridades.
+
+\section{Definiciones y procedimientos recursivos}
+
+Una definición recursiva especifica casos iniciales y una regla para
+obtener nuevos valores a partir de otros ya definidos.
+La regla debe alcanzar los datos de partida tras un número finito de
+reducciones para que el cálculo termine.
+
+El factorial ilustra este esquema:
+\[
+ 0!=1,\qquad n!=n(n-1)!\quad(n\ge1).
+\]
+Para calcular $n!$ se reduce el argumento hasta $0$ y después se
+reconstruyen los productos. La inducción comprueba que el procedimiento
+produce el producto $1\cdot2\cdots n$.
+
+La corrección de un algoritmo recursivo requiere comprobar el resultado
+en los casos base y que la reducción, suponiendo correctos los subcasos,
+produce el resultado requerido. La terminación se prueba aparte mediante
+una cantidad entera no negativa que decrezca en cada llamada.
+Euclides (sección~\ref{md:euclides}) es un ejemplo: el resto disminuye.
+Las relaciones de recurrencia y su resolución se estudian en el
+capítulo~\ref{md:recurrencias}.

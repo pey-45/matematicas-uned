@@ -1,0 +1,33 @@
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{booktabs,array,enumitem}
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{hidelinks,pdftitle={Matemática Discreta: Resumen de estudio}}
+\setlength{\parskip}{4pt}
+\setlength{\parindent}{0pt}
+\setlist{itemsep=3pt,topsep=5pt}
+\allowdisplaybreaks
+\makeatletter
+\renewcommand{\l@chapter}[2]{%
+  \addpenalty{-\@highpenalty}\vskip0.8em
+  \begingroup\bfseries\@dottedtocline{0}{0pt}{2.5em}{#1}{#2}\endgroup}
+\renewcommand{\l@section}{\@dottedtocline{1}{2.5em}{3.2em}}
+\makeatother
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\eqv}{\Longleftrightarrow}
+\newcommand{\imp}{\Longrightarrow}
+\DeclareMathOperator{\mcd}{mcd}
+\DeclareMathOperator{\mcm}{mcm}
+\DeclareMathOperator{\MOD}{MOD}
+\DeclareMathOperator{\gr}{gr}
+\theoremstyle{definition}
+\newtheorem*{ejemplo}{Ejemplo}

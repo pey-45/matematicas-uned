@@ -1,0 +1,49 @@
+\chapter{Numeración y divisibilidad}
+\label{md:numeracion}
+
+\section{Representación en una base}
+
+Para una base entera $b\ge2$, todo $n>0$ admite una única expresión
+\[
+ n=a_kb^k+a_{k-1}b^{k-1}+\cdots+a_1b+a_0,
+ \quad 0\le a_i<b,\quad a_k\ne0.
+\]
+Se escribe $n=(a_ka_{k-1}\cdots a_0)_b$.
+El valor de cada cifra depende de su posición; los coeficientes son
+las \textbf{cifras} o dígitos de la base. El cero se representa por $0$
+y un entero negativo se representa mediante el signo y el valor absoluto.
+Para bases mayores que diez hay que distinguir las cifras mediante
+símbolos adicionales o una lista de valores separados.
+
+Para \textbf{pasar a base $b$}, se divide sucesivamente por $b$ hasta
+obtener cociente cero y se escriben los restos en orden inverso.
+La división euclídea prueba la existencia y la unicidad de las cifras.
+
+Para \textbf{evaluar una representación}, se calcula su suma de potencias
+de $b$, o se recorre de izquierda a derecha, multiplicando el valor
+acumulado por $b$ y sumando la siguiente cifra.
+
+\begin{ejemplo}
+$29=2\cdot12+5$ y $2=0\cdot12+2$, luego $29=(2,5)_{12}$.
+En binario, $29=(11101)_2=16+8+4+1$.
+\end{ejemplo}
+
+\section{Criterios de divisibilidad a partir de las cifras}
+
+Si $n=\sum_i a_i10^i$ y $k\ge2$, se reducen los pesos
+$10^i$ módulo $k$. Para cualesquiera $r_i\equiv10^i\pmod k$,
+\[
+ k\mid n\ \eqv\ \sum_i a_ir_i\equiv0\pmod k.
+\]
+Se pueden usar residuos negativos para simplificar los cálculos.
+Los índices empiezan en la cifra de las unidades.
+
+\begin{itemize}
+ \item \textbf{Por $3$:} $10^i\equiv1\pmod3$; basta la suma de cifras.
+ \item \textbf{Por $11$:} $10^i\equiv(-1)^i\pmod{11}$;
+       se usa la suma alternada $a_0-a_1+a_2-\cdots$.
+ \item \textbf{Por $7$:} los pesos se repiten con período $6$:
+       $1,3,2,-1,-3,-2$. Se multiplica cada cifra por su peso y
+       se comprueba si la suma es múltiplo de $7$.
+\end{itemize}
+En base $b$ se utiliza el mismo procedimiento con pesos $b^i$.

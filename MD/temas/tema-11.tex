@@ -1,0 +1,56 @@
+\chapter{Principios básicos de recuento}
+\label{md:recuento}
+
+\section{Suma, producto y correspondencias}
+
+La \textbf{cardinalidad} $|A|$ de un conjunto finito es su número
+de elementos. Una biyección entre dos conjuntos permite afirmar
+que tienen la misma cardinalidad, traduciendo un recuento a otro
+equivalente.
+
+El \textbf{principio de adición} se aplica a casos excluyentes:
+si $A_1,\ldots,A_r$ son disjuntos dos a dos, entonces
+\[
+ |A_1\cup\cdots\cup A_r|=|A_1|+\cdots+|A_r|.
+\]
+Si los casos se solapan, la suma cuenta elementos varias veces;
+hay que corregirla mediante inclusión-exclusión
+(capítulo~\ref{md:inclusion-exclusion}).
+
+El \textbf{principio de multiplicación} cuenta elecciones sucesivas.
+Si hay $m_1$ posibilidades para el primer paso y, para \emph{cada}
+historia de elecciones previas, hay exactamente $m_i$ posibilidades
+para el paso $i$, el total es
+\[
+ m_1m_2\cdots m_r.
+\]
+Las opciones concretas pueden depender de lo elegido antes;
+lo que debe permanecer fijo es su número en cada etapa.
+En particular, $|A_1\times\cdots\times A_r|=\prod_i|A_i|$.
+
+Antes de contar conviene precisar qué constituye un resultado,
+cuándo se consideran iguales dos resultados, si importa el orden
+y si se permiten repeticiones. Elegir primero un modelo correcto
+evita aplicar una fórmula a objetos diferentes de los que se buscan.
+
+\section{Principio del palomar}
+\label{md:palomar}
+
+Si se distribuyen más de $n$ objetos en $n$ cajas, alguna recibe
+al menos dos. Más generalmente, para $n\ge1$ y $p\ge0$ enteros,
+\[
+ N>np\quad\imp\quad
+ \text{alguna caja contiene al menos }p+1\text{ objetos}.
+\]
+Si todas contuvieran a lo sumo $p$, el total no superaría $np$.
+Por tanto, en cualquier distribución de $N$ objetos, alguna caja
+tiene al menos $\lceil N/n\rceil$ objetos.
+
+El principio prueba existencia sin localizar necesariamente la caja.
+Para aplicarlo hay que definir una asignación inequívoca de objetos
+a un número finito de clases.
+
+\begin{ejemplo}
+Entre siete enteros, dos tienen el mismo resto módulo $6$:
+los seis restos posibles son las cajas. Su diferencia es divisible por $6$.
+\end{ejemplo}

@@ -1,0 +1,90 @@
+\chapter{Planaridad, mapas y coloraciones}
+\label{md:planaridad}
+
+\section{Mapas y fórmula de Euler}
+\label{md:euler-plano}
+
+Un grafo es \textbf{planar} si admite un dibujo en el plano en el que
+las aristas solo se encuentran en extremos comunes.
+Un \textbf{mapa} es una representación concreta de ese tipo.
+Un dibujo con cruces no demuestra que el grafo sea no planar:
+podría existir otro sin cruces.
+
+Las \textbf{regiones} o caras son las componentes del plano que queda
+al quitar el dibujo. Se incluye siempre la región exterior.
+El grado de una región cuenta las incidencias de aristas en su frontera;
+si una arista tiene la misma región a ambos lados, se cuenta dos veces.
+Cada arista aporta dos lados, por lo que
+\[
+ \sum_{\text{regiones }R}\gr(R)=2|E|.
+\]
+
+Para un mapa de un grafo conexo finito, con $v\ge1$ vértices,
+$e$ aristas y $f$ regiones, la \textbf{fórmula de Euler} es
+\[
+ \boxed{v-e+f=2.}
+\]
+Su idea es eliminar aristas de ciclos: disminuyen en uno las aristas
+y las regiones, sin cambiar $v-e+f$. Se llega a un árbol, con una
+región; al eliminar hojas se comprueba $e=v-1$.
+
+Para un grafo simple conexo planar con $v\ge3$,
+\[
+ e\le3v-6.
+\]
+Si además no tiene triángulos, $e\le2v-4$.
+Estas cotas usan los grados mínimos de las fronteras y Euler.
+Son condiciones necesarias, no criterios suficientes de planaridad.
+En $K_5$, $e=10>3\cdot5-6$; en $K_{3,3}$, que no tiene triángulos,
+$e=9>2\cdot6-4$. Ambos son no planares.
+
+\section{Subdivisiones y grafos duales}
+
+Una \textbf{subdivisión} sustituye una arista por dos, añadiendo
+un nuevo vértice intermedio; se puede repetir esta operación.
+El \textbf{teorema de Kuratowski} afirma que un grafo finito es planar
+si y solo si no contiene un subgrafo isomorfo a una subdivisión
+de $K_5$ o de $K_{3,3}$.
+La obstrucción puede estar formada por caminos que sustituyen
+las aristas, sin que aparezcan literalmente esos grafos completos.
+
+El \textbf{dual} de un mapa conexo tiene un vértice por región
+y una arista por cada arista del mapa original, uniendo las regiones
+situadas a sus dos lados. Puede tener aristas paralelas o lazos:
+si una arista no separa regiones distintas, produce un lazo en el dual.
+El dual depende del mapa elegido.
+La adyacencia de regiones exige compartir una arista de frontera;
+un contacto únicamente en un punto no basta.
+
+\section{Coloraciones y grafos bipartitos}
+\label{md:coloracion}
+
+Una \textbf{coloración propia con $k$ colores} asigna a cada vértice
+un color de $\{1,\ldots,k\}$, de modo que vértices adyacentes
+tengan colores distintos. No es obligatorio utilizar los $k$ colores.
+El problema de coloración busca el menor número necesario.
+
+El \textbf{teorema de los cuatro colores} afirma que todo grafo simple
+planar admite una coloración propia con a lo sumo cuatro colores.
+En un mapa se colorean las regiones de modo que las que comparten
+una arista tengan distinto color. El dual traduce este problema a
+vértices, considerando solo adyacencias entre regiones distintas:
+los lazos no imponen un color distinto a la propia región.
+
+Un grafo es \textbf{bipartito} si sus vértices se dividen en dos conjuntos
+sin aristas internas a ninguno. Equivale a admitir una coloración
+propia con dos colores y, para grafos sin lazos,
+\[
+ \boxed{G\text{ bipartito}\ \eqv\ G\text{ no tiene ciclos impares}.}
+\]
+Un ciclo impar impide alternar dos colores y cerrar correctamente.
+En ausencia de ciclos impares, dentro de cada componente se pueden
+separar los vértices por la paridad de las longitudes desde un vértice
+de partida; una arista entre vértices de la misma clase produciría
+un ciclo impar.
+
+El \textbf{grafo bipartito completo} $K_{r,s}$ contiene todas las
+$rs$ aristas entre sus dos partes, de tamaños $r,s$.
+Una \textbf{clique} es un conjunto de vértices adyacentes dos a dos,
+es decir, un subgrafo completo. Una clique de tamaño $t$ requiere
+al menos $t$ colores, aunque esa cota no siempre determina el mínimo.

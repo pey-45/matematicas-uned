@@ -1,0 +1,90 @@
+\chapter{Ecuaciones diofánticas}
+\label{md:diofanticas}
+
+Una ecuación diofántica busca soluciones \emph{enteras}.
+Encontrar una solución real no resuelve el problema, y cualquier
+restricción de positividad debe imponerse además de la integridad.
+
+\section{Ecuación lineal en dos incógnitas}
+\label{md:diofantica-lineal}
+
+Sean $a,b,c\in\Z$, $(a,b)\ne(0,0)$ y $d=\mcd(a,b)$.
+La ecuación
+\[
+ ax+by=c
+\]
+tiene soluciones enteras si y solo si $d\mid c$.
+La necesidad se sigue de que $d$ divide cualquier combinación;
+la suficiencia usa Bézout: si $as+bt=d$, una solución es
+$x_0=sc/d$, $y_0=tc/d$.
+Todas las soluciones son
+\[
+ \boxed{x=x_0+\frac bd\,k,\qquad y=y_0-\frac ad\,k,
+ \quad k\in\Z.}
+\]
+Al restar dos soluciones, la coprimalidad de $a/d,b/d$ obliga a que
+sus diferencias tengan esos múltiplos. La fórmula también cubre
+el caso en que uno de los coeficientes sea cero.
+Si $a=b=0$, hay todas las parejas enteras cuando $c=0$, y ninguna si $c\ne0$.
+
+Para resolver: calcular $d$, comprobar $d\mid c$, obtener una solución
+por Euclides extendido y escribir la familia completa. Si se exigen
+$x,y\ge0$ o $x,y>0$, se sustituyen las expresiones y se determina
+el intervalo de valores enteros de $k$, respetando el signo de cada coeficiente.
+
+\begin{ejemplo}
+En $14x+21y=7$, una solución es $(-1,1)$ y $d=7$.
+Todas son $x=-1+3k$, $y=1-2k$.
+No hay soluciones con ambas coordenadas no negativas: la primera
+exigiría $k\ge1$ y la segunda $k\le0$.
+\end{ejemplo}
+
+\section{Diferencia de cuadrados y factorización}
+
+La ecuación $x^2-y^2=n$ se transforma en
+\[
+ (x-y)(x+y)=n.
+\]
+Una pareja de factores $uv=n$ proporciona enteros
+$x=(u+v)/2$, $y=(v-u)/2$ exactamente cuando $u,v$ tienen la misma
+paridad. Para $x>y>0$ se toman $0<u<v$.
+
+La \textbf{factorización de Fermat}, para $n>1$ impar, busca
+$n=x^2-y^2$. Se empieza con $x=\lceil\sqrt n\rceil$ y se incrementa
+$x$ hasta que $x^2-n$ sea un cuadrado; entonces
+$n=(x-y)(x+y)$.
+Existe siempre la descomposición trivial
+\[
+ n=\left(\frac{n+1}{2}\right)^2-
+   \left(\frac{n-1}{2}\right)^2.
+\]
+Si no aparece una factorización antes de ese valor de $x$, $n$ es primo.
+El método resulta especialmente adecuado cuando los factores están próximos.
+
+\section{Ternas pitagóricas y descenso}
+
+Una \textbf{terna pitagórica} es una solución positiva de
+$x^2+y^2=z^2$. Es \textbf{primitiva} si $\mcd(x,y,z)=1$;
+en ese caso los tres números son coprimos dos a dos, un cateto es par
+y el otro y la hipotenusa son impares.
+
+Todas las ternas primitivas, intercambiando los catetos si es necesario, son
+\[
+ x=s^2-t^2,\qquad y=2st,\qquad z=s^2+t^2,
+\]
+donde $s>t>0$, $\mcd(s,t)=1$ y $s,t$ tienen distinta paridad.
+La idea es factorizar $y^2=(z-x)(z+x)$: después de dividir por $4$,
+se obtiene un producto de coprimos que debe ser cuadrado en cada factor.
+Las ternas positivas generales se obtienen multiplicando una primitiva
+por un entero positivo.
+
+El \textbf{descenso infinito} parte de una supuesta solución positiva
+y construye otra con una cantidad positiva estrictamente menor.
+Buena ordenación impide repetir ese descenso: basta elegir primero
+una solución mínima. Así se demuestra que $x^4+y^4=z^2$ no tiene
+soluciones positivas.
+
+El \textbf{último teorema de Fermat} afirma que
+$x^n+y^n=z^n$ no tiene soluciones enteras positivas para $n>2$.
+El caso de exponente $4$ se deduce del resultado anterior;
+no se extiende ese argumento por sí solo a todos los exponentes.

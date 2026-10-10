@@ -1,6 +1,6 @@
 # Instrucciones para las sesiones · Resúmenes UNED
 
-Este repositorio contiene resúmenes del grado en Matemáticas de la UNED, organizados por asignatura: **Lenguaje matemático, conjuntos y números** (`LMCN`) y **Álgebra Lineal I** (`AL1`).
+Este repositorio contiene resúmenes del grado en Matemáticas de la UNED, organizados por asignatura: **Lenguaje matemático, conjuntos y números** (`LMCN`), **Álgebra Lineal I** (`AL1`) y **Matemática Discreta** (`MD`).
 
 ## Objetivo
 

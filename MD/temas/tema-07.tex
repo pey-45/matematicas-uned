@@ -1,0 +1,74 @@
+\chapter{Grafos, digrafos y multigrafos}
+\label{md:grafos}
+
+\section{Vértices, aristas y variantes}
+
+Salvo indicación contraria, se consideran grafos simples y finitos.
+Un \textbf{grafo simple finito} $G=(V,E)$ consta de un conjunto finito
+de vértices $V$ y un conjunto de aristas $E$, cada una de las cuales
+es una pareja no ordenada de vértices distintos.
+Los extremos de una arista son \textbf{adyacentes} y la arista es
+\textbf{incidente} con ambos. El dibujo representa estas relaciones;
+la posición o longitud dibujada de las aristas no forma parte del grafo.
+
+En un \textbf{multigrafo} pueden existir varias aristas distintas
+con los mismos extremos, llamadas paralelas. Hay que conservar
+su identidad aunque conecten los mismos vértices.
+Un \textbf{pseudografo} admite además lazos, que tienen ambos extremos
+en el mismo vértice. Estas variantes pueden combinarse.
+
+En un \textbf{digrafo} las aristas son dirigidas, o arcos:
+$(u,v)$ va de $u$ a $v$, y no equivale a $(v,u)$.
+Orientar un grafo consiste en elegir un sentido para cada arista.
+Al recorrer un digrafo hay que respetar los sentidos de los arcos.
+
+\section{Isomorfismo, grados y subgrafos}
+\label{md:grados}
+
+Dos grafos simples son \textbf{isomorfos} si existe una biyección entre
+sus vértices que conserve la adyacencia en ambas direcciones.
+Son la misma estructura con nombres de vértices diferentes.
+El número de vértices, el de aristas y los grados se conservan:
+una diferencia en esos datos descarta un isomorfismo, pero su igualdad
+no basta para demostrarlo.
+En las variantes también deben conservarse las multiplicidades,
+los lazos y, en su caso, los sentidos.
+
+El \textbf{grado} $\gr(v)$ de un vértice de un grafo simple es
+el número de aristas incidentes con él. Un vértice de grado cero
+es aislado. El recuento de extremos da el \textbf{lema del apretón de manos}:
+\[
+ \boxed{\sum_{v\in V}\gr(v)=2|E|.}
+\]
+Por tanto, el número de vértices de grado impar es par.
+Si se cuentan grados en un pseudografo, un lazo contribuye dos veces,
+una por cada extremo, y se mantiene esta identidad.
+
+Un grafo es \textbf{$k$-regular} si todos los vértices tienen grado $k$;
+entonces $k|V|=2|E|$.
+El \textbf{grafo completo} $K_n$ une cada pareja de vértices distintos:
+tiene grado $n-1$ en cada vértice y $n(n-1)/2$ aristas.
+
+Un \textbf{subgrafo} se obtiene tomando algunos vértices y algunas
+aristas cuyos extremos estén entre ellos. Al borrar un vértice se borran
+sus aristas incidentes. El grado de un vértice en un subgrafo no supera
+su grado original.
+
+\section{Autómatas finitos}
+
+Un \textbf{autómata finito determinista} se describe por
+$\mathcal M=(Q,S,\delta,q_0,F)$:
+\begin{itemize}
+ \item $Q$ es el conjunto finito de estados y $S$ el alfabeto finito.
+ \item $q_0\in Q$ es el estado inicial y $F\subseteq Q$ los estados finales.
+ \item $\delta:Q\times S\to Q$ determina el siguiente estado al leer un símbolo.
+\end{itemize}
+Para procesar una palabra se parte de $q_0$ y se aplica sucesivamente
+$\delta$ a cada símbolo. Se acepta la palabra si el estado alcanzado
+pertenece a $F$; para la palabra vacía se permanece en $q_0$.
+
+Su representación es un digrafo con estados como vértices y un arco
+etiquetado $s$ de $q$ a $\delta(q,s)$ por cada símbolo.
+Puede haber lazos o varios arcos con los mismos extremos.
+El recorrido expresa la evolución del estado, no una elección arbitraria:
+el símbolo leído fija la transición.

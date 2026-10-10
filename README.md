@@ -21,6 +21,11 @@ Las instrucciones para las sesiones están en [AGENTS.md](AGENTS.md).
   matrices; sistemas de ecuaciones lineales; espacios vectoriales;
   aplicaciones lineales, hasta el espacio dual. Páginas 1–197 del libro,
   con ejercicios excluidos del resumen. Fuentes y precisiones en `AL1/REVISION.md`.
+- **MD**: Matemática Discreta. Los tres bloques completos del material recibido,
+  organizados en quince temas: teoría de números; teoría de grafos;
+  métodos combinatorios, hasta las recurrencias y Fibonacci.
+  Páginas 1–302 de contenido y ejercicios, con estos últimos excluidos.
+  Fuentes, continuidad y precisiones en `MD/REVISION.md`.
 
 ## Organización
 
@@ -49,6 +54,12 @@ AL1/
     tema-03.tex
     tema-04.tex
   REVISION.md
+MD/
+  main.tex
+  preambulo.tex
+  temas/
+    tema-01.tex ... tema-15.tex
+  REVISION.md
 ```
 
 Cada asignatura constituye un proyecto LaTeX independiente, situado
@@ -56,7 +67,7 @@ directamente en su carpeta. No se incluyen documentos de ejercicios.
 
 ## Compilación
 
-Desde la carpeta de la asignatura (`AL1/` o `LMCN/`), ejecutar dos pasadas:
+Desde la carpeta de la asignatura (`AL1/`, `LMCN/` o `MD/`), ejecutar dos pasadas:
 
 ```text
 pdflatex main.tex

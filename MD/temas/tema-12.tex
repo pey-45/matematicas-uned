@@ -1,0 +1,102 @@
+\chapter{Permutaciones, variaciones y combinaciones}
+\label{md:combinatoria}
+
+\section{Permutaciones como aplicaciones}
+
+Una \textbf{permutación} de un conjunto finito $A$ es una biyección
+$\sigma:A\to A$. Una notación de dos filas coloca los elementos
+de $A$ arriba y sus imágenes debajo.
+La composición se lee de derecha a izquierda:
+$(\sigma_2\sigma_1)(a)=\sigma_2(\sigma_1(a))$.
+
+Las permutaciones forman el \textbf{grupo simétrico} $S_A$:
+la composición es asociativa, la identidad es el neutro y cada
+permutación tiene inversa. En general, la composición no conmuta.
+Para un conjunto con $n$ elementos se escribe también $S_n$.
+Sus permutaciones se cuentan eligiendo sucesivamente las imágenes:
+\[
+ |S_n|=n(n-1)\cdots1=n!,\qquad 0!=1.
+\]
+Una ordenación de $n$ elementos distintos equivale a una permutación
+de sus posiciones.
+
+Las simetrías geométricas que conservan una figura permutan sus
+vértices y forman un grupo por composición. En el triángulo equilátero,
+la identidad, las dos rotaciones no triviales y las tres reflexiones
+producen todas las permutaciones de sus tres vértices.
+
+\section{Elegir con orden o sin él}
+
+Sea un conjunto de $n\ge1$ elementos y un tamaño $r$.
+Una \textbf{variación sin repetición} es una lista ordenada de $r$
+elementos distintos: equivale a una aplicación inyectiva de
+$\{1,\ldots,r\}$ al conjunto. Para $0\le r\le n$,
+\[
+ V(n,r)=n(n-1)\cdots(n-r+1)=\frac{n!}{(n-r)!}.
+\]
+Una \textbf{variación con repetición} permite volver a elegir un
+elemento; equivale a una aplicación cualquiera. Para $r\ge0$,
+\[
+ VR(n,r)=n^r.
+\]
+En ambos casos, intercambiar posiciones puede cambiar el resultado.
+
+Una \textbf{combinación sin repetición} es un subconjunto de $r$
+elementos: solo importa qué elementos aparecen. Para $0\le r\le n$,
+\[
+ C(n,r)=\binom nr=\frac{n!}{r!(n-r)!}.
+\]
+Cada subconjunto admite $r!$ ordenaciones, luego $V(n,r)=r!C(n,r)$.
+El tamaño cero tiene una sola elección, la vacía.
+
+\begin{ejemplo}
+Entre cinco personas, elegir dos representantes sin cargos da
+$\binom52=10$ posibilidades. Asignar a dos personas distintas
+los cargos de presidencia y secretaría da $V(5,2)=20$:
+intercambiar los cargos produce otro resultado.
+\end{ejemplo}
+
+Una cadena binaria de longitud $n$ con exactamente $r$ unos queda
+determinada al elegir sus posiciones: hay $\binom nr$.
+Contando todas las cadenas por su número de unos,
+\[
+ \sum_{r=0}^n\binom nr=2^n.
+\]
+
+\section{Combinaciones con repetición}
+\label{md:combinaciones-repeticion}
+
+Una \textbf{combinación con repetición} es una selección sin orden
+en la que cada elemento puede aparecer varias veces.
+Dos selecciones son iguales si cada elemento tiene la misma
+\emph{multiplicidad}; compartir los tipos de elementos no basta.
+Si $x_i$ es la multiplicidad del elemento $i$, se cuenta
+\[
+ x_1+\cdots+x_n=r,\qquad x_i\in\N_0.
+\]
+Para $n\ge1$, $r\ge0$, el número es
+\[
+ \boxed{CR(n,r)=\binom{n+r-1}{r}.}
+\]
+La correspondencia de \textbf{estrellas y separadores} representa los
+$r$ objetos iguales con estrellas y divide sus grupos mediante $n-1$
+separadores. Elegir las posiciones de las estrellas entre $n+r-1$
+lugares determina todas las multiplicidades, incluidas las nulas.
+También cuenta distribuciones de $r$ objetos indistinguibles en
+$n$ cajas distintas. Si los objetos fueran distinguibles, el modelo
+sería una asignación con repetición y el total sería $n^r$.
+
+\section{Ordenaciones circulares}
+
+Para $1\le r\le n$, al colocar $r$ elementos distintos elegidos
+entre $n$ alrededor de una circunferencia, se consideran iguales
+las ordenaciones obtenidas por rotación, pero no por reflexión.
+Cada ordenación circular corresponde a $r$ listas lineales:
+\[
+ \binom nr(r-1)!=\frac{V(n,r)}r.
+\]
+Si se usan los $n$ elementos, hay $(n-1)!$.
+La división por $r$ utiliza que los elementos son distintos;
+no se aplica automáticamente si se permiten repeticiones.
+Las ordenaciones lineales con multiplicidades fijadas se cuentan
+mediante los coeficientes multinómicos de la sección~\ref{md:multinomial}.
