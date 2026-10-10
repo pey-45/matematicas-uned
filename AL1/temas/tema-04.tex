@@ -1,0 +1,307 @@
+\chapter{Aplicaciones lineales}
+\label{cap:aplicaciones}
+
+Los espacios de este tema son sobre el mismo cuerpo $\K$.
+Las fórmulas numéricas de dimensión se aplican en dimensión finita.
+
+\section{Linealidad y determinación por una base}
+\label{sec:linealidad}
+
+Una aplicación $f:U\to V$ es \textbf{lineal}, o un homomorfismo vectorial,
+si para $u,w\in U$ y $\alpha,\beta\in\K$,
+\[
+ f(\alpha u+\beta w)=\alpha f(u)+\beta f(w).
+\]
+Equivale a conservar la suma y el producto por escalares.
+Se deducen $f(0)=0$, $f(-u)=-f(u)$ y la conservación de cualquier
+combinación lineal finita. Una relación de dependencia entre vectores
+produce la misma relación entre sus imágenes. La independencia,
+en cambio, puede perderse.
+
+Para comprobar linealidad se verifica la igualdad para vectores y escalares
+arbitrarios. Para refutarla basta un contraejemplo. La condición $f(0)=0$
+es necesaria, pero no suficiente.
+Son lineales la identidad, la aplicación nula, las homotecias $u\mapsto\lambda u$,
+la trasposición de matrices y las aplicaciones $X\mapsto AX$ con $A$ fija.
+También lo son la derivación de polinomios y la proyección canónica
+$\pi:V\to V/W$, $\pi(v)=v+W$.
+
+Si $B=(u_1,\ldots,u_n)$ es una base de $U$, se pueden elegir arbitrariamente
+$v_1,\ldots,v_n\in V$ y existe una única aplicación lineal con $f(u_i)=v_i$:
+\[
+ f(x_1u_1+\cdots+x_nu_n)=x_1v_1+\cdots+x_nv_n.
+\]
+Las imágenes de una base determinan completamente la aplicación.
+Si se dan imágenes de vectores dependientes, estas deben respetar sus
+relaciones; no se pueden elegir de forma independiente.
+
+\subsection*{Operaciones y subespacios}
+
+El conjunto $\Lin(U,V)$ de aplicaciones lineales es un espacio vectorial
+con las operaciones punto a punto:
+\[
+ (f+g)(u)=f(u)+g(u),\qquad (\lambda f)(u)=\lambda f(u).
+\]
+Si $f:U\to V$ y $g:V\to W$ son lineales, $g\circ f$ también lo es:
+primero actúa $f$ y después $g$.
+
+La imagen de un subespacio $U'\subseteq U$ y la imagen recíproca de un
+subespacio $V'\subseteq V$ son subespacios:
+\[
+ \begin{split}
+ f(U')&=\{f(u):u\in U'\},\\
+ f^{-1}(V')&=\{u\in U:f(u)\in V'\}.
+ \end{split}
+\]
+Si $U'=L(u_1,\ldots,u_r)$, entonces
+$f(U')=L(f(u_1),\ldots,f(u_r))$ y $\dim f(U')\le\dim U'$.
+La notación $f^{-1}(V')$ para un conjunto no exige que exista una aplicación
+inversa de $f$.
+
+\section{Núcleo, imagen y tipos de aplicaciones}
+\label{sec:nucleo-imagen}
+
+El \textbf{núcleo} y la \textbf{imagen} de $f:U\to V$ son
+\[
+ \Ker(f)=\{u\in U:f(u)=0\},\qquad
+ \Ima(f)=f(U)=\{f(u):u\in U\}.
+\]
+Son subespacios de $U$ y de $V$, respectivamente. Si $B=(u_1,\ldots,u_n)$
+es una base de $U$, las imágenes $f(u_i)$ generan $\Ima(f)$.
+La \textbf{fórmula de dimensiones} es
+\[
+ \boxed{\dim(U)=\dim\Ker(f)+\dim\Ima(f).}
+\]
+La idea de su demostración es extender una base del núcleo a una base
+de $U$: las imágenes de los vectores añadidos forman una base de la imagen.
+El \textbf{rango de $f$} es $\rg(f)=\dim\Ima(f)$.
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Tipo & Significado & Criterio \\
+\midrule
+Monomorfismo & Lineal e inyectiva & $\Ker(f)=\{0\}$. \\
+Epimorfismo & Lineal y sobreyectiva & $\Ima(f)=V$. \\
+Isomorfismo & Lineal y biyectiva & Ambas condiciones. \\
+\bottomrule
+\end{tabular}
+\end{center}
+La inyectividad equivale a conservar la independencia de las familias,
+a que las imágenes de una base de $U$ sean base de $\Ima(f)$ y a
+$\rg(f)=\dim(U)$. La sobreyectividad equivale a que las imágenes
+de un sistema generador de $U$ generen $V$, o a $\rg(f)=\dim(V)$.
+Si $U$ y $V$ tienen la misma dimensión finita, inyectividad,
+sobreyectividad y biyectividad son equivalentes.
+
+La inversa de un isomorfismo es lineal. Dos espacios vectoriales son
+\textbf{isomorfos} si existe un isomorfismo entre ellos; en dimensión finita,
+esto ocurre si y solo si tienen la misma dimensión sobre $\K$.
+En particular, todo espacio de dimensión $n$ es isomorfo a $\K^n$ mediante
+sus coordenadas en una base. El isomorfismo conserva la estructura
+vectorial; no tiene por qué conservar otras operaciones de los objetos.
+
+\subsection*{Primer teorema de isomorfía}
+\label{sec:isomorfia}
+
+Toda aplicación lineal induce el isomorfismo
+\[
+ \widetilde f:U/\Ker(f)\longrightarrow\Ima(f),\qquad
+ u+\Ker(f)\longmapsto f(u).
+\]
+Está bien definido porque dos representantes difieren en un vector del
+núcleo; es inyectivo por esa misma condición y sobreyectivo por definición
+de imagen. En consecuencia, $U/\Ker(f)\simeq\Ima(f)$.
+
+Si $\pi:U\to U/\Ker(f)$ es la proyección canónica y
+$i:\Ima(f)\hookrightarrow V$ la inclusión, la
+\textbf{descomposición canónica} es $f=i\circ\widetilde f\circ\pi$:
+un epimorfismo, seguido de un isomorfismo y de un monomorfismo.
+
+\section{Representación matricial}
+\label{sec:matriz-lineal}
+
+Sean $B=(u_1,\ldots,u_n)$ una base de $U$ y
+$C=(v_1,\ldots,v_m)$ una base de $V$. La matriz de $f$ respecto de
+estas bases es
+\[
+ \M_{BC}(f)=\bigl(\coord{f(u_1)}{C}\ \cdots\ \coord{f(u_n)}{C}\bigr)
+ \in\M_{m\times n}(\K).
+\]
+Cada \emph{columna} contiene las coordenadas de la imagen de un vector
+de la base de partida. La expresión analítica de $f$ es
+\[
+ \coord{f(u)}{C}=\M_{BC}(f)\coord{u}{B}.
+\]
+En $\K^n\to\K^m$, si no se indican otras bases se usan las canónicas.
+Con las bases fijadas, la asignación $f\mapsto\M_{BC}(f)$ es un
+isomorfismo vectorial entre $\Lin(U,V)$ y $\M_{m\times n}(\K)$;
+por tanto, $\dim\Lin(U,V)=mn$.
+
+\subsection*{Cálculo del núcleo, imagen y preimágenes}
+
+Para $A=\M_{BC}(f)$:
+\begin{itemize}
+ \item \textbf{Núcleo:} se resuelve $AX=0$. Sus soluciones son coordenadas
+       en $B$; una base del espacio de soluciones se traduce a vectores de $U$.
+ \item \textbf{Imagen:} las columnas originales de $A$ generan sus coordenadas
+       en $C$. Se extrae una base según la sección~\ref{sec:rango-vectores}.
+ \item \textbf{Imagen de un subespacio:} se aplican $A$ a las coordenadas
+       de sus generadores y se selecciona una base de las imágenes.
+ \item \textbf{Imagen recíproca:} si $V'$ tiene ecuaciones $DY=0$ en $C$,
+       se resuelve $DAX=0$ y se interpretan las soluciones en $B$.
+\end{itemize}
+Además,
+\[
+ \rg(f)=\rg(A),\qquad \dim\Ker(f)=n-\rg(A).
+\]
+Así, $f$ es inyectiva si $\rg(A)=n$, sobreyectiva si $\rg(A)=m$,
+y un isomorfismo si $m=n$ y $A$ es invertible.
+
+\subsection*{Operaciones y cambios de base}
+
+Con las mismas bases para ambas aplicaciones,
+\[
+ \M_{BC}(\alpha f+\beta g)=\alpha\M_{BC}(f)+\beta\M_{BC}(g).
+\]
+Si $f:U\to V$, $g:V\to W$ y $B,C,D$ son las respectivas bases,
+\[
+ \M_{BD}(g\circ f)=\M_{CD}(g)\M_{BC}(f).
+\]
+La base intermedia debe coincidir en ambos factores.
+La identidad de $V$ en bases distintas tiene como matriz
+$\M_{BB'}(\mathrm{Id})=\M_{BB'}$, la matriz de cambio de base.
+
+Si se cambian $B,C$ por $B',C'$, entonces
+\[
+ \boxed{\M_{B'C'}(f)=\M_{CC'}\M_{BC}(f)\M_{B'B}.}
+\]
+Se lee de derecha a izquierda: expresar la entrada en $B$, aplicar $f$,
+y expresar la salida en $C'$. Los factores de cambio son invertibles;
+por ello, el rango de una aplicación no depende de las bases elegidas.
+
+\section{Endomorfismos y automorfismos}
+\label{sec:endomorfismos}
+
+Un \textbf{endomorfismo} es una aplicación lineal $f:V\to V$;
+un \textbf{automorfismo} es un endomorfismo biyectivo.
+Se escribe $\Lin(V)=\Lin(V,V)$. Para representar un endomorfismo
+se usa una misma base $B$ en partida y llegada:
+$\M_B(f)=\M_{BB}(f)$ es cuadrada.
+
+Las matrices de un mismo endomorfismo en bases distintas son semejantes.
+Si $A=\M_B(f)$, $A'=\M_{B'}(f)$ y $P=\M_{B'B}$, entonces
+\[
+ A'=P^{-1}AP.
+\]
+Recíprocamente, toda matriz semejante a $A$ representa el mismo
+endomorfismo en alguna base. Se conecta así el cambio de base con la
+semejanza de la sección~\ref{sec:inversas}.
+
+Los automorfismos forman el \textbf{grupo general lineal} $\GL(V)$
+para la composición. En una base se corresponde con el grupo
+$\GL(n,\K)$ de matrices invertibles para el producto.
+La identidad es el neutro y la matriz de $f^{-1}$ es $\M_B(f)^{-1}$.
+
+\section{Proyecciones y simetrías}
+\label{sec:proyecciones}
+
+Si $V=U\oplus W$, cada vector se escribe de forma única $v=u+w$,
+con $u\in U$ y $w\in W$. Se definen la \textbf{proyección} de base $U$
+y dirección $W$, y la \textbf{simetría} de la misma base y dirección:
+\[
+ p(u+w)=u,\qquad s(u+w)=u-w.
+\]
+Ambas son endomorfismos. En una base formada primero por una base de $U$
+y después por una de $W$, con $d=\dim(U)$,
+\[
+ \M_B(p)=\begin{pmatrix}I_d&0\\0&0\end{pmatrix},\qquad
+ \M_B(s)=\begin{pmatrix}I_d&0\\0&-I_{n-d}\end{pmatrix}.
+\]
+Para obtener sus matrices en otra base se aplica la fórmula de semejanza.
+
+\subsection*{Caracterizaciones}
+
+Una proyección satisface
+\[
+ \Ima(p)=U,\qquad\Ker(p)=W,\qquad p^2=p.
+\]
+Recíprocamente, cualquier endomorfismo idempotente es la proyección
+de base $\Ima(p)$ y dirección $\Ker(p)$: se descompone
+$v=p(v)+(v-p(v))$ y estos dos subespacios son suplementarios.
+
+Para un endomorfismo $f$, los subespacios de vectores \textbf{fijos}
+y \textbf{antifijos} son
+\[
+ \Fix(f)=\Ker(f-\mathrm{Id}),\qquad
+ \Fix^{-}(f)=\Ker(f+\mathrm{Id}).
+\]
+Una simetría tiene $\Fix(s)=U$, $\Fix^{-}(s)=W$ y $s^2=\mathrm{Id}$.
+Recíprocamente, si $s^2=\mathrm{Id}$, entonces
+\[
+ v=\frac{v+s(v)}2+\frac{v-s(v)}2
+\]
+descompone $V$ como $\Fix(s)\oplus\Fix^{-}(s)$ y $s$ es la simetría
+correspondiente. Sobre $\R$ o $\C$ se puede dividir por $2$.
+Las matrices de proyecciones son idempotentes; las de simetrías, involutivas.
+
+Para la misma base y dirección se tiene
+\[
+ s=2p-\mathrm{Id},\qquad p=\frac{\mathrm{Id}+s}{2}.
+\]
+
+\begin{ejemplo}
+En $\R^2$, para $U=L((1,0))$ y $W=L((1,1))$,
+$(x,y)=(x-y,0)+(y,y)$. Por ello,
+$p(x,y)=(x-y,0)$ y $s(x,y)=(x-2y,-y)$.
+La dirección $W$ determina qué componente se elimina o se cambia de signo.
+\end{ejemplo}
+
+\section{Espacio dual}
+\label{sec:dual}
+
+Una \textbf{forma lineal} de $V$ es una aplicación lineal $\varphi:V\to\K$.
+El \textbf{espacio dual} es $V^*=\Lin(V,\K)$; si $\dim(V)=n$,
+$\dim(V^*)=n$. En una base $B=(v_1,\ldots,v_n)$, una forma se representa
+por la matriz \emph{fila}
+\[
+ \M_B(\varphi)=(\varphi(v_1)\ \cdots\ \varphi(v_n)),\qquad
+ \varphi(v)=\M_B(\varphi)\coord{v}{B}.
+\]
+Una forma no nula es sobreyectiva: si $\varphi(v)=a\ne0$, cualquier
+$b\in\K$ es imagen de $(b/a)v$. Su núcleo es un hiperplano.
+Recíprocamente, todo hiperplano es núcleo de una forma no nula:
+los coeficientes de una ecuación implícita definen esa forma.
+La forma nula tiene como núcleo todo $V$.
+
+\subsection*{Base dual y evaluación}
+
+La \textbf{base dual} de $B$ es $B^*=(v_1^*,\ldots,v_n^*)$, definida por
+\[
+ v_i^*(v_j)=\delta_{ij},\qquad
+ \delta_{ij}=\begin{cases}1&i=j,\\0&i\ne j.\end{cases}
+\]
+Cada $v_i^*$ extrae la coordenada $i$ en $B$. Estas formas son independientes
+y, al ser $n$, forman una base del dual. Para cualquier $\varphi\in V^*$,
+\[
+ \varphi=\sum_{i=1}^n\varphi(v_i)v_i^*,\qquad
+ \varphi\Bigl(\sum_{i=1}^nx_iv_i\Bigr)=\sum_{i=1}^n\varphi(v_i)x_i.
+\]
+Por tanto, las coordenadas de $\varphi$ en $B^*$ son sus valores sobre
+los vectores de $B$.
+
+Para calcular una base dual en coordenadas de una base auxiliar $E$,
+sea $S=(\coord{v_1}{E}\ \cdots\ \coord{v_n}{E})$.
+Las filas que representan las formas $v_i^*$ constituyen la matriz $S^{-1}$:
+la condición de evaluación es precisamente $S^{-1}S=I_n$.
+
+\begin{ejemplo}
+Para $B=((1,2),(0,1))$ en $\R^2$,
+\[
+ S=\begin{pmatrix}1&0\\2&1\end{pmatrix},\qquad
+ S^{-1}=\begin{pmatrix}1&0\\-2&1\end{pmatrix}.
+\]
+La base dual es $v_1^*(x,y)=x$, $v_2^*(x,y)=y-2x$.
+Así, $\varphi(x,y)=3x+y$ tiene coordenadas $(5,1)$ en $B^*$,
+pues $\varphi(1,2)=5$ y $\varphi(0,1)=1$.
+\end{ejemplo}

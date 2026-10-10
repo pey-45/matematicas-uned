@@ -17,8 +17,10 @@ Las instrucciones para las sesiones están en [AGENTS.md](AGENTS.md).
   lógica; conjuntos; relaciones y aplicaciones; operaciones y estructuras
   algebraicas; naturales y enteros; racionales y reales; complejos.
   Los tramos del libro y las decisiones de edición constan en `LMCN/REVISION.md`.
-- **AL1**: Álgebra Lineal I. Tema 1: Matrices, secciones 1.1 y 1.2
-  (Operaciones con matrices y Método de Gauss), páginas 1–33 del libro.
+- **AL1**: Álgebra Lineal I. Los cuatro temas del material recibido:
+  matrices; sistemas de ecuaciones lineales; espacios vectoriales;
+  aplicaciones lineales, hasta el espacio dual. Páginas 1–197 del libro,
+  con ejercicios excluidos del resumen. Fuentes y precisiones en `AL1/REVISION.md`.
 
 ## Organización
 
@@ -43,6 +45,9 @@ AL1/
   temas/
     tema-01.tex
     tema-01-gauss.tex
+    tema-02.tex
+    tema-03.tex
+    tema-04.tex
   REVISION.md
 ```
 

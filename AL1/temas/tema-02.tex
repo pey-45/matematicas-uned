@@ -1,0 +1,151 @@
+\chapter{Sistemas de ecuaciones lineales}
+\label{cap:sistemas}
+
+Un \textbf{sistema lineal} de $m$ ecuaciones con $n$ incógnitas y
+coeficientes en $\K$ se escribe
+\[
+ AX=B,\qquad A\in\M_{m\times n}(\K),\quad
+ X=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix},\quad
+ B=\begin{pmatrix}b_1\\\vdots\\b_m\end{pmatrix}.
+\]
+$A$ es la matriz de coeficientes y $[\,A\mid B\,]$, la
+\textbf{matriz ampliada}. Una solución es un vector de valores que satisface
+todas las ecuaciones. El sistema es \textbf{compatible} si tiene soluciones,
+e \textbf{incompatible} si no las tiene. Es \textbf{homogéneo} si $B=0$;
+en ese caso siempre admite la solución nula.
+
+\section{Equivalencia y resolución por Gauss}
+\label{sec:resolucion}
+
+Dos sistemas con las mismas incógnitas son \textbf{equivalentes} si tienen
+el mismo conjunto de soluciones. Intercambiar ecuaciones, sumar a una un
+múltiplo de otra o multiplicarla por un escalar no nulo conserva las
+soluciones. Estas operaciones se realizan por filas sobre la matriz
+\emph{ampliada}, incluido el término independiente.
+Una ecuación $0=0$ puede eliminarse; una ecuación $0=b$ con $b\ne0$
+hace incompatible el sistema.
+
+Al escalonar $[\,A\mid B\,]$ se distinguen dos situaciones:
+\begin{enumerate}
+ \item Hay una fila con todos los coeficientes nulos y término independiente
+       no nulo: no existen soluciones.
+ \item No hay contradicciones. Cada columna con pivote en la parte de
+       coeficientes determina una \textbf{incógnita principal}; las demás
+       son \textbf{libres o secundarias}. Se asignan parámetros arbitrarios
+       a las libres y se despejan las principales desde la última ecuación.
+\end{enumerate}
+Con Gauss--Jordan, los despejes se leen directamente de la forma reducida.
+Si hay $r$ pivotes en $A$, una solución compatible depende de $n-r$
+parámetros libres. Al operar con parámetros en los coeficientes, deben
+separarse los casos que anulan un pivote antes de dividir.
+
+La forma reducida de la matriz ampliada es única. Para sistemas compatibles
+con las mismas incógnitas, al suprimir las filas nulas se obtiene el mismo
+sistema reducido si y solo si son equivalentes. En cambio, todos los
+sistemas incompatibles tienen el mismo conjunto vacío de soluciones,
+aunque sus formas reducidas puedan diferir.
+
+\section{Discusión por rangos}
+\label{sec:rouche}
+
+El \textbf{teorema de Rouché--Frobenius} caracteriza la compatibilidad:
+\[
+ AX=B\text{ compatible}\quad\Longleftrightarrow\quad
+ \rg(A)=\rg([\,A\mid B\,]).
+\]
+Es la misma condición que exigir que $B$ sea combinación lineal de
+las columnas de $A$. Si $r=\rg(A)$,
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Condición & Tipo de sistema & Soluciones \\
+\midrule
+$r<\rg([\,A\mid B\,])$ & Incompatible & Ninguna. \\
+$r=\rg([\,A\mid B\,])=n$ & Compatible determinado & Una. \\
+$r=\rg([\,A\mid B\,])<n$ & Compatible indeterminado & Infinitas. \\
+\bottomrule
+\end{tabular}
+\end{center}
+Sobre $\R$ o $\C$, dos soluciones distintas ya producen infinitas:
+si $X_1$ y $X_2$ resuelven el sistema, también lo hace
+$\lambda X_1+(1-\lambda)X_2$ para todo $\lambda\in\K$.
+
+Para el sistema homogéneo, el rango de la ampliada coincide con el de $A$.
+Tiene solo la solución nula si $\rg(A)=n$, y soluciones no nulas si
+$\rg(A)<n$. Su conjunto de soluciones es un subespacio de dimensión
+$n-\rg(A)$, como se explica en la sección~\ref{sec:ecuaciones-subespacios}.
+
+\section{Sistemas cuadrados y regla de Cramer}
+\label{sec:cramer}
+
+Si $A\in\M_n(\K)$, el sistema es compatible determinado si y solo si
+$A$ es invertible. Su solución es $X=A^{-1}B$.
+La \textbf{regla de Cramer}, válida cuando $\det(A)\ne0$, da
+\[
+ x_i=\frac{\det(A_i)}{\det(A)},\qquad i=1,\ldots,n,
+\]
+donde $A_i$ se obtiene sustituyendo la columna $i$ de $A$ por $B$.
+La fórmula se deduce del producto de $B$ por la inversa expresada
+mediante cofactores (sección~\ref{sec:determinantes}).
+
+En un sistema compatible de rango $r>0$, puede elegirse un menor no nulo
+de orden $r$. Sus filas seleccionan ecuaciones independientes y sus columnas,
+$r$ incógnitas principales. Se pasan las otras $n-r$ incógnitas al segundo
+miembro como parámetros. El sistema cuadrado restante es regular y permite
+aplicar Cramer. Primero hay que verificar la compatibilidad del sistema
+completo; el subsistema elegido por sí solo no la garantiza.
+Si $r=0$, la compatibilidad exige $B=0$ y todas las incógnitas son libres;
+no es necesario aplicar Cramer.
+
+\section{Factorización LU}
+\label{sec:lu}
+
+Si una matriz regular admite una factorización $A=LU$, con $L$ triangular
+inferior y $U$ triangular superior, ambas regulares, resolver $AX=B$
+equivale a resolver sucesivamente
+\[
+ LY=B\quad\text{y}\quad UX=Y.
+\]
+El primer sistema se resuelve de arriba abajo y el segundo, de abajo arriba.
+La factorización se reutiliza cuando cambia $B$ y se mantiene $A$.
+
+\begin{samepage}
+\subsection*{Existencia y construcción}
+
+Para $A\in\M_n(\K)$ regular, son equivalentes:
+\begin{itemize}
+ \item Existe $A=LU$ con factores triangulares regulares.
+ \item Gauss puede triangular $A$ sin intercambiar filas, en el orden habitual.
+ \item $\Delta_k(A)\ne0$ para $k=1,\ldots,n$.
+\end{itemize}
+\end{samepage}
+Aquí $\Delta_k$ se refiere al bloque de las primeras $k$ filas y columnas.
+La regularidad de $A$ solo asegura $\Delta_n(A)\ne0$; los menores anteriores
+también son necesarios para evitar intercambios.
+
+Si $E_s\cdots E_1A=U$ mediante eliminaciones sin intercambios, entonces
+$L=(E_s\cdots E_1)^{-1}$ es triangular inferior. Puede registrarse el
+producto de operaciones triangularizando
+\[
+ [\,A\mid I_n\,]\longrightarrow[\,U\mid L^{-1}\,].
+\]
+Si se usan únicamente sumas de múltiplos para eliminar, $L$ tiene unos
+en la diagonal y las entradas inferiores registran los multiplicadores
+de eliminación con signo positivo.
+
+Si se necesitan intercambios, una matriz de permutación $P$ permite
+factorizar $PA=LU$. En ese caso se resuelven $LY=PB$ y luego $UX=Y$;
+la permutación debe aplicarse también al término independiente.
+
+\begin{ejemplo}
+La factorización
+\[
+ \begin{pmatrix}2&1\\4&3\end{pmatrix}
+ =\begin{pmatrix}1&0\\2&1\end{pmatrix}
+  \begin{pmatrix}2&1\\0&1\end{pmatrix}
+\]
+se conserva para cualquier segundo miembro $B=(b_1,b_2)^t$.
+Primero $y_1=b_1$, $y_2=b_2-2b_1$; después
+$x_2=y_2$, $x_1=(y_1-x_2)/2$. Solo se repiten los dos despejes
+triangulares cuando cambian los datos de $B$.
+\end{ejemplo}

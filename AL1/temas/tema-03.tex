@@ -1,0 +1,320 @@
+\chapter{Espacios vectoriales}
+\label{cap:espacios}
+
+\section{Estructura vectorial}
+
+Un \textbf{espacio vectorial sobre $\K$} es un conjunto no vacío $V$
+con una suma de vectores y un producto de escalares por vectores.
+La suma es asociativa y conmutativa, tiene un vector neutro $0$ y cada
+vector $v$ tiene un opuesto $-v$. Además, para $u,v\in V$ y
+$\alpha,\beta\in\K$,
+\[
+ \begin{gathered}
+ \alpha(u+v)=\alpha u+\alpha v,\qquad
+ (\alpha+\beta)v=\alpha v+\beta v,\\
+ \alpha(\beta v)=(\alpha\beta)v,\qquad 1v=v.
+ \end{gathered}
+\]
+El cero y los opuestos son únicos. Se deducen $0v=0$, $\alpha0=0$,
+$(-1)v=-v$ y $\alpha v=0$ si y solo si $\alpha=0$ o $v=0$.
+La suma permite cancelar un mismo vector en ambos miembros.
+
+Son espacios vectoriales $\K^n$, $\M_{m\times n}(\K)$ y los polinomios
+$\K[x]$, con sus operaciones habituales. También lo son
+$\K_n[x]$, los polinomios de grado a lo sumo $n$ junto con el polinomio
+nulo, y las funciones reales continuas con suma y producto puntual
+por escalares. El cuerpo importa: $\C^n$ puede considerarse sobre
+$\C$ o sobre $\R$, y su dimensión cambia.
+
+\section{Combinaciones, independencia y generación}
+\label{sec:generacion}
+
+Una \textbf{combinación lineal} de $v_1,\ldots,v_m$ es
+$\alpha_1v_1+\cdots+\alpha_mv_m$, con $\alpha_i\in\K$.
+La familia es \textbf{linealmente independiente} si
+\[
+ \sum_{i=1}^m\alpha_iv_i=0\quad\Longrightarrow\quad
+ \alpha_1=\cdots=\alpha_m=0.
+\]
+Es dependiente si hay una relación con algún coeficiente no nulo;
+equivale a que alguno de sus vectores sea combinación de los demás.
+Una familia que contiene $0$ es dependiente; un solo vector no nulo
+es independiente. Dos vectores no nulos son dependientes si y solo si
+son proporcionales.
+
+Toda subfamilia de una familia independiente es independiente, y ampliar
+una dependiente no elimina su dependencia. Añadir a una familia independiente
+un vector conserva la independencia si y solo si el nuevo vector no es
+combinación de los anteriores. Esto permite seleccionar sucesivamente
+una subfamilia independiente que genere lo mismo que la original.
+
+Se denota por $L(S)$ el conjunto de todas las combinaciones lineales
+\emph{finitas} de vectores de $S$; para una lista se escribe
+$L(v_1,\ldots,v_m)$. La familia es un \textbf{sistema generador} de $V$
+si $L(v_1,\ldots,v_m)=V$. Se pueden añadir generadores o suprimir uno
+que sea combinación de los demás sin cambiar el espacio generado.
+
+Un espacio es de \textbf{dimensión finita} si admite un sistema generador
+finito. En $\K[x]$ no existe tal sistema: cualquier familia finita
+tiene grados acotados y no puede generar polinomios de todos los grados.
+En lo sucesivo, los resultados numéricos sobre dimensión se refieren
+a espacios de dimensión finita.
+
+\section{Bases, dimensión y coordenadas}
+\label{sec:bases}
+
+Una \textbf{base} es una familia independiente que genera el espacio.
+Equivale a un sistema generador mínimo o a una familia independiente
+que no admite ampliación dentro del espacio. Para trabajar con coordenadas
+se fija además un orden en la base.
+
+Si una familia independiente tiene $r$ vectores y una generadora tiene $s$,
+entonces $r\le s$. La idea es reemplazar sucesivamente generadores por
+vectores independientes sin perder la generación. De aquí se obtiene
+que todas las bases tienen el mismo número de vectores: la
+\textbf{dimensión} del espacio, $\dim(V)$.
+
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Espacio & Base habitual & Dimensión \\
+\midrule
+$\K^n$ & $e_1,\ldots,e_n$ & $n$ \\
+$\K_n[x]$ & $1,x,\ldots,x^n$ & $n+1$ \\
+$\M_{m\times n}(\K)$ & Matrices $E_{ij}$ & $mn$ \\
+$\{0\}$ & Familia vacía & $0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+En $E_{ij}$ solo la entrada $(i,j)$ vale $1$; las demás son cero.
+Sobre $\R$, una base de $\C^n$ es $e_1,ie_1,\ldots,e_n,ie_n$,
+por lo que su dimensión real es $2n$.
+
+Si $\dim(V)=n$, toda familia independiente tiene a lo sumo $n$ vectores
+y toda generadora, al menos $n$. Una familia de exactamente $n$ vectores
+es base si y solo si es independiente, y si y solo si genera $V$.
+De cualquier sistema generador se puede extraer una base; cualquier familia
+independiente puede extenderse hasta una base, añadiendo vectores fuera
+del espacio ya generado.
+
+\subsection*{Coordenadas respecto de una base}
+
+Para una base ordenada $B=(v_1,\ldots,v_n)$, cada vector tiene una
+expresión única
+\[
+ v=x_1v_1+\cdots+x_nv_n.
+\]
+Los escalares son sus coordenadas; se escribe $v=(x_1,\ldots,x_n)_B$.
+Para el cálculo matricial usamos la \emph{columna}
+$\coord{v}{B}=(x_1,\ldots,x_n)^t$.
+Las coordenadas respetan las operaciones:
+\[
+ \coord{\alpha u+\beta v}{B}
+ =\alpha\coord{u}{B}+\beta\coord{v}{B}.
+\]
+La correspondencia entre $v$ y sus coordenadas es lineal y biyectiva.
+Cambiar el orden de la base cambia el orden de las coordenadas.
+
+\section{Rango de una familia y extracción de bases}
+\label{sec:rango-vectores}
+
+El \textbf{rango de una familia de vectores} es el máximo número de
+vectores independientes que se pueden elegir de ella. Fijada una base $B$,
+sea $C$ la matriz cuyas columnas son sus coordenadas. Entonces
+\[
+ \rg(v_1,\ldots,v_m)=\rg(C)=\dim L(v_1,\ldots,v_m).
+\]
+Colocar las coordenadas por filas da la matriz $C^t$, con el mismo rango.
+Las operaciones elementales sobre la familia son reversibles y conservan
+su rango y el subespacio generado.
+
+Para obtener una base hay dos procedimientos útiles:
+\begin{itemize}
+ \item \textbf{Coordenadas por filas:} escalonar la matriz. Sus filas no nulas
+       son coordenadas de una base del mismo subespacio. Los vectores así
+       obtenidos pueden ser combinaciones de los originales; si se quieren
+       identificar, se registran las mismas operaciones sobre sus nombres.
+ \item \textbf{Coordenadas por columnas:} reducir por filas y localizar las
+       columnas con pivote. Se eligen esas columnas de la matriz
+       \emph{original}; corresponden a una base extraída de la familia dada.
+\end{itemize}
+Para calcular dependencias concretas se resuelve $C\Lambda=0$.
+Los coeficientes de cada solución indican una relación entre los vectores.
+
+\section{Cambio de base}
+\label{sec:cambio-base}
+
+Sean $B=(v_1,\ldots,v_n)$ y $B'=(w_1,\ldots,w_n)$ bases de $V$.
+La \textbf{matriz de cambio de base de $B$ a $B'$} es
+\[
+ \M_{BB'}=\bigl(\coord{v_1}{B'}\ \cdots\ \coord{v_n}{B'}\bigr),
+ \qquad \coord{x}{B'}=\M_{BB'}\coord{x}{B}.
+\]
+Sus columnas son los vectores de la base de partida expresados en la
+base de llegada. Es invertible y
+\[
+ \M_{B'B}=\M_{BB'}^{-1},\qquad
+ \M_{BD}=\M_{CD}\M_{BC}.
+\]
+El factor de la derecha realiza el primer cambio.
+Si $S_B$ y $S_{B'}$ contienen las coordenadas de ambas bases por columnas
+respecto de una misma base auxiliar, entonces
+$\M_{BB'}=S_{B'}^{-1}S_B$.
+
+\begin{ejemplo}
+En $\R^2$, con $B=((1,1),(1,-1))$ y la base canónica $E$,
+\[
+ \M_{BE}=\begin{pmatrix}1&1\\1&-1\end{pmatrix},\qquad
+ \M_{EB}=\frac12\begin{pmatrix}1&1\\1&-1\end{pmatrix}.
+\]
+El vector de coordenadas $(2,1)_B$ tiene coordenadas $(3,1)_E$.
+La dirección del cambio determina cuál de las dos matrices se utiliza.
+\end{ejemplo}
+
+\section{Subespacios y sus ecuaciones}
+\label{sec:ecuaciones-subespacios}
+
+Un subconjunto \emph{no vacío} $U\subseteq V$ es un \textbf{subespacio}
+si es cerrado para las combinaciones lineales:
+\[
+ u,v\in U,\quad\alpha,\beta\in\K
+ \quad\Longrightarrow\quad\alpha u+\beta v\in U.
+\]
+Equivale a ser cerrado para suma y producto por escalares. Siempre contiene
+el cero y tiene las operaciones heredadas de $V$. Los subespacios
+$\{0\}$ y $V$ son el trivial y el total; los demás son propios.
+Las dimensiones $1$, $2$ y $n-1$ corresponden a rectas, planos e hiperplanos
+vectoriales, respectivamente. Un hiperplano se define por una ecuación
+lineal homogénea no nula.
+
+$L(S)$ es el menor subespacio que contiene $S$; si $S$ ya es un subespacio,
+$L(S)=S$. Si $S\subseteq T$, entonces $L(S)\subseteq L(T)$.
+Para comprobar igualdad de dos subespacios dados por generadores basta
+mostrar que los generadores de cada uno pertenecen al otro.
+
+\subsection*{Ecuaciones paramétricas e implícitas}
+
+Fijada una base $B$ de $V$, sea $\dim(V)=n$ y $\dim(U)=d$.
+Una base $u_1,\ldots,u_d$ de $U$ proporciona ecuaciones
+\textbf{paramétricas}:
+\[
+ u=\sum_{i=1}^d\lambda_i u_i,\qquad
+ \coord{u}{B}=C\Lambda,
+ \quad C=(\coord{u_1}{B}\ \cdots\ \coord{u_d}{B}).
+\]
+Con una base, los $d$ parámetros son independientes y únicos.
+Con generadores redundantes, la parametrización sigue siendo válida,
+pero sus parámetros pueden no ser únicos.
+
+Las ecuaciones \textbf{implícitas} describen $U$ mediante un sistema
+homogéneo $D\coord{u}{B}=0$. Si se eliminan las ecuaciones redundantes,
+hay exactamente $n-d$ ecuaciones independientes:
+\[
+ \dim(U)=n-\rg(D).
+\]
+Todo subespacio de $\K^n$ es el conjunto de soluciones de un sistema
+lineal homogéneo, y todo sistema homogéneo define un subespacio.
+En particular, las soluciones de $AX=0$ tienen dimensión $n-\rg(A)$.
+
+\subsection*{Pasos para pasar de una descripción a otra}
+
+\textbf{De generadores a implícitas:} se colocan sus coordenadas por columnas
+en $C$ y se exige que $C\Lambda=X$ sea compatible, es decir,
+$\rg(C)=\rg([\,C\mid X\,])$. Se escalona manteniendo $X$ simbólica:
+las filas que tienen coeficientes nulos en $C$ dan las condiciones sobre $X$.
+Después se eliminan condiciones redundantes. Otra posibilidad es partir
+de una base de $U$, elegir un menor no nulo de orden $d$ de $C$ y anular
+los menores que lo orlan con la columna $X$ y cada fila restante.
+Para $U=\{0\}$, las ecuaciones son $X=0$; para $U=V$, no hay restricciones.
+
+\textbf{De implícitas a paramétricas:} se resuelve $DX=0$ por Gauss,
+asignando parámetros a las variables libres. Al dar a cada parámetro
+el valor $1$ y a los demás $0$ se obtienen las coordenadas de una base.
+Si no hay variables libres, la solución es solo $0$ y la base es vacía.
+
+\section{Intersección, suma y suplementos}
+\label{sec:suma-subespacios}
+
+La intersección de subespacios es un subespacio: el mayor contenido en
+todos ellos. Para obtener sus ecuaciones se reúnen las ecuaciones
+implícitas de cada uno y se eliminan las redundantes.
+La unión de subespacios no es, en general, un subespacio.
+
+La \textbf{suma} es
+\[
+ U_1+\cdots+U_s=\{u_1+\cdots+u_s:u_i\in U_i\}
+             =L(U_1\cup\cdots\cup U_s).
+\]
+Es el menor subespacio que los contiene a todos. Para hallar una base,
+se concatenan sus generadores y se selecciona una familia independiente máxima.
+Para calcular una intersección a partir de bases por columnas $C_U,C_W$,
+se resuelve $C_U\alpha=C_W\beta$ y se forman los vectores comunes
+$C_U\alpha$; después se selecciona una base de los obtenidos.
+
+\subsection*{Suma directa}
+
+La suma es \textbf{directa}, $U_1\oplus\cdots\oplus U_s$, si cada vector
+de la suma admite una única descomposición con una componente en cada
+subespacio. Son criterios equivalentes:
+\[
+ \begin{gathered}
+ u_1+\cdots+u_s=0,\quad u_i\in U_i\ \Longrightarrow\ u_i=0\text{ para todo }i,\\
+ U_i\cap\Bigl(\sum_{j\ne i}U_j\Bigr)=\{0\}\text{ para todo }i,\\
+ \dim(U_1+\cdots+U_s)=\sum_{i=1}^s\dim(U_i).
+ \end{gathered}
+\]
+En ese caso, concatenar bases de los sumandos da una base de la suma.
+Para dos subespacios basta $U\cap W=\{0\}$; para tres o más,
+las intersecciones por parejas no sustituyen al criterio con la suma
+de los otros subespacios.
+
+La \textbf{fórmula de Grassmann} relaciona las dimensiones:
+\[
+ \boxed{\dim(U+W)=\dim(U)+\dim(W)-\dim(U\cap W).}
+\]
+Su idea es extender una base de $U\cap W$ a bases de $U$ y de $W$:
+al reunirlas, los vectores comunes se cuentan una sola vez.
+
+$U$ y $W$ son \textbf{suplementarios en $V$} si $V=U\oplus W$.
+Equivalentemente, $U+W=V$ y $U\cap W=\{0\}$.
+Todo subespacio tiene un suplemento: se extiende una base suya a una
+base de $V$ y se toman los vectores añadidos como base del suplemento.
+Su dimensión es $\dim(V)-\dim(U)$ y, en general, no es único.
+La igualdad de dimensiones por sí sola no garantiza que dos subespacios
+sean suplementarios.
+
+\section{Espacio cociente}
+\label{sec:cociente}
+
+Para un subespacio $U\subseteq V$, se define la relación de equivalencia
+$v\sim_U w$ si $w-v\in U$. La clase de $v$ es
+\[
+ v+U=\{v+u:u\in U\}.
+\]
+El \textbf{espacio cociente} $V/U$ es el conjunto de estas clases.
+Se tiene $v+U=w+U$ si y solo si $w-v\in U$, y $v+U=U$ si y solo si
+$v\in U$. Sus elementos son clases de vectores, no representantes aislados.
+
+Las operaciones son
+\[
+ (v+U)+(w+U)=(v+w)+U,\qquad \alpha(v+U)=\alpha v+U.
+\]
+Están bien definidas porque cambiar los representantes añade vectores
+de $U$ y no cambia la clase resultante. El cero del cociente es la clase
+$U=0+U$; el opuesto de $v+U$ es $-v+U$.
+
+Si $(u_1,\ldots,u_d,v_{d+1},\ldots,v_n)$ es una base de $V$ que extiende
+una base de $U$, entonces
+\[
+ (v_{d+1}+U,\ldots,v_n+U)\text{ es base de }V/U,
+ \qquad \dim(V/U)=n-d.
+\]
+Las coordenadas de una clase se obtienen conservando las correspondientes
+a los vectores añadidos: las componentes en $U$ desaparecen en el cociente.
+
+\begin{ejemplo}
+En $\R^2$, sea $U=L((1,0))$. La clase de $(a,b)$ es la recta horizontal
+$\{(a+t,b):t\in\R\}$ y solo depende de $b$.
+El cociente tiene dimensión $1$, con base $((0,1)+U)$; la coordenada
+de $(a,b)+U$ en esa base es $b$. Su cero es toda la recta $U$.
+\end{ejemplo}

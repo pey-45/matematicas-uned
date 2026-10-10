@@ -155,3 +155,223 @@ ambas trazas suman los mismos términos $a_{ij}b_{ji}$. No es necesario
 que los dos factores sean cuadrados.
 
 \input{temas/tema-01-gauss}
+
+\section{Rango y equivalencia}
+\label{sec:rango}
+
+El \textbf{rango} de una matriz es el máximo número de filas linealmente
+independientes. Coincide con el máximo número de columnas independientes
+y con el número de filas no nulas de cualquier forma escalonada por filas:
+\[
+ \rg(A)=\rg(A^t),\qquad 0\le\rg(A)\le\min(m,n).
+\]
+Solo la matriz nula tiene rango cero. Las operaciones elementales conservan
+el rango: sustituyen las filas o columnas por combinaciones reversibles.
+Las filas no nulas de una matriz escalonada son independientes, pues sus
+pivotes permiten anular sucesivamente los coeficientes de una relación.
+
+\subsection*{Forma normal de equivalencia}
+
+Si $\rg(A)=r$, combinando operaciones por filas y columnas se obtiene
+\[
+ H(A)=\begin{pmatrix}I_r&0\\0&0\end{pmatrix}_{m\times n}.
+\]
+Para $r=0$, se interpreta como la matriz nula. Primero se reduce por filas;
+después se llevan las columnas con pivote al principio y se anulan las demás.
+Esta forma normal depende solo del tamaño y del rango. Por tanto, para
+matrices del mismo orden,
+\[
+ A\sim B\quad\Longleftrightarrow\quad\rg(A)=\rg(B).
+\]
+Tener igual rango no basta para la equivalencia por filas ni por columnas.
+Una matriz cuadrada de rango $n$ es equivalente a $I_n$ y puede escribirse
+como producto de matrices elementales.
+
+\subsection*{Reglas para el rango}
+
+Con tamaños compatibles y $\lambda\ne0$,
+\[
+ \begin{gathered}
+ \rg(\lambda A)=\rg(A),\qquad
+ \rg(AB)\le\min\{\rg(A),\rg(B)\},\\
+ |\rg(A)-\rg(B)|\le\rg(A+B)\le\rg(A)+\rg(B).
+ \end{gathered}
+\]
+Multiplicar a izquierda o derecha por una matriz cuadrada invertible
+conserva el rango. Para matrices con parámetros, el número de pivotes
+se determina por casos: una división solo es válida donde su denominador
+no se anula.
+
+\section{Matrices invertibles}
+\label{sec:inversas}
+
+Una matriz $A\in\M_n(\K)$ es \textbf{regular o invertible} si existe
+$A^{-1}$ tal que $AA^{-1}=A^{-1}A=I_n$; en caso contrario es
+\textbf{singular}. La inversa es única: si $X$ e $Y$ son inversas,
+$X=X(AY)=(XA)Y=Y$. Para matrices invertibles,
+\[
+ (A^{-1})^{-1}=A,\qquad (A^t)^{-1}=(A^{-1})^t,\qquad
+ (AB)^{-1}=B^{-1}A^{-1}.
+\]
+La inversa de un producto invierte el orden de todos sus factores.
+Las matrices elementales son invertibles y su inversa corresponde a
+la operación elemental inversa de la sección~\ref{sec:elementales}.
+
+Para $A$ cuadrada de orden $n$ son equivalentes:
+\begin{itemize}
+ \item $A$ es invertible.
+ \item $\rg(A)=n$.
+ \item $H_f(A)=I_n$.
+ \item $A$ es producto de matrices elementales.
+\end{itemize}
+También equivalen a poder cancelar $A$ en $AX=AY$ para todas las matrices
+compatibles, o en $XA=YA$; equivalentemente, $AX=0$ implica $X=0$,
+o $XA=0$ implica $X=0$. Basta una inversa por un solo lado:
+si $A,B\in\M_n(\K)$ y $AB=I_n$, entonces $BA=I_n$ y $B=A^{-1}$.
+Esta última afirmación exige matrices cuadradas.
+
+\subsection*{Cálculo y seguimiento de las operaciones}
+
+Para invertir $A$, se aplica Gauss--Jordan a la matriz ampliada
+\[
+ [\,A\mid I_n\,]\ \longrightarrow\ [\,I_n\mid A^{-1}\,].
+\]
+Las operaciones actúan sobre ambas partes. Si la parte izquierda no llega
+a $I_n$, $A$ es singular y el bloque derecho no es una inversa.
+
+Más generalmente, para $A$ de orden $m\times n$, la reducción
+\[
+ [\,A\mid I_m\,]\longrightarrow[\,H_f(A)\mid P\,]
+\]
+registra una matriz invertible $P$ con $PA=H_f(A)$. Para registrar
+operaciones por columnas se coloca $I_n$ debajo de $A$ y se opera sobre
+ambos bloques, obteniendo $AQ=H_c(A)$. Así,
+\[
+ A\ef B\iff B=PA,\qquad A\ec B\iff B=AQ,\qquad
+ A\sim B\iff B=PAQ,
+\]
+con factores invertibles de los órdenes adecuados. Si se registran
+$P_1AQ_1=H$ y $P_2BQ_2=H$, entonces
+$B=P_2^{-1}P_1A Q_1Q_2^{-1}$.
+
+\subsection*{Inversas laterales de matrices rectangulares}
+
+Para $A\in\M_{m\times n}(\K)$:
+\begin{itemize}
+ \item Una \textbf{inversa por la izquierda} es $X\in\M_{n\times m}(\K)$
+       con $XA=I_n$. Existe si y solo si $\rg(A)=n$; exige $m\ge n$.
+ \item Una \textbf{inversa por la derecha} es $Y\in\M_{n\times m}(\K)$
+       con $AY=I_m$. Existe si y solo si $\rg(A)=m$; exige $m\le n$.
+\end{itemize}
+Si existen por ambos lados, $m=n$ y coinciden con la inversa usual.
+Para matrices rectangulares las inversas laterales pueden no ser únicas.
+En el caso de rango $n$, si $PA=\binom{I_n}{0}$, las primeras $n$ filas
+de $P$ forman una inversa por la izquierda. En el de rango $m$, si
+$AQ=(I_m\ 0)$, las primeras $m$ columnas de $Q$ forman una por la derecha.
+
+\subsection*{Congruencia y semejanza}
+
+Para matrices cuadradas del mismo orden, $A$ y $B$ son
+\textbf{congruentes} si $B=P^tAP$, y \textbf{semejantes} si
+$B=P^{-1}AP$, con $P$ invertible. Ambas relaciones conservan el rango
+y son relaciones de equivalencia. La semejanza conserva además la traza,
+pues $\tr(P^{-1}AP)=\tr(APP^{-1})=\tr(A)$.
+En la congruencia se usa la traspuesta, también sobre $\C$.
+
+\section{Determinantes y menores}
+\label{sec:determinantes}
+
+El \textbf{determinante} asigna un escalar a cada matriz cuadrada.
+Para orden $1$, $\det(a)=a$. Para $n\ge2$, sea $A_{ij}$ la matriz
+obtenida al suprimir la fila $i$ y la columna $j$; el \textbf{cofactor}
+o adjunto de $a_{ij}$ es $\alpha_{ij}=(-1)^{i+j}\det(A_{ij})$.
+El \textbf{desarrollo de Laplace} permite usar cualquier fila $i$
+o columna $j$:
+\[
+ \det(A)=\sum_{k=1}^n a_{ik}\alpha_{ik}
+         =\sum_{k=1}^n a_{kj}\alpha_{kj}.
+\]
+Conviene elegir una con muchos ceros. En orden $2$,
+$\det\begin{pmatrix}a&b\\c&d\end{pmatrix}=ad-bc$.
+La regla de Sarrus se aplica únicamente al orden $3$:
+\[
+ \begin{split}
+ \det(A)={}&a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\\
+ &-a_{13}a_{22}a_{31}-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33}.
+ \end{split}
+\]
+
+\subsection*{Propiedades y cálculo por Gauss}
+
+El determinante es lineal en cada fila por separado y en cada columna
+por separado, manteniendo las demás fijas. De ello se derivan las reglas:
+\begin{center}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Operación en filas o columnas & Efecto en el determinante \\
+\midrule
+Intercambiar dos & Cambia de signo. \\
+Multiplicar una por $\lambda$ & Se multiplica por $\lambda$. \\
+Sumar a una un múltiplo de otra & No cambia. \\
+\bottomrule
+\end{tabular}
+\end{center}
+Una fila o columna nula, o dos iguales, hacen que el determinante sea cero.
+La linealidad en una fila no significa que $\det(A+B)=\det(A)+\det(B)$.
+Multiplicar \emph{toda} la matriz por $\lambda$ da
+$\det(\lambda A)=\lambda^n\det(A)$.
+
+El determinante de una matriz triangular es el producto de sus entradas
+diagonales. Para calcularlo por Gauss, se contabilizan los intercambios
+y las multiplicaciones de filas: si se hicieron $s$ intercambios y se
+multiplicaron filas por escalares no nulos $\lambda_1,\ldots,\lambda_k$,
+\[
+ \det(A)=\frac{(-1)^s\det(U)}{\lambda_1\cdots\lambda_k},
+\]
+donde $U$ es la matriz triangular obtenida. Las sumas de múltiplos no
+aportan factores. Para matrices triangulares por bloques cuadrados,
+el determinante es el producto de los determinantes de los bloques diagonales.
+
+Para matrices cuadradas del mismo orden,
+\[
+ \det(I_n)=1,\qquad \det(A^t)=\det(A),\qquad
+ \det(AB)=\det(A)\det(B).
+\]
+En particular,
+\[
+ A\text{ invertible}\iff\det(A)\ne0,
+ \qquad \det(A^{-1})=\frac1{\det(A)}.
+\]
+
+\subsection*{Inversa mediante cofactores}
+
+Se denomina aquí \textbf{matriz adjunta} a la matriz de cofactores
+$\Adj(A)=(\alpha_{ij})$, \emph{sin trasponer}. Para $n\ge2$,
+\[
+ A\Adj(A)^t=\Adj(A)^tA=\det(A)I_n,
+ \qquad A^{-1}=\frac{\Adj(A)^t}{\det(A)}\quad(\det(A)\ne0).
+\]
+La traspuesta de la adjunta es necesaria con esta convención.
+Para orden $1$, la inversa de $(a)$ es $(1/a)$ cuando $a\ne0$.
+El cálculo por cofactores resulta útil en órdenes pequeños;
+Gauss evita calcular muchos determinantes auxiliares.
+
+\subsection*{Rango mediante menores}
+
+Un \textbf{menor de orden $k$} es el determinante de una submatriz cuadrada
+de orden $k$. Para $A\ne0$, el rango es el mayor orden de un menor no nulo.
+Así, un menor no nulo de orden $k$ garantiza $\rg(A)\ge k$; si todos los
+de orden $k+1$ son nulos, el rango es $k$.
+
+El \textbf{método de los menores orlados} parte de un menor no nulo
+y lo amplía con una fila y una columna. Si el rango supera su orden,
+existe una ampliación no nula. Se continúa hasta que todas las
+ampliaciones sean nulas o se alcance $\min(m,n)$. Una sola ampliación
+nula no permite detenerse: deben comprobarse todas las que orlan
+el menor seleccionado. Si todas las entradas son cero, el rango es cero.
+
+Para una matriz cuadrada, $\Delta_k(A)$ denota el determinante del bloque
+de las primeras $k$ filas y columnas, llamado \emph{menor principal}
+en esta notación. Estos menores se usan en la factorización LU
+de la sección~\ref{sec:lu}; por sí solos no bastan para determinar
+el rango de una matriz cualquiera.
